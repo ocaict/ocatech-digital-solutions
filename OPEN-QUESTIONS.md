@@ -19,7 +19,7 @@ Nothing here is shown as a fact on the site yet. Answer with **later** and the i
 | Privacy retention | How long enquiries are kept, and which analytics are used | Draft uses “as long as needed, then deleted”; no analytics |
 | Certificate | Exact wording, sample image, and whether it can be verified online | “Certificate of completion” is shown; no verification claim |
 | Photo consent | Confirmation that people in supplied photos agreed to appear | Supplied photos are used with factual alt text only |
-| Cloudflare chat settings | `GROQ_API_KEY`, `GROQ_MODEL` and `IP_SALT` in Cloudflare variables | Chat shows a WhatsApp handoff until added |
+| Cloudflare chat settings | `GROQ_API_KEY`, `GROQ_MODEL` and `IP_SALT` in the `ict` Worker’s Cloudflare variables | Chat reports `missing-key` and shows a WhatsApp handoff |
 | Cloudflare form settings | D1 binding `DB` is connected and a test enquiry saved | Form now saves enquiries and returns success |
 
 The privacy page is a draft for owner review. It is not legal advice.
