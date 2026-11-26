@@ -310,6 +310,7 @@ function renderCourses() {
 
 function renderCourse(course) {
   const track = trackById.get(course.track);
+  const formatNaira = (num) => Number(num || 0).toLocaleString("en-NG");
   const courseFaq = [
     [courseTemplate.qExperience, course.prerequisites],
     [courseTemplate.qOnline, courseTemplate.aOnline],
@@ -318,37 +319,152 @@ function renderCourse(course) {
   ];
   const next = course.nextSteps.map((slug) => courseBySlug.get(slug)).filter(Boolean)
     .map((item) => `<li><a href="/courses/${esc(item.slug)}/">${esc(item.title)}</a></li>`).join("");
+
   const inner = `<article class="course-page">
 <header class="page-head wrap">
-<p class="course-track track-${esc(track?.color || "green")}">${esc(trackName(course.track))}</p>
+<span class="course-track-pill">${esc(trackName(course.track))}</span>
 <h1>${esc(course.title)}</h1>
 <p class="course-subtitle">${esc(course.subtitle)}</p>
-<p>${esc(course.summary)}</p>
-<div class="hero-actions">
-<a class="button" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
-<a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+<p class="course-lead-copy">${esc(course.summary)}</p>
+<div class="course-hero-bar">
+  <div class="hero-pricing">
+    <span class="price-val">₦${formatNaira(course.fee)}</span>
+    ${course.originalFee ? `<span class="price-orig"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
+  </div>
+  <div class="hero-actions">
+    <a class="button" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
+    <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+  </div>
 </div>
 </header>
-<section class="section"><div class="wrap key-facts">
-<h2>Key facts</h2>
-<dl>
-<div><dt>Level</dt><dd>${esc(course.level)}</dd></div>
-<div><dt>Track</dt><dd>${esc(trackName(course.track))}</dd></div>
-<div><dt>Learn</dt><dd>${esc(courseTemplate.learn.replace("Learn: ", ""))}</dd></div>
-<div><dt>Start</dt><dd>${esc(courseTemplate.start.replace("Start: ", ""))}</dd></div>
-<div><dt>Duration</dt><dd>${esc(course.duration || courseTemplate.duration.replace("Duration: ", ""))}</dd></div>
-<div><dt>Fee</dt><dd>${course.fee ? `<strong>₦${Number(course.fee).toLocaleString("en-NG")}</strong> ${course.originalFee ? `<s>₦${Number(course.originalFee).toLocaleString("en-NG")}</s>` : ""} · ` : ""}${esc(site.offer.feeNote)}</dd></div>
-<div><dt>Certificate</dt><dd>${esc(site.offer.certificate)}</dd></div>
-</dl>
-</div></section>
-<section class="section section-alt"><div class="wrap"><h2>${esc(courseTemplate.whoFor)}</h2><p>${esc(course.whoFor)}</p></div></section>
-<section class="section"><div class="wrap"><h2>${esc(courseTemplate.outcomes)}</h2><ul>${course.outcomes.map((item) => `<li>${esc(item)}</li>`).join("")}</ul></div></section>
-<section class="section section-alt"><div class="wrap"><h2>${esc(courseTemplate.tools)}</h2><ul>${course.tools.map((item) => `<li>${esc(item)}</li>`).join("")}</ul></div></section>
-<section class="section"><div class="wrap"><h2>${esc(courseTemplate.finalProject)}</h2><p>${esc(course.finalProject)}</p></div></section>
-<section class="section section-alt"><div class="wrap"><h2>${esc(courseTemplate.prerequisites)}</h2><p>${esc(course.prerequisites)}</p>${course.note ? `<p class="note">${esc(course.note)}</p>` : ""}</div></section>
-${next ? `<section class="section"><div class="wrap"><h2>${esc(courseTemplate.nextSteps)}</h2><ul>${next}</ul></div></section>` : ""}
-<section class="section section-alt"><div class="wrap"><h2>${esc(courseTemplate.questions)}</h2>${renderFaq(courseFaq)}</div></section>
-<section class="section closing"><div class="wrap"><h2>${esc(courseTemplate.closing.replace("{course}", course.shortName || course.title))}</h2>
+
+<section class="section" aria-labelledby="specs-heading">
+<div class="wrap">
+<h2 id="specs-heading" class="section-title">Course Specifications</h2>
+<div class="specs-grid">
+  <div class="spec-card">
+    <span class="spec-icon" aria-hidden="true">&#x23F1;</span>
+    <div class="spec-info">
+      <h3>Duration &amp; Schedule</h3>
+      <p>${esc(course.duration || "Flexible pace")} · Weekdays &amp; weekends</p>
+    </div>
+  </div>
+  <div class="spec-card">
+    <span class="spec-icon" aria-hidden="true">&#x1F4CD;</span>
+    <div class="spec-info">
+      <h3>Training Format</h3>
+      <p>100% in-person at our Onitsha center</p>
+    </div>
+  </div>
+  <div class="spec-card">
+    <span class="spec-icon" aria-hidden="true">&#x1F393;</span>
+    <div class="spec-info">
+      <h3>Skill Level</h3>
+      <p>${esc(course.level)} · Practical hands-on training</p>
+    </div>
+  </div>
+  <div class="spec-card">
+    <span class="spec-icon" aria-hidden="true">&#x1F4BB;</span>
+    <div class="spec-info">
+      <h3>Equipment &amp; Facilities</h3>
+      <p>Lab computers provided · Free Wi-Fi</p>
+    </div>
+  </div>
+  <div class="spec-card">
+    <span class="spec-icon" aria-hidden="true">&#x1F3C6;</span>
+    <div class="spec-info">
+      <h3>Certification</h3>
+      <p>${esc(site.offer.certificate)}</p>
+    </div>
+  </div>
+  <div class="spec-card">
+    <span class="spec-icon" aria-hidden="true">&#x1F4B3;</span>
+    <div class="spec-info">
+      <h3>Tuition &amp; Plans</h3>
+      <p>₦${formatNaira(course.fee)} · Installment plans available</p>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="section section-alt" aria-labelledby="curriculum-heading">
+<div class="wrap">
+<h2 id="curriculum-heading">${esc(courseTemplate.outcomes)}</h2>
+<div class="curriculum-grid">
+  ${course.outcomes.map((item, idx) => `
+  <div class="curriculum-card">
+    <span class="curriculum-num">${String(idx + 1).padStart(2, "0")}</span>
+    <p>${esc(item)}</p>
+  </div>`).join("")}
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="tools-heading">
+<div class="wrap">
+<h2 id="tools-heading">${esc(courseTemplate.tools)}</h2>
+<div class="tools-pills-wrap">
+  ${course.tools.map((item) => `<span class="tool-badge">${esc(item)}</span>`).join("")}
+</div>
+</div>
+</section>
+
+<section class="section section-alt" aria-labelledby="project-heading">
+<div class="wrap">
+<h2 id="project-heading">${esc(courseTemplate.finalProject)}</h2>
+<div class="capstone-card">
+  <span class="capstone-badge">Portfolio Deliverable</span>
+  <p class="capstone-desc">${esc(course.finalProject)}</p>
+</div>
+</div>
+</section>
+
+<section class="section" aria-labelledby="audience-heading">
+<div class="wrap two-col-info">
+  <div class="info-card">
+    <h2 id="audience-heading">${esc(courseTemplate.whoFor)}</h2>
+    <p>${esc(course.whoFor)}</p>
+  </div>
+  <div class="info-card">
+    <h2>${esc(courseTemplate.prerequisites)}</h2>
+    <p>${esc(course.prerequisites)}</p>
+    ${course.note ? `<p class="note">${esc(course.note)}</p>` : ""}
+  </div>
+</div>
+</section>
+
+<section class="section section-alt" aria-labelledby="tuition-heading">
+<div class="wrap">
+<div class="tuition-card">
+  <div class="tuition-content">
+    <h2 id="tuition-heading">Tuition &amp; Enrolment</h2>
+    <p class="tuition-lead">Gain in-demand practical skills with step-by-step instructor guidance in Onitsha.</p>
+    <div class="tuition-pricing">
+      <span class="tuition-current">₦${formatNaira(course.fee)}</span>
+      ${course.originalFee ? `<span class="tuition-original"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
+    </div>
+    <p class="tuition-note">${esc(site.offer.feeNote)} Payment methods: ${site.offer.paymentMethods.join(", ")}.</p>
+  </div>
+  <div class="tuition-actions">
+    <a class="button" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
+    <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+  </div>
+</div>
+</div>
+</section>
+
+${next ? `<section class="section"><div class="wrap"><h2>${esc(courseTemplate.nextSteps)}</h2><ul class="plain-list">${next}</ul></div></section>` : ""}
+
+<section class="section section-alt" aria-labelledby="faq-heading">
+<div class="wrap">
+<h2 id="faq-heading">${esc(courseTemplate.questions)}</h2>
+${renderFaq(courseFaq)}
+</div>
+</section>
+
+<section class="section closing"><div class="wrap">
+<h2>${esc(courseTemplate.closing.replace("{course}", course.shortName || course.title))}</h2>
 <div class="hero-actions">
 <a class="button" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
 <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>

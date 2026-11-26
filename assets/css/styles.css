@@ -538,12 +538,195 @@ button, input, select, textarea { font: inherit; }
 .filter-link { min-height: 44px; display: inline-flex; align-items: center; padding: .5rem .85rem; border: 1px solid var(--border); border-radius: 999px; text-decoration: none; color: var(--muted); background: var(--surface); }
 .filter-link[aria-current="page"], .filter-link:hover { color: var(--navy-text); background: var(--orange); border-color: var(--orange); }
 
-.course-subtitle { color: var(--cyan); font-size: 1.2rem; }
-.course-track { margin: 0 0 .75rem; color: var(--track); font-weight: 600; }
-.key-facts dl { display: grid; gap: .75rem; margin: 0; }
-.key-facts dl div { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: .8rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
-.key-facts dt { color: var(--muted); }
-.key-facts dd { margin: 0; }
+/* Course Page Header & Details */
+.course-track-pill {
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--cyan);
+  background: rgba(70, 206, 255, 0.08);
+  border: 1px solid rgba(70, 206, 255, 0.2);
+  padding: .25rem .75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-bottom: .85rem;
+}
+
+.course-subtitle { color: var(--cyan); font-size: 1.2rem; margin: .35rem 0 .75rem; }
+.course-lead-copy { color: var(--muted); font-size: 1.05rem; line-height: 1.5; max-width: 780px; }
+
+.course-hero-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.hero-pricing { display: flex; align-items: baseline; gap: .6rem; }
+.price-val { font-size: 1.6rem; font-weight: 800; color: var(--text); }
+.price-orig { font-size: 1.05rem; color: var(--muted); }
+
+/* Specifications Grid (6-card specs) */
+.specs-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .specs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .specs-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.spec-card {
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+  padding: 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color .2s ease;
+}
+
+.spec-card:hover { border-color: rgba(70, 206, 255, 0.3); }
+.spec-icon { font-size: 1.4rem; line-height: 1; flex-shrink: 0; }
+.spec-info h3 { margin: 0 0 .25rem; font-size: .95rem; color: var(--text); }
+.spec-info p { margin: 0; font-size: .88rem; color: var(--muted); line-height: 1.35; }
+
+/* Modular Curriculum Grid */
+.curriculum-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .curriculum-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.curriculum-card {
+  display: flex;
+  align-items: flex-start;
+  gap: .85rem;
+  padding: 1.15rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.curriculum-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: rgba(70, 206, 255, 0.1);
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: .85rem;
+  flex-shrink: 0;
+}
+
+.curriculum-card p { margin: 0; color: var(--text); font-size: .95rem; line-height: 1.45; }
+
+/* Tools Badges */
+.tools-pills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.tool-badge {
+  display: inline-block;
+  padding: .45rem .85rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+/* Capstone Project Card */
+.capstone-card {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--cyan);
+  border-radius: 12px;
+}
+
+.capstone-badge {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .5rem;
+}
+
+.capstone-desc { margin: 0; font-size: 1.05rem; color: var(--text); line-height: 1.5; }
+
+/* Two-column audience & prerequisite layout */
+.two-col-info {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 760px) {
+  .two-col-info { grid-template-columns: repeat(2, 1fr); }
+}
+
+.info-card {
+  padding: 1.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.info-card h2 { font-size: 1.25rem; margin-top: 0; }
+.info-card p { margin: 0; color: var(--muted); line-height: 1.45; }
+
+/* Tuition Card Box */
+.tuition-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+@media (min-width: 800px) {
+  .tuition-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.tuition-content h2 { margin: 0 0 .35rem; }
+.tuition-lead { color: var(--muted); margin: 0 0 1rem; }
+.tuition-pricing { display: flex; align-items: baseline; gap: .75rem; margin-bottom: .6rem; }
+.tuition-current { font-size: 1.8rem; font-weight: 800; color: var(--text); }
+.tuition-original { font-size: 1.15rem; color: var(--muted); }
+.tuition-note { font-size: .85rem; color: var(--muted); margin: 0; }
+.tuition-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 
 .form-wrap { max-width: 760px; }
 form fieldset { border: 1px solid var(--border); border-radius: 12px; padding: 1rem; margin: 0 0 1rem; }
