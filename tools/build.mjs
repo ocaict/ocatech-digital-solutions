@@ -163,22 +163,21 @@ function renderPickerFallback() {
 function courseCard(course, lead = false) {
   const track = trackById.get(course.track);
   const url = `/courses/${course.slug}/`;
-  const trackColorClass = `track-${esc(track?.color || "green")}`;
   const formatNaira = (num) => Number(num || 0).toLocaleString("en-NG");
   const outcomes = (course.outcomes || []).slice(0, 3);
   const outcomesHtml = outcomes.map((o) => `<li><span class="outcome-check" aria-hidden="true">&#x2713;</span> ${esc(o)}</li>`).join("");
 
-  return `<article class="course-card ${trackColorClass}${lead ? " course-card-lead" : ""}" data-course-track="${esc(course.track)}">
+  return `<article class="course-card${lead ? " course-card-lead" : ""}" data-course-track="${esc(course.track)}">
 <div class="course-card-media">
   <img src="${esc(course.image)}" width="600" height="340" alt="${esc(course.title)}" loading="lazy">
-  <span class="badge-sale">SALE</span>
-  <span class="course-card-track">${esc(trackName(course.track))}</span>
+  <span class="badge-sale">75% OFF</span>
 </div>
 <div class="course-card-body">
-  <div class="course-card-head">
-    <h3 class="course-card-title"><a class="course-card-link" href="${url}">${esc(course.title)}</a></h3>
+  <div class="course-card-meta">
+    <span class="course-card-track">${esc(trackName(course.track))}</span>
     ${course.duration ? `<span class="course-duration-badge" title="Duration"><span aria-hidden="true">&#x23F1;</span> ${esc(course.duration)}</span>` : ""}
   </div>
+  <h3 class="course-card-title"><a class="course-card-link" href="${url}">${esc(course.title)}</a></h3>
   <p class="course-card-desc">${esc(course.subtitle)}</p>
   <ul class="course-card-outcomes" aria-label="Key outcomes">
     ${outcomesHtml}
@@ -188,10 +187,10 @@ function courseCard(course, lead = false) {
       <span class="price-current">₦${formatNaira(course.fee)}</span>
       ${course.originalFee ? `<span class="price-original"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
     </div>
-    ${course.isPopular ? `<span class="badge-bestseller">Bestseller</span>` : ""}
+    ${course.isPopular ? `<span class="badge-popular">Popular</span>` : ""}
   </div>
   <div class="course-card-cta-row">
-    <a class="button-card-enrol" href="/apply/?course=${esc(course.slug)}">Enrol</a>
+    <a class="button button-card-enrol" href="/apply/?course=${esc(course.slug)}">Enrol</a>
     <a class="button-card-details" href="${url}">Details <span class="arrow" aria-hidden="true">&nearr;</span></a>
   </div>
 </div>
