@@ -75,16 +75,16 @@
     return true;
   };
 
-  const showSuccess = (firstName) => {
+  const showSuccess = (firstName, customWaUrl) => {
     const panel = document.createElement("section");
     panel.className = "form-success";
     const heading = document.createElement("h2");
-    heading.textContent = firstName ? `${messages.success}, ${firstName}` : messages.success;
+    heading.textContent = firstName ? `${messages.success}, ${firstName}!` : messages.success;
     const text = document.createElement("p");
     text.textContent = messages.successText;
     const link = document.createElement("a");
-    link.className = "button button-wa";
-    link.href = form.dataset.whatsapp;
+    link.className = "button button-wa button-full";
+    link.href = customWaUrl || form.dataset.whatsapp;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
     link.textContent = "Continue on WhatsApp";
@@ -126,7 +126,8 @@
         return;
       }
       if (!response.ok) throw new Error("apply failed");
-      showSuccess(name.value.trim().split(/\s+/)[0]);
+      const result = await response.json().catch(() => ({}));
+      showSuccess(name.value.trim().split(/\s+/)[0], result.whatsappUrl);
     } catch {
       errors.textContent = messages.error;
       errors.hidden = false;

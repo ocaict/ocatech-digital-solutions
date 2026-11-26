@@ -75,7 +75,21 @@ function validate(data) {
   out.service = clean(data.service, 80);
   out.mode = clean(data.mode, 40);
   out.start = clean(data.start, 40);
-  out.message = clean(data.message, 600);
+
+  const status = clean(data.current_status, 60);
+  const goal = clean(data.goal, 60);
+  const laptop = clean(data.has_laptop, 20);
+  const referral = clean(data.referral, 80);
+  const rawMsg = clean(data.message, 600);
+
+  const details = [];
+  if (status) details.push(`Status: ${status}`);
+  if (goal) details.push(`Goal: ${goal}`);
+  if (laptop) details.push(`Laptop & Internet: ${laptop}`);
+  if (referral) details.push(`Heard via: ${referral}`);
+  if (rawMsg) details.push(`Note: ${rawMsg}`);
+
+  out.message = details.length ? details.join(" | ").slice(0, 600) : "";
   out.consent = data.consent === true || data.consent === "true" || data.consent === "on" || data.consent === "1";
   out.sourcePage = clean(data.sourcePage, 200);
   out.website = clean(data.website, 200);

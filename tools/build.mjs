@@ -720,36 +720,193 @@ function renderAbout() {
 function renderApply() {
   const groups = site.tracks.map((track) => `<optgroup label="${esc(track.name)}">${courseData.filter((course) => course.track === track.id).map((course) => `<option value="${esc(course.slug)}">${esc(course.title)}</option>`).join("")}</optgroup>`).join("");
   const services = site.services.map((service) => `<option value="${esc(service.slug)}">${esc(service.name)}</option>`).join("");
-  const radioGroup = (name, values, required) => values.map((value) => `<label><input type="radio" name="${name}" value="${esc(value)}"${required && value === values[0] ? " checked" : ""}> ${esc(value)}</label>`).join("");
-  const inner = `<section class="page-head wrap"><h1>${esc(applyCopy.h1)}</h1><p>${esc(applyCopy.intro)}</p></section>
-<section class="section"><div class="wrap form-wrap">
-<form id="apply-form" action="/api/apply" method="post" data-success="/success/" data-whatsapp="${esc(whatsapp(sharedCopy.whatsappPresets.general))}" data-messages="${esc(json(applyCopy.messages))}">
-<div id="form-errors" class="form-errors" role="alert" hidden></div>
-<fieldset><legend>What would you like?</legend>
-<label><input type="radio" name="type" value="learn" checked> ${esc(applyCopy.learn)}</label>
-<label><input type="radio" name="type" value="service"> ${esc(applyCopy.service)}</label>
-</fieldset>
-<div class="form-grid">
-<p><label for="name">${esc(applyCopy.fields.name)}</label><input id="name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80"></p>
-<p><label for="phone">${esc(applyCopy.fields.phone)}</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></p>
-<p><label for="email">${esc(applyCopy.fields.email)}</label><input id="email" name="email" type="email" autocomplete="email"></p>
-<div id="learn-fields">
-<p><label for="course">${esc(applyCopy.fields.course)}</label><select id="course" name="course" required><option value="not-sure-yet">${esc(applyCopy.notSure)}</option>${groups}</select></p>
-<fieldset><legend>${esc(applyCopy.fields.mode)}</legend>${radioGroup("mode", applyCopy.modes, true)}</fieldset>
-<fieldset><legend>${esc(applyCopy.fields.start)}</legend>${radioGroup("start", applyCopy.starts, false)}</fieldset>
-</div>
-<div id="service-fields" hidden>
-<p><label for="service">${esc(applyCopy.fields.service)}</label><select id="service" name="service"><option value="">${esc(applyCopy.notSure)}</option>${services}</select></p>
-</div>
-<p><label for="message">${esc(applyCopy.fields.message)}</label><textarea id="message" name="message" rows="5" maxlength="600"></textarea><span class="counter" id="message-count" aria-live="polite">0/600</span></p>
-<p class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></p>
-<input type="hidden" name="sourcePage" id="source-page" value="">
-<p class="consent"><label><input type="checkbox" name="consent" value="true" required> ${esc(applyCopy.fields.consent)} <a href="/privacy/">Privacy</a></label></p>
-<button class="button" type="submit">${esc(sharedCopy.buttons.send)}</button>
-</div>
-</form>
-</div></section>
-<section class="section section-alt"><div class="wrap"><h2>Common questions</h2>${renderFaq(faq.slice(0, homeFaqCount))}</div></section>`;
+  const statusOptions = (applyCopy.statuses || []).map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("");
+  const goalOptions = (applyCopy.goals || []).map((g) => `<option value="${esc(g)}">${esc(g)}</option>`).join("");
+  const laptopOptions = (applyCopy.laptopOptions || []).map((l) => `<option value="${esc(l)}">${esc(l)}</option>`).join("");
+  const referralOptions = (applyCopy.referrals || []).map((r) => `<option value="${esc(r)}">${esc(r)}</option>`).join("");
+
+  const checkIcon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+  const benefitsList = (applyCopy.benefits || []).map(([title, desc]) => `
+    <li>
+      <span class="apply-benefit-check" aria-hidden="true">${checkIcon}</span>
+      <div>
+        <strong>${esc(title)}</strong>
+        <p>${esc(desc)}</p>
+      </div>
+    </li>`).join("");
+
+  const inner = `<section class="apply-hero-section">
+  <div class="wrap">
+    <div class="apply-hero-text">
+      <div class="apply-kicker-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>Admissions &amp; Enrolment</span>
+      </div>
+      <h1>${esc(applyCopy.h1)}</h1>
+      <p class="apply-hero-lead">${esc(applyCopy.intro)}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section apply-main-section">
+  <div class="wrap apply-layout-grid">
+    
+    <aside class="apply-benefits-col" aria-label="Why choose OCATECH">
+      <div class="apply-benefits-card">
+        <p class="hero-kicker">Why Learn with Us</p>
+        <h2 class="apply-benefits-title">Your pathway to practical digital competence</h2>
+        <ul class="apply-benefits-list">
+          ${benefitsList}
+        </ul>
+        <div class="apply-wa-direct">
+          <p class="apply-wa-direct-label">Need immediate answers or assistance?</p>
+          <a class="button button-wa button-full" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">
+            ${esc(sharedCopy.buttons.whatsapp)}
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="apply-form-col">
+      <div class="apply-card">
+        <form id="apply-form" action="/api/apply" method="post" data-success="/success/" data-whatsapp="${esc(whatsapp(sharedCopy.whatsappPresets.general))}" data-messages="${esc(json(applyCopy.messages))}">
+          <div id="form-errors" class="form-errors" role="alert" hidden></div>
+          
+          <div class="form-mode-switch" role="radiogroup" aria-label="Select application type">
+            <label class="mode-switch-label">
+              <input type="radio" name="type" value="learn" checked>
+              <span class="mode-switch-pill">🎓 ${esc(applyCopy.learn)}</span>
+            </label>
+            <label class="mode-switch-label">
+              <input type="radio" name="type" value="service">
+              <span class="mode-switch-pill">🛠️ ${esc(applyCopy.service)}</span>
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-row-2">
+              <p class="form-field">
+                <label for="name">${esc(applyCopy.fields.name)} <span class="req">*</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Chukwuma Okoye" required minlength="2" maxlength="80">
+              </p>
+              <p class="form-field">
+                <label for="phone">${esc(applyCopy.fields.phone)} <span class="req">*</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 0816 532 1429" required>
+              </p>
+            </div>
+
+            <p class="form-field">
+              <label for="email">${esc(applyCopy.fields.email)}</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. yourname@example.com">
+            </p>
+
+            <div id="learn-fields">
+              <p class="form-field">
+                <label for="course">${esc(applyCopy.fields.course)} <span class="req">*</span></label>
+                <select id="course" name="course" required>
+                  <option value="">Select a course...</option>
+                  <option value="not-sure-yet">${esc(applyCopy.notSure)}</option>
+                  ${groups}
+                </select>
+              </p>
+
+              <fieldset class="form-fieldset">
+                <legend>${esc(applyCopy.fields.mode)} <span class="req">*</span></legend>
+                <div class="mode-chips">
+                  <label class="chip-label">
+                    <input type="radio" name="mode" value="In person" checked>
+                    <span class="chip-pill">📍 In person (Onitsha Hub)</span>
+                  </label>
+                  <label class="chip-label">
+                    <input type="radio" name="mode" value="Online">
+                    <span class="chip-pill">💻 Online</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="form-row-2">
+                <p class="form-field">
+                  <label for="current_status">${esc(applyCopy.fields.status)}</label>
+                  <select id="current_status" name="current_status">
+                    <option value="">Select your current status</option>
+                    ${statusOptions}
+                  </select>
+                </p>
+                <p class="form-field">
+                  <label for="goal">${esc(applyCopy.fields.goal)}</label>
+                  <select id="goal" name="goal">
+                    <option value="">Select your choice</option>
+                    ${goalOptions}
+                  </select>
+                </p>
+              </div>
+
+              <div class="form-row-2">
+                <p class="form-field">
+                  <label for="has_laptop">${esc(applyCopy.fields.laptop)}</label>
+                  <select id="has_laptop" name="has_laptop">
+                    <option value="">Select your choice</option>
+                    ${laptopOptions}
+                  </select>
+                </p>
+                <p class="form-field">
+                  <label for="referral">${esc(applyCopy.fields.referral)}</label>
+                  <select id="referral" name="referral">
+                    <option value="">Select an option</option>
+                    ${referralOptions}
+                  </select>
+                </p>
+              </div>
+            </div>
+
+            <div id="service-fields" hidden>
+              <p class="form-field">
+                <label for="service">${esc(applyCopy.fields.service)} <span class="req">*</span></label>
+                <select id="service" name="service">
+                  <option value="">Select a service...</option>
+                  ${services}
+                </select>
+              </p>
+            </div>
+
+            <p class="form-field">
+              <label for="message">${esc(applyCopy.fields.message)}</label>
+              <textarea id="message" name="message" rows="3" maxlength="600" placeholder="Any specific questions, requirements or additional details..."></textarea>
+              <span class="counter" id="message-count" aria-live="polite">0/600</span>
+            </p>
+
+            <p class="honeypot" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </p>
+            <input type="hidden" name="sourcePage" id="source-page" value="">
+
+            <p class="consent">
+              <label>
+                <input type="checkbox" name="consent" value="true" required>
+                <span>${esc(applyCopy.fields.consent)} <a href="/privacy/">Privacy Policy</a></span>
+              </label>
+            </p>
+
+            <button class="button button-full" type="submit">${esc(sharedCopy.buttons.send)} &rarr;</button>
+            <p class="form-guarantee-note">🔒 We respect your privacy. No spam or unsolicited messages.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="section-title-wrap text-center">
+      <p class="hero-kicker">Got Questions?</p>
+      <h2>Common questions before applying</h2>
+    </div>
+    ${renderFaq(faq.slice(0, homeFaqCount))}
+  </div>
+</section>`;
   return {
     title: applyCopy.seoTitle,
     description: applyCopy.seoDescription,
