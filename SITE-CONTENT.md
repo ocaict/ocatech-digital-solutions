@@ -276,7 +276,7 @@ A hidden honeypot field named `website` must stay empty. Preselect the course or
 - **Email:** ocatechskill@gmail.com
 - **Opening hours:** Monday–Saturday, 8AM–6PM
 - **Directions:** Beside the Glo Office and Mr Bigs at Ogbommanu, just before Onitsha Main Market.
-- **Map:** Google Maps link: https://maps.app.goo.gl/soyJPWoAeGUUwZWQ7
+- **Map:** Google Maps link: https://maps.app.goo.gl/jCjjhCm6M5VzofTt7
 **Closing line:** Prefer to write it down? **Apply now**
 
 ---
