@@ -136,17 +136,42 @@ export const services = {
   items: {
     "software-installation": {
       name: "Software installation",
+      tag: "Systems & Setup",
       text: "Get your computers ready to work. We install and set up operating systems, office software, security software and the programs your job needs, so you can start straight away.",
+      highlights: [
+        "Operating systems and driver configuration",
+        "Office, productivity and job-specific tools",
+        "Antivirus, security and system optimization",
+      ],
     },
     "cctv-installation": {
       name: "CCTV installation",
+      tag: "Security & Monitoring",
       text: "Watch over your shop, office or home. We plan where cameras should go, install them and set up the recording equipment, so you can see what is happening.",
+      highlights: [
+        "Site inspection and optimal camera placement",
+        "HD night-vision cameras and DVR/NVR setup",
+        "Remote live viewing on your smartphone or PC",
+      ],
     },
     "solar-installation": {
       name: "Solar installation",
+      tag: "Clean & Reliable Power",
       text: "Keep your power running. We help you work out what you need and install solar power for your home or business.",
+      highlights: [
+        "Power load assessment and system sizing",
+        "Inverter, solar panels and battery bank setup",
+        "Clean wiring, safety checks and maintenance tips",
+      ],
     },
   },
+  processHeading: "How our service works",
+  processIntro: "A simple, transparent process from your first message to testing and handover.",
+  process: [
+    ["1. Request a quote", "Send your requirements using our quote form or chat with us on WhatsApp with your location."],
+    ["2. Assessment & plan", "We evaluate your space, equipment or power needs and provide clear, upfront recommendations."],
+    ["3. Installation & testing", "We install, test all equipment thoroughly, and walk you through operation before handover."],
+  ],
   closing: {
     heading: "Tell us what you need",
     text: "Send your details and a short description, and we will contact you to discuss the job.",

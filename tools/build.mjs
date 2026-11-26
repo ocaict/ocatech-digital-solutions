@@ -482,17 +482,98 @@ ${renderFaq(courseFaq)}
 }
 
 function renderServices() {
-  const items = Object.entries(services.items).map(([slug, item]) => `<section class="section service-block${slug === "cctv-installation" ? " section-alt" : ""}" aria-labelledby="service-${esc(slug)}">
-<div class="wrap"><h2 id="service-${esc(slug)}">${esc(item.name)}</h2><p>${esc(item.text)}</p>
-<a class="button" href="/apply/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)}</a></div>
-</section>`).join("");
-  const inner = `<section class="page-head wrap"><h1>${esc(services.h1)}</h1><p>${esc(services.intro)}</p></section>
-${items}
-<section class="section section-alt closing"><div class="wrap"><h2>${esc(services.closing.heading)}</h2><p>${esc(services.closing.text)}</p>
-<div class="hero-actions">
-<a class="button" href="/apply/">${esc(sharedCopy.buttons.quote)}</a>
-<a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
-</div></div></section>`;
+  const serviceIcons = {
+    "software-installation": '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+    "cctv-installation": '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>',
+    "solar-installation": '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+  };
+  const fallbackIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  const checkIcon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  const cards = Object.entries(services.items).map(([slug, item]) => {
+    const icon = serviceIcons[slug] || fallbackIcon;
+    const waText = sharedCopy.whatsappPresets.service.replace("{service}", item.name);
+    const waUrl = whatsapp(waText);
+    const highlights = (item.highlights || []).map((pt) => `<li><span class="service-check" aria-hidden="true">${checkIcon}</span><span>${esc(pt)}</span></li>`).join("");
+
+    return `
+    <article class="service-card" id="service-${esc(slug)}">
+      <div class="service-card-top">
+        <span class="service-icon" aria-hidden="true">${icon}</span>
+        <span class="service-tag">${esc(item.tag || "Installation")}</span>
+      </div>
+      <h2 class="service-title">${esc(item.name)}</h2>
+      <p class="service-text">${esc(item.text)}</p>
+      ${highlights ? `<ul class="service-highlights">${highlights}</ul>` : ""}
+      <div class="service-card-actions">
+        <a class="button button-small" href="/apply/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)}</a>
+        <a class="service-wa-link" href="${esc(waUrl)}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.472 2 2 6.481 2 12.015a10.02 10.02 0 0 0 1.401 5.146L2 22l4.998-1.313A9.956 9.956 0 0 0 12 22c5.514 0 10-4.481 10-10.015S17.514 2 11.998 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
+          Ask on WhatsApp
+        </a>
+      </div>
+    </article>`;
+  }).join("");
+
+  const processSteps = (services.process || []).map(([title, desc], idx) => `
+    <div class="service-process-card">
+      <span class="process-num">0${idx + 1}</span>
+      <h3>${esc(title)}</h3>
+      <p>${esc(desc)}</p>
+    </div>`).join("");
+
+  const inner = `<section class="services-hero">
+  <div class="wrap">
+    <div class="services-hero-content">
+      <div class="services-kicker-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>On-Site Technical &amp; Power Solutions</span>
+      </div>
+      <h1>${esc(services.h1)}</h1>
+      <p class="services-lead">${esc(services.intro)}</p>
+      <div class="services-trust-strip">
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg> Onitsha · Nkpor · Obosi · Awka</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> Homes &amp; Businesses</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Professional On-Site Setup</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="services-list-heading">
+  <div class="wrap">
+    <div class="section-title-wrap">
+      <p class="hero-kicker">Our Offerings</p>
+      <h2 id="services-list-heading">Available installation services</h2>
+      <p class="section-subtitle">High-standard technical setup executed by trained technicians.</p>
+    </div>
+    <div class="services-grid">${cards}</div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="service-process-heading">
+  <div class="wrap">
+    <div class="section-title-wrap text-center">
+      <p class="hero-kicker">How It Works</p>
+      <h2 id="service-process-heading">${esc(services.processHeading)}</h2>
+      <p class="section-subtitle">${esc(services.processIntro)}</p>
+    </div>
+    <div class="service-process-grid">${processSteps}</div>
+  </div>
+</section>
+
+<section class="section closing" aria-labelledby="services-closing-heading">
+  <div class="wrap service-closing-wrap">
+    <div>
+      <h2 id="services-closing-heading">${esc(services.closing.heading)}</h2>
+      <p>${esc(services.closing.text)}</p>
+    </div>
+    <div class="hero-actions">
+      <a class="button" href="/apply/">${esc(sharedCopy.buttons.quote)}</a>
+      <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+    </div>
+  </div>
+</section>`;
   return { title: services.seoTitle, description: services.seoDescription, canonical: urls.for("/services/"), inner, jsonLd: [] };
 }
 
