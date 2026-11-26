@@ -210,15 +210,20 @@ function renderHome() {
     ? `<div class="discount">${esc(site.discountNote)}</div>`
     : "";
   const inner = `${discount}
-<section class="hero wrap">
-<p class="hero-kicker">${esc(site.brand.descriptor)}</p>
-<h1>${esc(home.h1)}</h1>
-<p class="hero-copy">${esc(home.subheading)}</p>
-<div class="hero-actions">
-<a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
-<a class="button button-quiet" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a>
-</div>
-<div class="hero-art" aria-hidden="true"><span class="orb orb-one"></span><span class="orb orb-two"></span><span class="grid-lines"></span></div>
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/img/video-poster.webp" aria-hidden="true">
+    <source src="/assets/video/ict-training.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay" aria-hidden="true"></div>
+  <div class="wrap hero-content">
+    <p class="hero-kicker">${esc(site.brand.descriptor)}</p>
+    <h1>${esc(home.h1)}</h1>
+    <p class="hero-copy">${esc(home.subheading)}</p>
+    <div class="hero-actions">
+      <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+      <a class="button button-quiet" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a>
+    </div>
+  </div>
 </section>
 <section class="section picker-section" aria-labelledby="picker-heading">
 <div class="wrap">

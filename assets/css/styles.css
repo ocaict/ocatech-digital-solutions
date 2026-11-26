@@ -181,28 +181,75 @@ button, input, select, textarea { font: inherit; }
 
 .nav-open .site-nav a { padding: .6rem 0; }
 
+/* ── Hero with video background ── */
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 5rem 0 4rem;
-  min-height: 68vh;
+  min-height: 90vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  animation: hero-arrive 700ms ease-out both;
+  align-items: center;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Layered overlay: deep navy at bottom, semi-transparent at top for readability */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom,
+      rgba(7, 17, 37, 0.72) 0%,
+      rgba(7, 17, 37, 0.55) 40%,
+      rgba(7, 17, 37, 0.85) 100%);
+}
+
+/* Subtle grid pattern on top of overlay */
+.hero-video-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: .08;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 0 5rem;
+  animation: hero-arrive 800ms ease-out both;
 }
 
 @keyframes hero-arrive {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: none; }
 }
 
-.hero > * { position: relative; z-index: 2; }
 .hero-kicker { color: var(--cyan); font-weight: 600; }
-.hero h1 { max-width: 16ch; }
-.hero-copy { max-width: 58ch; color: var(--muted); font-size: 1.15rem; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.hero h1,
+.hero-content h1 { max-width: 16ch; color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,.4); }
+.hero-copy { max-width: 56ch; color: rgba(247, 249, 255, 0.85); font-size: 1.15rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
 
+/* Pause video for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { animation: none; }
+  .hero-content { animation: none; }
+}
+
+/* Legacy hero-art kept for other pages that may still use it */
 .hero-art { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .orb { position: absolute; border-radius: 50%; filter: blur(2px); opacity: .45; }
 .orb-one { width: 340px; height: 340px; right: -120px; top: -80px; background: radial-gradient(circle, var(--logo-blue), transparent 70%); }
