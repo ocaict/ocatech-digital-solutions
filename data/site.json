@@ -42,7 +42,7 @@
     }
   },
 
-  "siteUrl": "https://REPLACE-WITH-CLOUDFLARE-PAGES-URL.pages.dev",
+  "siteUrl": "https://ict.ocatech.workers.dev",
 
   "offer": {
     "delivery": ["In person at our Onitsha center", "Online"],

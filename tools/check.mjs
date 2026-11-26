@@ -65,6 +65,24 @@ if (!fs.existsSync(dist)) {
   process.exit(1);
 }
 
+const workerSource = path.join(root, "functions", "worker.js");
+if (!fs.existsSync(workerSource)) fail("functions/worker.js is missing.");
+else {
+  const source = fs.readFileSync(workerSource, "utf8");
+  if (!source.includes('"/api/apply"')) fail("Worker does not route /api/apply.");
+  if (!source.includes('"/api/chat"')) fail("Worker does not route /api/chat.");
+  if (!source.includes("env.ASSETS.fetch(request)")) fail("Worker does not pass other requests to static assets.");
+}
+
+const wranglerConfig = path.join(root, "wrangler.jsonc");
+if (!fs.existsSync(wranglerConfig)) fail("wrangler.jsonc is missing.");
+else {
+  const config = fs.readFileSync(wranglerConfig, "utf8");
+  if (!/"name"\s*:\s*"ict"/.test(config)) fail('wrangler.jsonc: Worker name should be "ict".');
+  if (!/"main"\s*:\s*"\.\/functions\/worker\.js"/.test(config)) fail("wrangler.jsonc: main should point to functions/worker.js.");
+  if (!/"run_worker_first"\s*:\s*\["\/api\/\*"\]/.test(config)) fail('wrangler.jsonc: run_worker_first should be ["/api/*"].');
+}
+
 const allFiles = walk(dist);
 const htmlFiles = allFiles.filter((file) => file.endsWith(".html")).sort();
 const headers = fs.existsSync(path.join(dist, "_headers")) ? fs.readFileSync(path.join(dist, "_headers"), "utf8") : "";
