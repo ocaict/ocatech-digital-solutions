@@ -21,12 +21,27 @@
         "Use email, search engines and cloud storage safely",
         "Fix common everyday computer problems"
       ],
-      "tools": ["Windows", "Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint", "Gmail and Google Drive", "Web browsers"],
+      "tools": [
+        "Windows",
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Microsoft PowerPoint",
+        "Gmail and Google Drive",
+        "Web browsers"
+      ],
       "finalProject": "Prepare a CV, a price-list spreadsheet and a short presentation for a small business.",
       "prerequisites": "None. You do not need any computer experience.",
-      "nextSteps": ["ai-tools-for-business-and-productivity", "graphic-design", "digital-marketing", "data-analysis"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "ai-tools-for-business-and-productivity",
+        "graphic-design",
+        "digital-marketing",
+        "data-analysis"
+      ],
+      "duration": "6 weeks",
+      "fee": 35000,
+      "originalFee": 140000,
+      "isPopular": true,
+      "image": "/assets/img/courses/certificate-in-computer-application.svg"
     },
     {
       "slug": "ai-tools-for-business-and-productivity",
@@ -48,12 +63,26 @@
         "Create images, designs and presentations with AI-assisted tools",
         "Check AI answers for mistakes and protect private information"
       ],
-      "tools": ["ChatGPT", "Claude", "Google Gemini", "Microsoft Copilot", "Canva", "Google Docs and Sheets"],
+      "tools": [
+        "ChatGPT",
+        "Claude",
+        "Google Gemini",
+        "Microsoft Copilot",
+        "Canva",
+        "Google Docs and Sheets"
+      ],
       "finalProject": "Set up an AI-assisted workflow for a real or sample small business.",
       "prerequisites": "Basic use of a phone or computer. The Certificate in Computer Application helps but is not required.",
-      "nextSteps": ["digital-marketing", "python-programming", "ai-assisted-software-development"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "digital-marketing",
+        "python-programming",
+        "ai-assisted-software-development"
+      ],
+      "duration": "4 weeks",
+      "fee": 40000,
+      "originalFee": 160000,
+      "isPopular": true,
+      "image": "/assets/img/courses/ai-tools-for-business-and-productivity.svg"
     },
     {
       "slug": "digital-marketing",
@@ -75,12 +104,26 @@
         "Turn enquiries into sales with WhatsApp follow-up",
         "Understand the basics of search engine optimisation"
       ],
-      "tools": ["Meta Business Suite and Ads Manager", "WhatsApp Business", "Google Business Profile", "Google Search Console", "Canva", "CapCut"],
+      "tools": [
+        "Meta Business Suite and Ads Manager",
+        "WhatsApp Business",
+        "Google Business Profile",
+        "Google Search Console",
+        "Canva",
+        "CapCut"
+      ],
       "finalProject": "Build a one-month marketing plan and launch a small campaign for a real or sample business.",
       "prerequisites": "Basic computer and smartphone skills.",
-      "nextSteps": ["graphic-design", "video-editing-and-content-creation", "wordpress"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "graphic-design",
+        "video-editing-and-content-creation",
+        "wordpress"
+      ],
+      "duration": "8 weeks",
+      "fee": 45000,
+      "originalFee": 180000,
+      "isPopular": true,
+      "image": "/assets/img/courses/digital-marketing.svg"
     },
     {
       "slug": "graphic-design",
@@ -102,12 +145,24 @@
         "Edit and retouch photos",
         "Plan simple app and website screens with Figma"
       ],
-      "tools": ["Adobe Photoshop", "Adobe Illustrator", "Canva", "Figma"],
+      "tools": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "Canva",
+        "Figma"
+      ],
       "finalProject": "Design a complete brand kit and promotional set for a business.",
       "prerequisites": "Basic computer skills.",
-      "nextSteps": ["video-editing-and-content-creation", "digital-marketing", "wordpress"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "video-editing-and-content-creation",
+        "digital-marketing",
+        "wordpress"
+      ],
+      "duration": "8 weeks",
+      "fee": 40000,
+      "originalFee": 160000,
+      "isPopular": true,
+      "image": "/assets/img/courses/graphic-design.svg"
     },
     {
       "slug": "video-editing-and-content-creation",
@@ -129,12 +184,23 @@
         "Export in the right format for each platform",
         "Plan content that keeps an audience watching"
       ],
-      "tools": ["CapCut", "Adobe Premiere Pro", "DaVinci Resolve", "Canva"],
+      "tools": [
+        "CapCut",
+        "Adobe Premiere Pro",
+        "DaVinci Resolve",
+        "Canva"
+      ],
       "finalProject": "Produce a short promo video and a set of social media clips.",
       "prerequisites": "Basic computer or smartphone skills.",
-      "nextSteps": ["graphic-design", "digital-marketing"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "graphic-design",
+        "digital-marketing"
+      ],
+      "duration": "6 weeks",
+      "fee": 45000,
+      "originalFee": 180000,
+      "isPopular": false,
+      "image": "/assets/img/courses/video-editing-and-content-creation.svg"
     },
     {
       "slug": "data-analysis",
@@ -156,12 +222,23 @@
         "Spot trends and explain findings in plain language",
         "Prepare a data report for a business decision"
       ],
-      "tools": ["Microsoft Excel", "SQL", "Power BI", "Google Sheets"],
+      "tools": [
+        "Microsoft Excel",
+        "SQL",
+        "Power BI",
+        "Google Sheets"
+      ],
       "finalProject": "Analyse a real or sample business dataset and present a dashboard and report.",
       "prerequisites": "Basic computer skills. Comfort with numbers helps.",
-      "nextSteps": ["python-programming", "ai-engineering-and-automation"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "python-programming",
+        "ai-engineering-and-automation"
+      ],
+      "duration": "10 weeks",
+      "fee": 55000,
+      "originalFee": 220000,
+      "isPopular": true,
+      "image": "/assets/img/courses/data-analysis.svg"
     },
     {
       "slug": "cybersecurity",
@@ -183,13 +260,24 @@
         "Secure Wi-Fi, routers and basic servers",
         "Follow the legal and ethical rules of security work"
       ],
-      "tools": ["Kali Linux", "VirtualBox", "Wireshark", "Nmap", "Linux command line"],
+      "tools": [
+        "Kali Linux",
+        "VirtualBox",
+        "Wireshark",
+        "Nmap",
+        "Linux command line"
+      ],
       "finalProject": "Run a security assessment of a practice network and write a report.",
       "prerequisites": "Basic computer skills. Networking knowledge helps; the Hardware Maintenance & Wi-Fi Networking course is a good starting point.",
       "note": "Hacking skills are taught for defence and are used only on systems you own or have written permission to test.",
-      "nextSteps": ["ccna-networking"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "ccna-networking"
+      ],
+      "duration": "12 weeks",
+      "fee": 65000,
+      "originalFee": 260000,
+      "isPopular": true,
+      "image": "/assets/img/courses/cybersecurity.svg"
     },
     {
       "slug": "hardware-maintenance-and-wifi-networking",
@@ -211,12 +299,25 @@
         "Set up routers, access points and secure Wi-Fi",
         "Make and test network cables and troubleshoot connections"
       ],
-      "tools": ["Repair toolkit", "Multimeter", "Bootable USB tools", "Windows", "Routers and access points", "Cable crimper and tester"],
+      "tools": [
+        "Repair toolkit",
+        "Multimeter",
+        "Bootable USB tools",
+        "Windows",
+        "Routers and access points",
+        "Cable crimper and tester"
+      ],
       "finalProject": "Repair and restore a faulty computer and set up a small office network.",
       "prerequisites": "None.",
-      "nextSteps": ["ccna-networking", "cybersecurity"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "ccna-networking",
+        "cybersecurity"
+      ],
+      "duration": "6 weeks",
+      "fee": 45000,
+      "originalFee": 180000,
+      "isPopular": false,
+      "image": "/assets/img/courses/hardware-maintenance-and-wifi-networking.svg"
     },
     {
       "slug": "ccna-networking",
@@ -238,13 +339,22 @@
         "Apply basic network security controls",
         "Troubleshoot network faults step by step"
       ],
-      "tools": ["Cisco Packet Tracer", "Cisco IOS command line", "Routers and switches"],
+      "tools": [
+        "Cisco Packet Tracer",
+        "Cisco IOS command line",
+        "Routers and switches"
+      ],
       "finalProject": "Design, configure and troubleshoot a multi-office network in Packet Tracer.",
       "prerequisites": "Basic networking knowledge. The Hardware Maintenance & Wi-Fi Networking course is the recommended starting point.",
       "note": "The CCNA exam is booked and paid for separately with Cisco’s exam provider. We prepare you for it and do not guarantee a pass.",
-      "nextSteps": ["cybersecurity"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "cybersecurity"
+      ],
+      "duration": "10 weeks",
+      "fee": 60000,
+      "originalFee": 240000,
+      "isPopular": false,
+      "image": "/assets/img/courses/ccna-networking.svg"
     },
     {
       "slug": "frontend-development",
@@ -266,12 +376,28 @@
         "Use Git and GitHub to save and share your work",
         "Publish your site online for free"
       ],
-      "tools": ["VS Code", "HTML5", "CSS3", "JavaScript", "Git and GitHub", "Chrome DevTools", "Figma"],
+      "tools": [
+        "VS Code",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Git and GitHub",
+        "Chrome DevTools",
+        "Figma"
+      ],
       "finalProject": "Build and publish a responsive website for a business.",
       "prerequisites": "Basic computer skills.",
-      "nextSteps": ["react-js", "wordpress", "ai-assisted-software-development", "backend-development"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "react-js",
+        "wordpress",
+        "ai-assisted-software-development",
+        "backend-development"
+      ],
+      "duration": "10 weeks",
+      "fee": 55000,
+      "originalFee": 220000,
+      "isPopular": false,
+      "image": "/assets/img/courses/frontend-development.svg"
     },
     {
       "slug": "react-js",
@@ -293,12 +419,26 @@
         "Load and display data from APIs",
         "Deploy a React app online"
       ],
-      "tools": ["React", "Vite", "JavaScript (ES6+)", "npm", "React Router", "Tailwind CSS", "Git and GitHub"],
+      "tools": [
+        "React",
+        "Vite",
+        "JavaScript (ES6+)",
+        "npm",
+        "React Router",
+        "Tailwind CSS",
+        "Git and GitHub"
+      ],
       "finalProject": "Build a multi-page React app that uses live data.",
       "prerequisites": "Frontend Development, or equal knowledge of HTML, CSS and JavaScript.",
-      "nextSteps": ["backend-development", "full-stack-web-development"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "backend-development",
+        "full-stack-web-development"
+      ],
+      "duration": "6 weeks",
+      "fee": 50000,
+      "originalFee": 200000,
+      "isPopular": false,
+      "image": "/assets/img/courses/react-js.svg"
     },
     {
       "slug": "backend-development",
@@ -320,12 +460,23 @@
         "Validate input and follow basic security practice",
         "Deploy an API online"
       ],
-      "tools": ["Node.js", "Express", "SQL database (PostgreSQL or SQLite)", "Postman", "Git and GitHub"],
+      "tools": [
+        "Node.js",
+        "Express",
+        "SQL database (PostgreSQL or SQLite)",
+        "Postman",
+        "Git and GitHub"
+      ],
       "finalProject": "Build and deploy a working API with a database and user login.",
       "prerequisites": "Solid JavaScript. The Frontend Development course is the recommended starting point.",
-      "nextSteps": ["full-stack-web-development"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "full-stack-web-development"
+      ],
+      "duration": "10 weeks",
+      "fee": 60000,
+      "originalFee": 240000,
+      "isPopular": false,
+      "image": "/assets/img/courses/backend-development.svg"
     },
     {
       "slug": "full-stack-web-development",
@@ -347,12 +498,25 @@
         "Connect them securely and test the whole app",
         "Launch it online and present it as a portfolio project"
       ],
-      "tools": ["React", "Node.js and Express", "SQL database", "Figma", "Git and GitHub", "Free cloud hosting", "AI coding assistants"],
+      "tools": [
+        "React",
+        "Node.js and Express",
+        "SQL database",
+        "Figma",
+        "Git and GitHub",
+        "Free cloud hosting",
+        "AI coding assistants"
+      ],
       "finalProject": "Design, build and launch a full web app for a real or sample client.",
       "prerequisites": "Frontend Development, React.js and Backend Development, or equal skills.",
-      "nextSteps": ["ai-engineering-and-automation"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "ai-engineering-and-automation"
+      ],
+      "duration": "16 weeks",
+      "fee": 85000,
+      "originalFee": 340000,
+      "isPopular": true,
+      "image": "/assets/img/courses/full-stack-web-development.svg"
     },
     {
       "slug": "wordpress",
@@ -374,12 +538,26 @@
         "Keep the site secure, backed up and fast",
         "Make the site easier to find on Google"
       ],
-      "tools": ["WordPress", "A page builder such as Elementor", "WooCommerce", "An SEO plugin", "Canva", "Google Search Console"],
+      "tools": [
+        "WordPress",
+        "A page builder such as Elementor",
+        "WooCommerce",
+        "An SEO plugin",
+        "Canva",
+        "Google Search Console"
+      ],
       "finalProject": "Build and launch a business website or online shop.",
       "prerequisites": "Basic computer skills.",
-      "nextSteps": ["digital-marketing", "graphic-design", "frontend-development"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "digital-marketing",
+        "graphic-design",
+        "frontend-development"
+      ],
+      "duration": "4 weeks",
+      "fee": 35000,
+      "originalFee": 140000,
+      "isPopular": false,
+      "image": "/assets/img/courses/wordpress.svg"
     },
     {
       "slug": "python-programming",
@@ -401,12 +579,25 @@
         "Automate repetitive tasks with scripts",
         "Get started with data handling in pandas"
       ],
-      "tools": ["Python 3", "VS Code", "Jupyter Notebook", "pandas", "Git and GitHub"],
+      "tools": [
+        "Python 3",
+        "VS Code",
+        "Jupyter Notebook",
+        "pandas",
+        "Git and GitHub"
+      ],
       "finalProject": "Build a script or small app that solves a real problem for a business.",
       "prerequisites": "Basic computer skills.",
-      "nextSteps": ["data-analysis", "ai-engineering-and-automation", "backend-development"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "data-analysis",
+        "ai-engineering-and-automation",
+        "backend-development"
+      ],
+      "duration": "8 weeks",
+      "fee": 50000,
+      "originalFee": 200000,
+      "isPopular": false,
+      "image": "/assets/img/courses/python-programming.svg"
     },
     {
       "slug": "ai-engineering-and-automation",
@@ -428,12 +619,21 @@
         "Connect apps with automation platforms",
         "Test, monitor and deploy an AI tool responsibly"
       ],
-      "tools": ["Python", "AI model APIs", "Jupyter Notebook", "An automation platform such as n8n", "Git and GitHub"],
+      "tools": [
+        "Python",
+        "AI model APIs",
+        "Jupyter Notebook",
+        "An automation platform such as n8n",
+        "Git and GitHub"
+      ],
       "finalProject": "Build and deploy an AI assistant or automation for a real or sample business.",
       "prerequisites": "Python Programming, or equal coding skills.",
       "nextSteps": [],
-      "duration": null,
-      "fee": null
+      "duration": "12 weeks",
+      "fee": 70000,
+      "originalFee": 280000,
+      "isPopular": true,
+      "image": "/assets/img/courses/ai-engineering-and-automation.svg"
     },
     {
       "slug": "ai-assisted-software-development",
@@ -455,12 +655,24 @@
         "Spot security and quality problems in AI output",
         "Launch a working app online"
       ],
-      "tools": ["AI coding assistants", "VS Code", "Git and GitHub", "Free hosting platforms", "Browser developer tools"],
+      "tools": [
+        "AI coding assistants",
+        "VS Code",
+        "Git and GitHub",
+        "Free hosting platforms",
+        "Browser developer tools"
+      ],
       "finalProject": "Build and launch a working web app with an AI coding assistant.",
       "prerequisites": "Basic HTML, CSS and JavaScript. The Frontend Development course is the recommended starting point.",
-      "nextSteps": ["full-stack-web-development", "ai-engineering-and-automation"],
-      "duration": null,
-      "fee": null
+      "nextSteps": [
+        "full-stack-web-development",
+        "ai-engineering-and-automation"
+      ],
+      "duration": "8 weeks",
+      "fee": 60000,
+      "originalFee": 240000,
+      "isPopular": false,
+      "image": "/assets/img/courses/ai-assisted-software-development.svg"
     }
   ]
 }

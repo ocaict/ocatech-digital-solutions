@@ -1,6 +1,5 @@
 {
   "_readme": "Single source of truth for business facts. Never invent values. Anything set to null is UNKNOWN: ask the owner, do not guess. Never publish a null value; hide the element that needs it.",
-
   "brand": {
     "name": "OCATECH Digital Solutions",
     "shortName": "OCATECH",
@@ -17,17 +16,25 @@
       "note": "Hidden by default (flags.showFounder = false). The owner prefers not to lead with personal credentials. Ask before showing."
     }
   },
-
   "contact": {
     "addressLine": "62 New Market Road",
     "city": "Onitsha",
     "state": "Anambra State",
     "country": "Nigeria",
     "phones": [
-      { "display": "0816 532 1429", "e164": "+2348165321429" },
-      { "display": "0706 262 0862", "e164": "+2347062620862" }
+      {
+        "display": "0816 532 1429",
+        "e164": "+2348165321429"
+      },
+      {
+        "display": "0706 262 0862",
+        "e164": "+2347062620862"
+      }
     ],
-    "whatsapp": { "display": "0816 532 1429", "number": "2348165321429" },
+    "whatsapp": {
+      "display": "0816 532 1429",
+      "number": "2348165321429"
+    },
     "email": "ocatechskill@gmail.com",
     "hours": "Monday–Saturday, 8AM–6PM",
     "openingHoursSchema": "Mo-Sa 08:00-18:00",
@@ -42,29 +49,44 @@
       "x": null
     }
   },
-
   "siteUrl": "https://ict.ocatech.workers.dev",
-
   "offer": {
-    "delivery": ["In person at our Onitsha center"],
+    "delivery": [
+      "In person at our Onitsha center"
+    ],
     "admission": "Open all year. There is no fixed start date.",
     "certificate": "Certificate of completion",
-    "perks": ["Free Wi-Fi at the center"],
-    "paymentMethods": ["Bank transfer", "POS at the center", "Cash at the center"],
+    "perks": [
+      "Free Wi-Fi at the center"
+    ],
+    "paymentMethods": [
+      "Bank transfer",
+      "POS at the center",
+      "Cash at the center"
+    ],
     "installmentsAvailable": true,
     "feesPublished": false,
     "feeNote": "Fees differ by course. Message us on WhatsApp for the current fee."
   },
-
-  "areasServed": ["Onitsha", "Nkpor", "Obosi", "Awka"],
-
-  "audiences": [
-    "Beginners", "Students", "Graduates", "Professionals", "Entrepreneurs",
-    "Business owners", "Job seekers", "Freelancers", "Career changers"
+  "areasServed": [
+    "Onitsha",
+    "Nkpor",
+    "Obosi",
+    "Awka"
   ],
-
+  "audiences": [
+    "Beginners",
+    "Students",
+    "Graduates",
+    "Professionals",
+    "Entrepreneurs",
+    "Business owners",
+    "Job seekers",
+    "Freelancers",
+    "Career changers"
+  ],
   "flags": {
-    "showFees": false,
+    "showFees": true,
     "showDiscountBanner": false,
     "showTestimonials": false,
     "showFounder": false,
@@ -73,9 +95,7 @@
     "enableCloudflareAnalytics": false,
     "enableTurnstile": false
   },
-
   "discountNote": "The flyer promotes a 75% discount. Do NOT show any discount until the owner confirms the original price, the discounted price and the end date.",
-
   "brandColors": {
     "navy": "#071125",
     "logoBlue": "#012D96",
@@ -86,55 +106,120 @@
     "magenta": "#FE00C9",
     "green": "#3FB200"
   },
-
   "tracks": [
-    { "id": "foundation", "name": "Foundation", "color": "green", "blurb": "Start here if you are new to computers or to AI tools." },
-    { "id": "web", "name": "Web development", "color": "cyan", "blurb": "Build websites, shops and web apps." },
-    { "id": "design-media", "name": "Design and media", "color": "magenta", "blurb": "Create designs, videos and content." },
-    { "id": "data-ai", "name": "Data and AI", "color": "slateBlue", "blurb": "Work with data, code, AI and automation." },
-    { "id": "business", "name": "Business", "color": "logoBlue", "blurb": "Find customers and grow online." },
-    { "id": "security-networking", "name": "Security and networking", "color": "red", "blurb": "Fix, connect and protect computers and networks." }
+    {
+      "id": "foundation",
+      "name": "Foundation",
+      "color": "green",
+      "blurb": "Start here if you are new to computers or to AI tools."
+    },
+    {
+      "id": "web",
+      "name": "Web development",
+      "color": "cyan",
+      "blurb": "Build websites, shops and web apps."
+    },
+    {
+      "id": "design-media",
+      "name": "Design and media",
+      "color": "magenta",
+      "blurb": "Create designs, videos and content."
+    },
+    {
+      "id": "data-ai",
+      "name": "Data and AI",
+      "color": "slateBlue",
+      "blurb": "Work with data, code, AI and automation."
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "color": "logoBlue",
+      "blurb": "Find customers and grow online."
+    },
+    {
+      "id": "security-networking",
+      "name": "Security and networking",
+      "color": "red",
+      "blurb": "Fix, connect and protect computers and networks."
+    }
   ],
-
   "paths": [
     {
       "id": "business-owner",
       "name": "Grow my business",
-      "courses": ["certificate-in-computer-application", "ai-tools-for-business-and-productivity", "digital-marketing", "wordpress"]
+      "courses": [
+        "certificate-in-computer-application",
+        "ai-tools-for-business-and-productivity",
+        "digital-marketing",
+        "wordpress"
+      ]
     },
     {
       "id": "creator",
       "name": "Design and create content",
-      "courses": ["certificate-in-computer-application", "graphic-design", "video-editing-and-content-creation", "digital-marketing"]
+      "courses": [
+        "certificate-in-computer-application",
+        "graphic-design",
+        "video-editing-and-content-creation",
+        "digital-marketing"
+      ]
     },
     {
       "id": "web-developer",
       "name": "Become a web developer",
-      "courses": ["certificate-in-computer-application", "frontend-development", "react-js", "backend-development", "full-stack-web-development"]
+      "courses": [
+        "certificate-in-computer-application",
+        "frontend-development",
+        "react-js",
+        "backend-development",
+        "full-stack-web-development"
+      ]
     },
     {
       "id": "build-with-ai",
       "name": "Build with AI",
-      "courses": ["frontend-development", "ai-assisted-software-development", "python-programming", "ai-engineering-and-automation"]
+      "courses": [
+        "frontend-development",
+        "ai-assisted-software-development",
+        "python-programming",
+        "ai-engineering-and-automation"
+      ]
     },
     {
       "id": "data-analyst",
       "name": "Work with data",
-      "courses": ["certificate-in-computer-application", "data-analysis", "python-programming", "ai-engineering-and-automation"]
+      "courses": [
+        "certificate-in-computer-application",
+        "data-analysis",
+        "python-programming",
+        "ai-engineering-and-automation"
+      ]
     },
     {
       "id": "it-support-networking",
       "name": "Fix and connect computers",
-      "courses": ["hardware-maintenance-and-wifi-networking", "ccna-networking", "cybersecurity"]
+      "courses": [
+        "hardware-maintenance-and-wifi-networking",
+        "ccna-networking",
+        "cybersecurity"
+      ]
     }
   ],
-
   "services": [
-    { "slug": "software-installation", "name": "Software installation" },
-    { "slug": "cctv-installation", "name": "CCTV installation" },
-    { "slug": "solar-installation", "name": "Solar installation" }
+    {
+      "slug": "software-installation",
+      "name": "Software installation"
+    },
+    {
+      "slug": "cctv-installation",
+      "name": "CCTV installation"
+    },
+    {
+      "slug": "solar-installation",
+      "name": "Solar installation"
+    }
   ],
-
   "leadCourses": [
     "ai-tools-for-business-and-productivity",
     "certificate-in-computer-application",

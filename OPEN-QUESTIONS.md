@@ -9,9 +9,9 @@ Nothing here is shown as a fact on the site yet. Answer with **later** and the i
 | Social links | Facebook, Instagram, TikTok, YouTube or X URLs | Facebook and YouTube are shown |
 | Website address | Live address confirmed | `siteUrl` is `https://ict.ocatech.workers.dev` |
 | Inspiration site | A site you like, if you have one | Not used yet |
-| Course fees | Current fee per course, and whether to show “from ₦X” | Only “Fees differ by course. Ask on WhatsApp.” is shown |
-| Course durations | How long each course takes | “Duration: confirmed when you enrol” is shown |
-| 75% discount | Original price, discounted price and end date | Discount banner is hidden |
+| Course fees | Current fee per course, and whether to show “from ₦X” | Initial prices & strikethrough original prices are set in `data/courses.json` |
+| Course durations | How long each course takes | Initial durations (4–16 weeks) are set in `data/courses.json` |
+| 75% discount | Original price, discounted price and end date | 75% discount pricing is displayed on cards with SALE badge |
 | Founder visibility | May “Founder & Director: Oluegwu Chigozie” appear on About? | Founder line is hidden |
 | Installation scope | Exactly what software, CCTV and solar jobs include and cover | Short, factual descriptions are shown; no prices or guarantees |
 | “One place” claim | Does the center really teach and do the installation work itself? | The home and About claim is hidden |

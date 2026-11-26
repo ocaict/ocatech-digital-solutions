@@ -164,24 +164,36 @@ function courseCard(course, lead = false) {
   const track = trackById.get(course.track);
   const url = `/courses/${course.slug}/`;
   const trackColorClass = `track-${esc(track?.color || "green")}`;
-  const tools = (course.tools || []).slice(0, 4);
-  const remaining = (course.tools || []).length - tools.length;
-  const toolsList = tools.map((t) => `<li class="card-tool-tag">${esc(t)}</li>`).join("")
-    + (remaining > 0 ? `<li class="card-tool-tag card-tool-more">+${remaining} more</li>` : "");
+  const formatNaira = (num) => Number(num || 0).toLocaleString("en-NG");
+  const outcomes = (course.outcomes || []).slice(0, 3);
+  const outcomesHtml = outcomes.map((o) => `<li><span class="outcome-check" aria-hidden="true">&#x2713;</span> ${esc(o)}</li>`).join("");
 
   return `<article class="course-card ${trackColorClass}${lead ? " course-card-lead" : ""}" data-course-track="${esc(course.track)}">
-<div class="course-card-head">
-<span class="course-card-track">${esc(trackName(course.track))}</span>
-<span class="course-card-level">${esc(course.level)}</span>
+<div class="course-card-media">
+  <img src="${esc(course.image)}" width="600" height="340" alt="${esc(course.title)}" loading="lazy">
+  <span class="badge-sale">SALE</span>
+  <span class="course-card-track">${esc(trackName(course.track))}</span>
 </div>
-<h3 class="course-card-title"><a class="course-card-link" href="${url}">${esc(course.title)}</a></h3>
-<p class="course-card-desc">${esc(course.subtitle)}</p>
-<div class="course-card-tools-wrap">
-<span class="course-card-tools-label">Tools:</span>
-<ul class="course-card-tools" aria-label="Tools learned in ${esc(course.title)}">${toolsList}</ul>
-</div>
-<div class="course-card-footer">
-<span class="course-card-cta">View course <span class="cta-arrow" aria-hidden="true">&rarr;</span></span>
+<div class="course-card-body">
+  <div class="course-card-head">
+    <h3 class="course-card-title"><a class="course-card-link" href="${url}">${esc(course.title)}</a></h3>
+    ${course.duration ? `<span class="course-duration-badge" title="Duration"><span aria-hidden="true">&#x23F1;</span> ${esc(course.duration)}</span>` : ""}
+  </div>
+  <p class="course-card-desc">${esc(course.subtitle)}</p>
+  <ul class="course-card-outcomes" aria-label="Key outcomes">
+    ${outcomesHtml}
+  </ul>
+  <div class="course-card-pricing-wrap">
+    <div class="course-card-pricing">
+      <span class="price-current">₦${formatNaira(course.fee)}</span>
+      ${course.originalFee ? `<span class="price-original"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
+    </div>
+    ${course.isPopular ? `<span class="badge-bestseller">Bestseller</span>` : ""}
+  </div>
+  <div class="course-card-cta-row">
+    <a class="button-card-enrol" href="/apply/?course=${esc(course.slug)}">Enrol</a>
+    <a class="button-card-details" href="${url}">Details <span class="arrow" aria-hidden="true">&nearr;</span></a>
+  </div>
 </div>
 </article>`;
 }
@@ -326,8 +338,8 @@ function renderCourse(course) {
 <div><dt>Track</dt><dd>${esc(trackName(course.track))}</dd></div>
 <div><dt>Learn</dt><dd>${esc(courseTemplate.learn.replace("Learn: ", ""))}</dd></div>
 <div><dt>Start</dt><dd>${esc(courseTemplate.start.replace("Start: ", ""))}</dd></div>
-<div><dt>Duration</dt><dd>${esc(courseTemplate.duration.replace("Duration: ", ""))}</dd></div>
-<div><dt>Fee</dt><dd>${esc(site.offer.feeNote)}</dd></div>
+<div><dt>Duration</dt><dd>${esc(course.duration || courseTemplate.duration.replace("Duration: ", ""))}</dd></div>
+<div><dt>Fee</dt><dd>${course.fee ? `<strong>₦${Number(course.fee).toLocaleString("en-NG")}</strong> ${course.originalFee ? `<s>₦${Number(course.originalFee).toLocaleString("en-NG")}</s>` : ""} · ` : ""}${esc(site.offer.feeNote)}</dd></div>
 <div><dt>Certificate</dt><dd>${esc(site.offer.certificate)}</dd></div>
 </dl>
 </div></section>

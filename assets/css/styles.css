@@ -264,7 +264,7 @@ button, input, select, textarea { font: inherit; }
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 1.35rem 1.25rem 1.2rem;
+  padding: 0;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -272,24 +272,14 @@ button, input, select, textarea { font: inherit; }
   transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
 }
 
-.course-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--track);
-}
-
 .course-card-lead {
-  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+  background: var(--surface);
 }
 
 .course-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow: 0 14px 30px -8px rgba(0, 0, 0, 0.55), 0 0 18px -4px var(--track);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.65), 0 0 20px -6px var(--track);
 }
 
 .course-card:focus-within {
@@ -297,36 +287,79 @@ button, input, select, textarea { font: inherit; }
   outline-offset: 2px;
 }
 
-.course-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: .5rem;
-  margin-bottom: .75rem;
+/* Card Image & SALE Badge */
+.course-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--navy);
+  border-bottom: 1px solid var(--border);
 }
 
-.course-card-track {
-  font-size: .8rem;
-  font-weight: 700;
+.course-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s ease;
+}
+
+.course-card:hover .course-card-media img {
+  transform: scale(1.03);
+}
+
+.badge-sale {
+  position: absolute;
+  top: .75rem;
+  left: .75rem;
+  background: #ffffff;
+  color: #071125;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: .2rem .55rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.course-card-media .course-card-track {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  background: rgba(7, 17, 37, 0.85);
+  backdrop-filter: blur(4px);
   color: var(--track);
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .2rem .55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-transform: uppercase;
   letter-spacing: .04em;
 }
 
-.course-card-level {
-  font-size: .75rem;
-  font-weight: 500;
-  padding: .2rem .55rem;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+/* Card Body */
+.course-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.25rem 1.25rem 1.2rem;
+}
+
+.course-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .35rem;
 }
 
 .course-card-title {
-  margin: 0 0 .35rem;
-  font-size: 1.22rem;
-  line-height: 1.3;
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  font-weight: 700;
 }
 
 .course-card-link {
@@ -347,83 +380,148 @@ button, input, select, textarea { font: inherit; }
   color: var(--track);
 }
 
-.course-card-desc {
-  margin: 0 0 1rem;
-  color: var(--cyan);
-  font-size: .92rem;
-  line-height: 1.4;
-}
-
-.course-card-tools-wrap {
-  margin-top: auto;
-  padding-top: .85rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.course-card-tools-label {
-  display: block;
-  font-size: .72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  color: var(--muted);
-  margin-bottom: .35rem;
-}
-
-.course-card-tools {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 .75rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .35rem;
-}
-
-.card-tool-tag {
+.course-duration-badge {
   font-size: .75rem;
-  line-height: 1.2;
+  font-weight: 600;
   padding: .2rem .5rem;
-  background: var(--surface-2);
-  color: var(--text);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--muted);
   border: 1px solid var(--border);
   border-radius: 6px;
   white-space: nowrap;
 }
 
-.card-tool-more {
-  color: var(--track);
-  border-color: rgba(255, 255, 255, 0.12);
-  font-weight: 600;
+.course-card-desc {
+  margin: 0 0 .85rem;
+  color: var(--cyan);
+  font-size: .88rem;
+  line-height: 1.4;
 }
 
-.course-card-footer {
+.course-card-outcomes {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: grid;
+  gap: .4rem;
+}
+
+.course-card-outcomes li {
+  font-size: .82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: flex-start;
+  gap: .45rem;
+  line-height: 1.35;
+}
+
+.outcome-check {
+  color: var(--green);
+  font-weight: 800;
+  font-size: .85rem;
+  line-height: 1.2;
+}
+
+.course-card-pricing-wrap {
+  margin-top: auto;
+  padding-top: .85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-top: .5rem;
+  justify-content: space-between;
+  gap: .5rem;
+  margin-bottom: .95rem;
 }
 
-.course-card-cta {
+.course-card-pricing {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+}
+
+.price-current {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -.02em;
+}
+
+.price-original {
+  font-size: .92rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.price-original s {
+  text-decoration: line-through;
+}
+
+.badge-bestseller {
+  background: #8b3dff;
+  color: #ffffff;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .2rem .55rem;
+  border-radius: 6px;
+  letter-spacing: .02em;
+}
+
+.course-card-cta-row {
+  display: flex;
+  gap: .65rem;
+}
+
+.button-card-enrol {
+  flex: 1;
+  min-height: 42px;
   display: inline-flex;
   align-items: center;
-  gap: .35rem;
+  justify-content: center;
+  background: #00e575;
+  color: #071125;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: .92rem;
+  position: relative;
+  z-index: 2;
+  transition: background .15s ease, transform .15s ease;
+}
+
+.button-card-enrol:hover {
+  background: #1aff85;
+}
+
+.button-card-details {
+  min-height: 42px;
+  padding: 0 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
   font-size: .88rem;
   font-weight: 600;
-  color: var(--orange);
-  transition: color .2s ease;
+  position: relative;
+  z-index: 2;
+  transition: border-color .15s ease, background .15s ease;
 }
 
-.course-card:hover .course-card-cta {
-  color: #ff8533;
+.button-card-details:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.cta-arrow {
+.button-card-details .arrow {
   display: inline-block;
-  transition: transform .2s ease;
+  transition: transform .15s ease;
 }
 
-.course-card:hover .cta-arrow {
-  transform: translateX(4px);
+.button-card-details:hover .arrow {
+  transform: translate(2px, -2px);
 }
 
 .track-green { --track: var(--green); }
