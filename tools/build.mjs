@@ -627,7 +627,7 @@ function renderCourse(course) {
     [courseTemplate.qExperience, course.prerequisites],
     [courseTemplate.qOnline, courseTemplate.aOnline],
     [courseTemplate.qEnd, courseTemplate.aEnd],
-    ...faq.slice(0, 4),
+    ...faq.filter(([q]) => q !== "Do I need computer experience?" && q !== "Can I learn online?").slice(0, 4),
   ];
   const next = course.nextSteps.map((slug) => courseBySlug.get(slug)).filter(Boolean)
     .map((item) => `<li><a href="/courses/${esc(item.slug)}/">${esc(item.title)}</a></li>`).join("");

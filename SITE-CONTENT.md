@@ -286,7 +286,7 @@ A hidden honeypot field named `website` must stay empty. Preselect the course or
 Use these in order on Home and Apply. Mark up with `FAQPage` data. Show only answers that stay true.
 
 1. **Do I need computer experience?** No. Many students start with zero previous experience. If you are new to computers, start with the Certificate in Computer Application. Each course page lists what you need beforehand.
-2. **When can I start?** Admission is open all year and there is no fixed start date. Because our training is personalized and practical, you do not have to wait for a new semester to begin. Tell us when you want to begin and we will confirm your start date.
+2. **When can I start?** You can start immediately. Admission is open all year round. Because training is practical and 1-on-1, you do not have to wait weeks for a new semester or a batch of students to assemble. Once you enrol, you can begin classes this week on a schedule that fits your routine (morning, afternoon, or Saturday).
 3. **How much do courses cost?** Fees differ by course. Message us on WhatsApp for the current fee or view transparent fees on each course page. Installment payment is available for all courses (including paying a 50% deposit to start).
 4. **How can I pay?** By bank transfer, by POS at the center, or in cash at the center. Installment plans are available. We will give you payment details directly. We never ask you to pay into an account sent by anyone else.
 5. **Will I get a certificate?** Yes. You receive a certificate of completion and finish with a tangible final project when you complete your course.
