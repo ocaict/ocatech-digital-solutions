@@ -13,13 +13,13 @@ To scale OCATECH from an attractive informational site into a premier student ac
 
 ### Ordered Implementation Roadmap
 
-| Sequence | Feature Code | Feature Name | Primary Business Goal | Target Location |
-| :---: | :---: | :--- | :--- | :--- |
-| **Step 1** | **P1-BAR** | **Mobile Sticky Action Bar** | 15–25% lift in immediate mobile enquiries | Sitewide (Mobile devices) |
-| **Step 2** | **P2-INST** | **Tuition & Installment Plan Breakdown** | Removes #1 price objection; increases course enrolment | All 17 Course Pages |
-| **Step 3** | **P4-SHOW** | **Student Showcase & Portfolio Gallery** | Hard visual proof of student competence; destroys doubt | New `/showcase/` page + Course cross-links |
-| **Step 4** | **P5-SYLL** | **Instant Course Syllabus & Outline Action** | Captures high-intent prospects asking for curriculum | All 17 Course Pages |
-| **Step 5** | **P6-TOUR** | **Book a Free Center Tour & Lab Session** | Converts online visitors into physical foot traffic | `/apply/` + Contact + Home |
+| Sequence | Feature Code | Feature Name | Primary Business Goal | Status | Commit |
+| :---: | :---: | :--- | :--- | :---: | :---: |
+| **Step 1** | **P1-BAR** | **Mobile Sticky Action Bar** | 15–25% lift in immediate mobile enquiries | ✅ Completed | [`adfd3f4`](https://github.com/ocaict/ocatech-digital-solutions/commit/adfd3f4) |
+| **Step 2** | **P2-INST** | **Tuition & Installment Plan Breakdown** | Removes #1 price objection; increases course enrolment | ✅ Completed | [`5b56238`](https://github.com/ocaict/ocatech-digital-solutions/commit/5b56238) |
+| **Step 3** | **P4-SHOW** | **Student Showcase & Portfolio Gallery** | Hard visual proof of student competence; destroys doubt | ✅ Completed | [`e0c5854`](https://github.com/ocaict/ocatech-digital-solutions/commit/e0c5854) |
+| **Step 4** | **P5-SYLL** | **Instant Course Syllabus & Outline Action** | Captures high-intent prospects asking for curriculum | ✅ Completed | [`5d45941`](https://github.com/ocaict/ocatech-digital-solutions/commit/5d45941) |
+| **Step 5** | **P6-TOUR** | **Book a Free Center Tour & Lab Session** | Converts online visitors into physical foot traffic | ✅ Completed | [`cc8d91a`](https://github.com/ocaict/ocatech-digital-solutions/commit/cc8d91a) |
 
 ---
 
