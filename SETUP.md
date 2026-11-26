@@ -1,6 +1,6 @@
 # OCATECH website setup
 
-The site is already online at **https://ict.ocatech.workers.dev/**. This page explains how to keep it online and how to finish the chat and enquiry form.
+The site and its chat/form routes are already online at **https://ict.ocatech.workers.dev/**. The chat and enquiry form need a few Cloudflare settings before they can send real replies and save enquiries. This page shows what to do.
 
 ## 1. Files on GitHub
 
@@ -24,7 +24,7 @@ The real content is in `data/site.json` and `data/courses.json`. The build reads
 
 The build command makes the pages and checks them. The deploy command reads `wrangler.jsonc`, adds the website files, and connects the chat and form.
 
-After this step, `POST /api/chat` and `POST /api/apply` will no longer return 404.
+The chat and form routes are live now. A 404 means the deploy did not include `wrangler.jsonc`; check these settings and retry.
 
 ## 3. Add the Groq key for chat
 
@@ -40,11 +40,11 @@ After this step, `POST /api/chat` and `POST /api/apply` will no longer return 40
 
 4. Click **Save and Deploy**, or retry the latest deployment.
 
-The chat can now answer questions. Without a Groq key it shows a friendly WhatsApp handoff instead.
+The chat can now answer questions. Without the key it shows a friendly WhatsApp handoff instead. Keys in `.env` on your computer are only for local testing; Cloudflare needs its own copy here.
 
 ## 4. Create the D1 database
 
-D1 stores enquiries and limits chat use to about 30 questions per visitor per day. The chat can answer before this step, but the form needs either D1 or the Resend email below to succeed.
+D1 stores enquiries and limits chat use to about 30 questions per visitor per day. The chat can answer before this step, but the form needs either D1 or the Resend email below to succeed. Without both, it shows an error.
 
 1. In Cloudflare, go to **Workers & Pages → D1** and click **Create database**.
 2. Name it `OCATECH_DB`. Choose a region near Nigeria if offered; otherwise leave the default.
@@ -70,7 +70,7 @@ Because `wrangler.jsonc` is now in the repository, Cloudflare may ask for a smal
 
 3. Save and deploy.
 
-Resend’s test sender can only deliver to the email address on your Resend account. After you verify your own domain, set `RESEND_FROM` to something like `OCATECH <enquiries@your-domain>` and change `NOTIFY_EMAIL` to the inbox you want.
+Resend’s test sender can only deliver to the email address on your Resend account. After you verify your own domain, set `RESEND_FROM` to something like `OCATECH <enquiries@your-domain>` and change `NOTIFY_EMAIL` to the inbox you want. If the keys are already in `.env` locally, copy the same values here; Cloudflare does not read `.env`.
 
 ## 6. Test the website
 
