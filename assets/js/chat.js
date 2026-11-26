@@ -9,7 +9,6 @@
     quickReplies: ["Courses", "How do I pay?", "Where are you?", "Talk to a person"],
     placeholder: "Type your question",
     footer: "Answers come from OCATECH information. For anything urgent, use WhatsApp.",
-    safety: "Do not type passwords or bank details.",
     error: "Something went wrong. Please try again or message us on WhatsApp.",
     handoff: "I do not have that information. Please ask our team directly on WhatsApp.",
     whatsapp: "Chat on WhatsApp",
@@ -28,8 +27,11 @@
   const head = make("div", "chat-head");
   const heading = make("h2", "", copy.name);
   heading.title = copy.header;
-  const close = make("button", "chat-close", "Close");
+  const close = make("button", "chat-close");
   close.type = "button";
+  close.setAttribute("aria-label", "Close chat window");
+  close.setAttribute("title", "Close chat");
+  close.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg><span class="sr-only">Close chat</span>';
   head.append(heading, close);
   const body = make("div", "chat-body");
   const quick = make("div", "chat-quick");
@@ -42,7 +44,7 @@
   const send = make("button", "", "Send");
   send.type = "submit";
   form.append(input, send);
-  const footer = make("div", "chat-footer", `${copy.footer} ${copy.safety}`);
+  const footer = make("div", "chat-footer", copy.footer);
   widget.append(head, body, quick, form, footer);
   document.body.append(widget);
 
@@ -86,14 +88,31 @@
   }
 
   const toggle = () => {
-    const open = widget.hidden;
-    widget.hidden = !open;
-    button.setAttribute("aria-expanded", String(open));
-    if (open) input.focus();
+    const isClosed = widget.hidden;
+    widget.hidden = !isClosed;
+    button.setAttribute("aria-expanded", String(isClosed));
+    if (isClosed) {
+      input.focus();
+    } else {
+      button.focus();
+    }
   };
 
   button.addEventListener("click", toggle);
   close.addEventListener("click", toggle);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !widget.hidden) {
+      toggle();
+    }
+  });
+
+  document.addEventListener("pointerdown", (e) => {
+    if (!widget.hidden && !widget.contains(e.target) && !button.contains(e.target)) {
+      widget.hidden = true;
+      button.setAttribute("aria-expanded", "false");
+    }
+  });
 
   const ask = async (text) => {
     if (busy) return;

@@ -404,7 +404,6 @@ export const chat = {
   quickReplies: ["Courses", "How do I pay?", "Where are you?", "Talk to a person"],
   placeholder: "Type your question",
   footer: "Answers come from OCATECH information. For anything urgent, use WhatsApp.",
-  safety: "Do not type passwords or bank details.",
   limit: "You have reached today’s message limit. Please continue on WhatsApp.",
   error: "Something went wrong. Please try again or message us on WhatsApp.",
   handoff: "I do not have that information. Please ask our team directly on WhatsApp.",

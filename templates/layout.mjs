@@ -181,7 +181,6 @@ export function chatButton(chat) {
     </svg>
     <span class="sr-only">${esc(chat.closed)}</span>
   </button>
-  <p class="chat-safety">${esc(chat.safety)}</p>
 </div>`;
 }
 
