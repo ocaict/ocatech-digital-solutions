@@ -83,6 +83,8 @@ Because this Worker is deployed from code, Cloudflare may say “Bindings cannot
 
 Resend’s test sender can only deliver to the email address on your Resend account. After you verify your own domain, set `RESEND_FROM` to something like `OCATECH <enquiries@your-domain>` and change `NOTIFY_EMAIL` to the inbox you want. If the keys are already in `.env` locally, copy the same values here; Cloudflare does not read `.env`.
 
+A live test was received on 26 Nov 2026. The test enquiries named **Route Test** and **Resend Test** can be deleted from the D1 `leads` table.
+
 ## 6. Test the website
 
 1. Open https://ict.ocatech.workers.dev/.

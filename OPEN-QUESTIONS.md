@@ -21,5 +21,6 @@ Nothing here is shown as a fact on the site yet. Answer with **later** and the i
 | Photo consent | Confirmation that people in supplied photos agreed to appear | Supplied photos are used with factual alt text only |
 | Cloudflare chat settings | `GROQ_API_KEY`, `GROQ_MODEL` and `IP_SALT` in Runtime variables and secrets | Chat answers factual questions and hands risky ones to WhatsApp |
 | Cloudflare form settings | D1 binding `DB` is connected and a test enquiry saved | Form now saves enquiries and returns success |
+| Resend email notices | Resend runtime variables added and test email received | Each enquiry saves to D1 and sends a notification email |
 
 The privacy page is a draft for owner review. It is not legal advice.
