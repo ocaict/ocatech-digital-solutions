@@ -275,7 +275,7 @@ A hidden honeypot field named `website` must stay empty. Preselect the course or
 - **Phone:** 0816 532 1429 and 0706 262 0862 (tap to call)
 - **Email:** ocatechskill@gmail.com
 - **Opening hours:** Monday–Saturday, 8AM–6PM
-- **Directions:** landmark text still needed; show it only when provided
+- **Directions:** Beside the Glo Office and Mr Bigs at Ogbommanu, just before Onitsha Main Market.
 - **Map:** Google Maps link: https://maps.app.goo.gl/soyJPWoAeGUUwZWQ7
 **Closing line:** Prefer to write it down? **Apply now**
 
@@ -386,6 +386,7 @@ Rules:
 - Business: OCATECH Digital Solutions, ICT Hub & Training Center. Tagline: Choose OCATECH, Choose Excellence. Registered business BN 9677251.
 - Address: 62 New Market Road, Onitsha, Anambra State, Nigeria.
 - Opening hours: Monday–Saturday, 8AM–6PM.
+- Landmark: Beside the Glo Office and Mr Bigs at Ogbommanu, just before Onitsha Main Market.
 - Contact: WhatsApp 0816 532 1429. Phones 0816 532 1429 and 0706 262 0862. Email ocatechskill@gmail.com.
 - Learning: in person at the Onitsha center. Courses are in person by default; ask us about online options. Admission is open all year with no fixed start date. Certificate of completion. Free Wi-Fi at the center.
 - Payment: bank transfer, POS at the center, cash at the center, and installment plans. Fees differ by course and are confirmed on WhatsApp.
@@ -402,7 +403,7 @@ Low temperature (about 0.2), a maximum reply length of around 300 tokens, the la
 ## 14. Items the owner must confirm (never show unconfirmed claims)
 
 1. Opening days and hours: confirmed as Monday–Saturday, 8AM–6PM.
-2. Google Maps link confirmed; one or two landmarks are still needed.
+2. Google Maps link and landmark confirmed: beside the Glo Office and Mr Bigs at Ogbommanu, just before Onitsha Main Market.
 3. Facebook and YouTube links confirmed: https://web.facebook.com/ocatechskills/ and https://www.youtube.com/@ocatechskills.
 4. Course durations and fees, and whether to show “from ₦X”.
 5. The 75% discount: original price, discounted price and end date. Until confirmed, do not show it.

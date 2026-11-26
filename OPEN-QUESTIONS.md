@@ -5,7 +5,7 @@ Nothing here is shown as a fact on the site yet. Answer with **later** and the i
 | Item | What is needed | Current site behaviour |
 |---|---|---|
 | Opening hours | Days and times the center is open | Monday–Saturday, 8AM–6PM is shown |
-| Map and directions | One or two landmarks near the center | Maps link is shown; landmark text is hidden |
+| Map and directions | None — landmark confirmed | Landmark, hours and Maps link are shown |
 | Social links | Facebook, Instagram, TikTok, YouTube or X URLs | Facebook and YouTube are shown |
 | Website address | Live address confirmed | `siteUrl` is `https://ict.ocatech.workers.dev` |
 | Inspiration site | A site you like, if you have one | Not used yet |

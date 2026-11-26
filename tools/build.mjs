@@ -535,6 +535,7 @@ const facts = [
   "- Business: OCATECH Digital Solutions, ICT Hub & Training Center. Tagline: Choose OCATECH, Choose Excellence. Registered business BN 9677251.",
   "- Address: 62 New Market Road, Onitsha, Anambra State, Nigeria.",
   site.contact.hours ? `- Opening hours: ${site.contact.hours}.` : null,
+  site.contact.landmarkOrDirections ? `- Landmark: ${site.contact.landmarkOrDirections}` : null,
   `- Contact: WhatsApp ${site.contact.whatsapp.display}. Phones ${site.contact.phones.map((p) => p.display).join(" and ")}. Email ${site.contact.email}.`,
   `- Learning: in person at the Onitsha center. Courses are in person by default; ask us about online options. ${site.offer.admission} ${site.offer.certificate}. ${site.offer.perks.join(" ")}.`,
   `- Payment: ${site.offer.paymentMethods.join(", ")}, and installment plans. ${site.offer.feeNote}`,
