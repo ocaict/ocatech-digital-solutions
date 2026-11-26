@@ -46,15 +46,25 @@ The chat can now answer questions. Without the key it shows a friendly WhatsApp 
 
 D1 stores enquiries and limits chat use to about 30 questions per visitor per day. The chat can answer before this step, but the form needs either D1 or the Resend email below to succeed. Without both, it shows an error.
 
+Because this Worker is deployed from code, Cloudflare may say “Bindings cannot be added to a Worker that only has static assets.” Use the project file instead of the dashboard binding page.
+
 1. In Cloudflare, go to **Workers & Pages → D1 SQL database** and click **Create Database**.
 2. Name it `OCATECH_DB`. Choose a location near Nigeria if offered; otherwise leave the default. Click **Create**.
 3. Open `OCATECH_DB`, click **Console**, paste everything inside `db/schema.sql`, and click **Execute**.
-4. Go to **Workers & Pages → ict → Bindings**.
-5. Click **Add binding → D1 database → Add binding**.
-6. In **Variable name**, type exactly `DB`. In the database list, choose `OCATECH_DB`. Click **Add binding**.
-7. If Cloudflare asks to deploy, click **Deploy** or retry the latest deployment.
+4. With `OCATECH_DB` open, click **Settings** and copy the **Database ID** (a long code). Send it to whoever maintains the files. The database ID is not a password.
+5. Add this block to `wrangler.jsonc`, replacing the example ID with the copied one:
 
-After adding the binding, Cloudflare may show a small `d1_databases` snippet. Copy that snippet and send it to whoever maintains the files. It must go into `wrangler.jsonc` so later GitHub pushes do not remove the binding.
+```jsonc
+"d1_databases": [
+  {
+    "binding": "DB",
+    "database_name": "OCATECH_DB",
+    "database_id": "PASTE-THE-DATABASE-ID-HERE"
+  }
+]
+```
+
+6. Commit and push. Cloudflare redeploys with the `DB` binding in place.
 
 ## 5. Add email notices
 
