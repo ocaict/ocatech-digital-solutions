@@ -81,7 +81,7 @@ function validate(data) {
   const laptop = clean(data.has_laptop, 20);
   const referral = clean(data.referral, 80);
   const propertyType = clean(data.property_type, 60);
-  const location = clean(data.location, 60);
+  const location = clean(data.location, 120);
   const rawMsg = clean(data.message, 600);
 
   const details = [];

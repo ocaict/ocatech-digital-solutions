@@ -8,6 +8,7 @@
   const email = form.elements.email;
   const course = form.elements.course;
   const service = form.elements.service;
+  const locationInput = form.elements.location;
   const message = form.elements.message;
   const consent = form.elements.consent;
   const counter = document.querySelector("#message-count");
@@ -16,7 +17,7 @@
   const type = () => form.elements.type?.value || "learn";
 
   const clearErrors = () => {
-    [name, phone, course, service, consent].filter(Boolean).forEach((field) => {
+    [name, phone, course, service, locationInput, consent].filter(Boolean).forEach((field) => {
       field.setCustomValidity("");
       field.classList.remove("field-error");
     });
@@ -60,6 +61,7 @@
     if (!/^(?:\+?234|0)[789]\d{9}$/.test(digits)) addError(phone, messages.phone);
     if (type() === "learn" && course && !course.value) addError(course, messages.course);
     if (type() === "service" && service && !service.value) addError(service, messages.service || messages.course);
+    if (type() === "service" && locationInput && !locationInput.value.trim()) addError(locationInput, messages.location || "Enter your location or town.");
     if (consent && !consent.checked) addError(consent, messages.consent);
     if (errors && errors.childElementCount) {
       errors.hidden = false;
@@ -94,7 +96,7 @@
       counter.textContent = `${message.value.length}/600`;
     });
   }
-  [name, phone, course, service, consent].filter(Boolean).forEach((field) => {
+  [name, phone, course, service, locationInput, consent].filter(Boolean).forEach((field) => {
     field.addEventListener("input", () => field.setCustomValidity(""));
   });
 

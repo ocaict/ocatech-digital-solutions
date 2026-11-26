@@ -43,7 +43,7 @@ export const home = {
       ["Protect systems and data", ["cybersecurity", "hardware-maintenance-and-wifi-networking"]],
     ],
   },
-  facts: ["Where: 62 New Market Road, Onitsha", "Open Monday–Saturday, 8AM–6PM", "Certificate of completion", "Free Wi-Fi at the center", "In person at our Onitsha center", "Installments available"],
+  facts: ["Where: 62 New Market Road, Onitsha", "Open Monday–Saturday, 8AM–6PM", "Certificate of completion", "Solar-powered computer workstations", "In person at our Onitsha center", "Installments available"],
   leadCourses: {
     heading: "Six courses to start with",
     intro: "New to this? Begin here. Every course is its own course, so you pick only what you need.",
@@ -223,7 +223,7 @@ export const about = {
     ["Start from where you are", "You do not need prior experience for our beginner courses."],
     ["Structured tracks", "Follow a step-by-step career path or take a single course on its own."],
     ["Flexible entry and payment", "Admission is open all year, with bank transfer, POS, cash and installment options."],
-    ["In-person guidance", "Learn at our Onitsha center with instructor support and free Wi-Fi."],
+    ["In-person guidance", "Learn at our Onitsha center with hands-on instructor support and solar power."],
   ],
   what: "We teach computer applications, AI tools, design, video, digital marketing, data, programming, web development, cybersecurity and networking. We also install software, CCTV and solar power for homes and businesses.",
   how: [
@@ -233,7 +233,7 @@ export const about = {
   ],
   audiences: "Beginners, students, graduates, professionals, entrepreneurs, business owners, job seekers, freelancers and career changers.",
   registered: "OCATECH Digital Solutions is a registered business (BN 9677251).",
-  visit: "62 New Market Road, Onitsha, Anambra State. We have free Wi-Fi at the center.",
+  visit: "62 New Market Road, Onitsha, Anambra State. Beside the Glo Office and Mr Biggs at Ogo-ommanu, just before Onitsha Main Market.",
 };
 
 export const apply = {
@@ -286,7 +286,7 @@ export const apply = {
     ["100% Practical Training", "Learn with modern software tools and build real projects."],
     ["Flexible Installments", "Convenient installment payment plans available."],
     ["Recognized Certificate", "Receive a verified certificate of completion."],
-    ["Equipped Onitsha Hub", "Modern workstations, uninterrupted power and free Wi-Fi."],
+    ["Equipped Onitsha Hub", "Modern workstations and uninterrupted solar power."],
     ["Fast WhatsApp Reply", "Our team confirms course details and answers questions promptly."],
   ],
   messages: {
@@ -295,7 +295,7 @@ export const apply = {
     successText: "We have your details and will contact you soon. To get an answer faster, continue on WhatsApp.",
     name: "Enter your full name.",
     phone: "Enter a phone number we can reach, for example 0816 532 1429.",
-    course: "Choose a course, or choose “Not sure yet”.",
+    course: "Choose a course from the list.",
     consent: "Tick the box to agree before sending.",
     error: "Your application was not sent. Check your connection and try again, or message us on WhatsApp.",
     limit: "You have sent several requests. Please wait a few minutes or message us on WhatsApp.",
@@ -313,7 +313,7 @@ export const quote = {
     email: "Email (optional)",
     service: "Service needed",
     propertyType: "Property or site type",
-    location: "Location / Town",
+    location: "Location / Town (where installation is needed)",
     message: "Project description & requirements",
     consent: "I agree that OCATECH may use these details to contact me. See the privacy page.",
   },
@@ -346,6 +346,7 @@ export const quote = {
     name: "Enter your full name or company name.",
     phone: "Enter a phone number we can reach, for example 0816 532 1429.",
     service: "Please select the service you need.",
+    location: "Enter your location or town.",
     consent: "Tick the box to agree before sending.",
     error: "Your quote request was not sent. Check your connection and try again, or message us on WhatsApp.",
     limit: "You have sent several requests. Please wait a few minutes or message us on WhatsApp.",
@@ -368,7 +369,7 @@ export const faq = [
   ["Will I get a certificate?", "Yes. You receive a certificate of completion when you finish your course."],
   ["Can I learn online?", "Courses are in person by default. Message us on WhatsApp to ask about online options."],
   ["Where are you?", "At 62 New Market Road, Onitsha, Anambra State."],
-  ["Is there Wi-Fi at the center?", "Yes, free Wi-Fi."],
+  ["Are computers provided for students?", "Yes, dedicated computer workstations and backup solar power are provided at our center."],
   ["Can I take more than one course?", "Yes. Every course is separate, so you can take one or follow a path."],
   ["Do you install CCTV and solar systems?", "Yes. See our services page and request a quote."],
 ];

@@ -367,7 +367,7 @@ function renderCourse(course) {
     <span class="spec-icon" aria-hidden="true">&#x1F4BB;</span>
     <div class="spec-info">
       <h3>Equipment &amp; Facilities</h3>
-      <p>Lab computers provided · Free Wi-Fi</p>
+      <p>Lab computers provided · Solar power</p>
     </div>
   </div>
   <div class="spec-card">
@@ -624,7 +624,7 @@ function renderAbout() {
       <div class="about-hero-trust" aria-label="Key highlights">
         <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Registered BN 9677251</span>
         <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Mon–Sat 8AM–6PM</span>
-        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free Wi-Fi at Hub</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Solar-Powered Lab</span>
       </div>
     </div>
     <div class="about-hero-media-wrap">
@@ -792,8 +792,7 @@ function renderApply() {
             <p class="form-field">
               <label for="course">${esc(applyCopy.fields.course)} <span class="req">*</span></label>
               <select id="course" name="course" required>
-                <option value="">Select a course...</option>
-                <option value="not-sure-yet">${esc(applyCopy.notSure)}</option>
+                <option value="" disabled selected>Select a course...</option>
                 ${groups}
               </select>
             </p>
@@ -816,14 +815,14 @@ function renderApply() {
               <p class="form-field">
                 <label for="current_status">${esc(applyCopy.fields.status)}</label>
                 <select id="current_status" name="current_status">
-                  <option value="">Select your current status</option>
+                  <option value="" disabled selected>Select your current status</option>
                   ${statusOptions}
                 </select>
               </p>
               <p class="form-field">
                 <label for="goal">${esc(applyCopy.fields.goal)}</label>
                 <select id="goal" name="goal">
-                  <option value="">Select your choice</option>
+                  <option value="" disabled selected>Select your choice</option>
                   ${goalOptions}
                 </select>
               </p>
@@ -833,14 +832,14 @@ function renderApply() {
               <p class="form-field">
                 <label for="has_laptop">${esc(applyCopy.fields.laptop)}</label>
                 <select id="has_laptop" name="has_laptop">
-                  <option value="">Select your choice</option>
+                  <option value="" disabled selected>Select your choice</option>
                   ${laptopOptions}
                 </select>
               </p>
               <p class="form-field">
                 <label for="referral">${esc(applyCopy.fields.referral)}</label>
                 <select id="referral" name="referral">
-                  <option value="">Select an option</option>
+                  <option value="" disabled selected>Select an option</option>
                   ${referralOptions}
                 </select>
               </p>
@@ -968,7 +967,7 @@ function renderQuote() {
               <p class="form-field">
                 <label for="service">${esc(quoteCopy.fields.service)} <span class="req">*</span></label>
                 <select id="service" name="service" required>
-                  <option value="">Select a service...</option>
+                  <option value="" disabled selected>Select a service...</option>
                   ${serviceOptions}
                   <option value="custom-setup">Multiple / Custom Setup</option>
                 </select>
@@ -976,18 +975,15 @@ function renderQuote() {
               <p class="form-field">
                 <label for="property_type">${esc(quoteCopy.fields.propertyType)}</label>
                 <select id="property_type" name="property_type">
-                  <option value="">Select property type</option>
+                  <option value="" disabled selected>Select property type</option>
                   ${propertyOptions}
                 </select>
               </p>
             </div>
 
             <p class="form-field">
-              <label for="location">${esc(quoteCopy.fields.location)}</label>
-              <select id="location" name="location">
-                <option value="">Select your town / area</option>
-                ${locationOptions}
-              </select>
+              <label for="location">${esc(quoteCopy.fields.location)} <span class="req">*</span></label>
+              <input id="location" name="location" type="text" placeholder="e.g. 62 New Market Road, Onitsha / Nkpor / Awka" required>
             </p>
 
             <p class="form-field">
