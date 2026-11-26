@@ -42,6 +42,8 @@ The chat and form routes are live now. A 404 means the deploy did not include `w
 
 The chat can now answer questions. Without the key it shows a friendly WhatsApp handoff instead. Keys in `.env` on your computer are only for local testing; Cloudflare needs its own copy here.
 
+To change `GROQ_API_KEY` from a variable to a secret, first remove the variable, then click **Add**, choose type **Secret**, use the same name, paste the key, and click **Deploy**. Cloudflare does not allow a variable and a secret with the same name at the same time. `GROQ_MODEL` can stay a variable. `IP_SALT` can be a variable or a secret.
+
 ## 4. Create the D1 database
 
 D1 stores enquiries and limits chat use to about 30 questions per visitor per day. The chat can answer before this step, but the form needs either D1 or the Resend email below to succeed. Without both, it shows an error.
