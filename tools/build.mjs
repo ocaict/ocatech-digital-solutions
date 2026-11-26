@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { esc, json, page, wa } from "../templates/layout.mjs";
 import {
   shared, home, coursesPage, courseTemplate, services, about,
-  apply as applyCopy, contact, faq, homeFaqCount, privacy, notFound, chat,
+  apply as applyCopy, quote as quoteCopy, contact, faq, homeFaqCount, privacy, notFound, chat,
 } from "../content/site.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -506,7 +506,7 @@ function renderServices() {
       <p class="service-text">${esc(item.text)}</p>
       ${highlights ? `<ul class="service-highlights">${highlights}</ul>` : ""}
       <div class="service-card-actions">
-        <a class="button button-small" href="/apply/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)}</a>
+        <a class="button button-small" href="/quote/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)}</a>
         <a class="service-wa-link" href="${esc(waUrl)}">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.472 2 2 6.481 2 12.015a10.02 10.02 0 0 0 1.401 5.146L2 22l4.998-1.313A9.956 9.956 0 0 0 12 22c5.514 0 10-4.481 10-10.015S17.514 2 11.998 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
           Ask on WhatsApp
@@ -569,7 +569,7 @@ function renderServices() {
       <p>${esc(services.closing.text)}</p>
     </div>
     <div class="hero-actions">
-      <a class="button" href="/apply/">${esc(sharedCopy.buttons.quote)}</a>
+      <a class="button" href="/quote/">${esc(sharedCopy.buttons.quote)}</a>
       <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
     </div>
   </div>
@@ -719,7 +719,6 @@ function renderAbout() {
 
 function renderApply() {
   const groups = site.tracks.map((track) => `<optgroup label="${esc(track.name)}">${courseData.filter((course) => course.track === track.id).map((course) => `<option value="${esc(course.slug)}">${esc(course.title)}</option>`).join("")}</optgroup>`).join("");
-  const services = site.services.map((service) => `<option value="${esc(service.slug)}">${esc(service.name)}</option>`).join("");
   const statusOptions = (applyCopy.statuses || []).map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("");
   const goalOptions = (applyCopy.goals || []).map((g) => `<option value="${esc(g)}">${esc(g)}</option>`).join("");
   const laptopOptions = (applyCopy.laptopOptions || []).map((l) => `<option value="${esc(l)}">${esc(l)}</option>`).join("");
@@ -771,17 +770,7 @@ function renderApply() {
       <div class="apply-card">
         <form id="apply-form" action="/api/apply" method="post" data-success="/success/" data-whatsapp="${esc(whatsapp(sharedCopy.whatsappPresets.general))}" data-messages="${esc(json(applyCopy.messages))}">
           <div id="form-errors" class="form-errors" role="alert" hidden></div>
-          
-          <div class="form-mode-switch" role="radiogroup" aria-label="Select application type">
-            <label class="mode-switch-label">
-              <input type="radio" name="type" value="learn" checked>
-              <span class="mode-switch-pill">🎓 ${esc(applyCopy.learn)}</span>
-            </label>
-            <label class="mode-switch-label">
-              <input type="radio" name="type" value="service">
-              <span class="mode-switch-pill">🛠️ ${esc(applyCopy.service)}</span>
-            </label>
-          </div>
+          <input type="hidden" name="type" value="learn">
 
           <div class="form-grid">
             <div class="form-row-2">
@@ -800,71 +789,59 @@ function renderApply() {
               <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. yourname@example.com">
             </p>
 
-            <div id="learn-fields">
+            <p class="form-field">
+              <label for="course">${esc(applyCopy.fields.course)} <span class="req">*</span></label>
+              <select id="course" name="course" required>
+                <option value="">Select a course...</option>
+                <option value="not-sure-yet">${esc(applyCopy.notSure)}</option>
+                ${groups}
+              </select>
+            </p>
+
+            <fieldset class="form-fieldset">
+              <legend>${esc(applyCopy.fields.mode)} <span class="req">*</span></legend>
+              <div class="mode-chips">
+                <label class="chip-label">
+                  <input type="radio" name="mode" value="In person" checked>
+                  <span class="chip-pill">📍 In person (Onitsha Hub)</span>
+                </label>
+                <label class="chip-label">
+                  <input type="radio" name="mode" value="Online">
+                  <span class="chip-pill">💻 Online</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="form-row-2">
               <p class="form-field">
-                <label for="course">${esc(applyCopy.fields.course)} <span class="req">*</span></label>
-                <select id="course" name="course" required>
-                  <option value="">Select a course...</option>
-                  <option value="not-sure-yet">${esc(applyCopy.notSure)}</option>
-                  ${groups}
+                <label for="current_status">${esc(applyCopy.fields.status)}</label>
+                <select id="current_status" name="current_status">
+                  <option value="">Select your current status</option>
+                  ${statusOptions}
                 </select>
               </p>
-
-              <fieldset class="form-fieldset">
-                <legend>${esc(applyCopy.fields.mode)} <span class="req">*</span></legend>
-                <div class="mode-chips">
-                  <label class="chip-label">
-                    <input type="radio" name="mode" value="In person" checked>
-                    <span class="chip-pill">📍 In person (Onitsha Hub)</span>
-                  </label>
-                  <label class="chip-label">
-                    <input type="radio" name="mode" value="Online">
-                    <span class="chip-pill">💻 Online</span>
-                  </label>
-                </div>
-              </fieldset>
-
-              <div class="form-row-2">
-                <p class="form-field">
-                  <label for="current_status">${esc(applyCopy.fields.status)}</label>
-                  <select id="current_status" name="current_status">
-                    <option value="">Select your current status</option>
-                    ${statusOptions}
-                  </select>
-                </p>
-                <p class="form-field">
-                  <label for="goal">${esc(applyCopy.fields.goal)}</label>
-                  <select id="goal" name="goal">
-                    <option value="">Select your choice</option>
-                    ${goalOptions}
-                  </select>
-                </p>
-              </div>
-
-              <div class="form-row-2">
-                <p class="form-field">
-                  <label for="has_laptop">${esc(applyCopy.fields.laptop)}</label>
-                  <select id="has_laptop" name="has_laptop">
-                    <option value="">Select your choice</option>
-                    ${laptopOptions}
-                  </select>
-                </p>
-                <p class="form-field">
-                  <label for="referral">${esc(applyCopy.fields.referral)}</label>
-                  <select id="referral" name="referral">
-                    <option value="">Select an option</option>
-                    ${referralOptions}
-                  </select>
-                </p>
-              </div>
+              <p class="form-field">
+                <label for="goal">${esc(applyCopy.fields.goal)}</label>
+                <select id="goal" name="goal">
+                  <option value="">Select your choice</option>
+                  ${goalOptions}
+                </select>
+              </p>
             </div>
 
-            <div id="service-fields" hidden>
+            <div class="form-row-2">
               <p class="form-field">
-                <label for="service">${esc(applyCopy.fields.service)} <span class="req">*</span></label>
-                <select id="service" name="service">
-                  <option value="">Select a service...</option>
-                  ${services}
+                <label for="has_laptop">${esc(applyCopy.fields.laptop)}</label>
+                <select id="has_laptop" name="has_laptop">
+                  <option value="">Select your choice</option>
+                  ${laptopOptions}
+                </select>
+              </p>
+              <p class="form-field">
+                <label for="referral">${esc(applyCopy.fields.referral)}</label>
+                <select id="referral" name="referral">
+                  <option value="">Select an option</option>
+                  ${referralOptions}
                 </select>
               </p>
             </div>
@@ -913,6 +890,140 @@ function renderApply() {
     canonical: urls.for("/apply/"),
     inner,
     jsonLd: [faqJsonLd(faq.slice(0, homeFaqCount), urls.for("/apply/"))],
+    extraScripts: [assets.form],
+  };
+}
+
+function renderQuote() {
+  const serviceOptions = site.services.map((service) => `<option value="${esc(service.slug)}">${esc(service.name)}</option>`).join("");
+  const propertyOptions = (quoteCopy.propertyTypes || []).map((p) => `<option value="${esc(p)}">${esc(p)}</option>`).join("");
+  const locationOptions = (quoteCopy.locations || []).map((l) => `<option value="${esc(l)}">${esc(l)}</option>`).join("");
+
+  const checkIcon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+  const benefitsList = (quoteCopy.benefits || []).map(([title, desc]) => `
+    <li>
+      <span class="apply-benefit-check" aria-hidden="true">${checkIcon}</span>
+      <div>
+        <strong>${esc(title)}</strong>
+        <p>${esc(desc)}</p>
+      </div>
+    </li>`).join("");
+
+  const inner = `<section class="apply-hero-section">
+  <div class="wrap">
+    <div class="apply-hero-text">
+      <div class="apply-kicker-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>Technical Services &amp; Installations</span>
+      </div>
+      <h1>${esc(quoteCopy.h1)}</h1>
+      <p class="apply-hero-lead">${esc(quoteCopy.intro)}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section apply-main-section">
+  <div class="wrap apply-layout-grid">
+    
+    <aside class="apply-benefits-col" aria-label="Why choose OCATECH for installations">
+      <div class="apply-benefits-card">
+        <p class="hero-kicker">Why Work With Us</p>
+        <h2 class="apply-benefits-title">Reliable installation &amp; technical infrastructure</h2>
+        <ul class="apply-benefits-list">
+          ${benefitsList}
+        </ul>
+        <div class="apply-wa-direct">
+          <p class="apply-wa-direct-label">Need immediate consultation or site booking?</p>
+          <a class="button button-wa button-full" href="${esc(whatsapp(sharedCopy.whatsappPresets.service.replace("{service}", "a technical service")))}">
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="apply-form-col">
+      <div class="apply-card">
+        <form id="apply-form" action="/api/apply" method="post" data-success="/success/" data-whatsapp="${esc(whatsapp(sharedCopy.whatsappPresets.service.replace("{service}", "a technical service")))}" data-messages="${esc(json(quoteCopy.messages))}">
+          <div id="form-errors" class="form-errors" role="alert" hidden></div>
+          <input type="hidden" name="type" value="service">
+
+          <div class="form-grid">
+            <div class="form-row-2">
+              <p class="form-field">
+                <label for="name">${esc(quoteCopy.fields.name)} <span class="req">*</span></label>
+                <input id="name" name="name" type="text" autocomplete="name" placeholder="e.g. Obinna Emeka / Swift Logistics" required minlength="2" maxlength="80">
+              </p>
+              <p class="form-field">
+                <label for="phone">${esc(quoteCopy.fields.phone)} <span class="req">*</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 0816 532 1429" required>
+              </p>
+            </div>
+
+            <p class="form-field">
+              <label for="email">${esc(quoteCopy.fields.email)}</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="e.g. company@example.com">
+            </p>
+
+            <div class="form-row-2">
+              <p class="form-field">
+                <label for="service">${esc(quoteCopy.fields.service)} <span class="req">*</span></label>
+                <select id="service" name="service" required>
+                  <option value="">Select a service...</option>
+                  ${serviceOptions}
+                  <option value="custom-setup">Multiple / Custom Setup</option>
+                </select>
+              </p>
+              <p class="form-field">
+                <label for="property_type">${esc(quoteCopy.fields.propertyType)}</label>
+                <select id="property_type" name="property_type">
+                  <option value="">Select property type</option>
+                  ${propertyOptions}
+                </select>
+              </p>
+            </div>
+
+            <p class="form-field">
+              <label for="location">${esc(quoteCopy.fields.location)}</label>
+              <select id="location" name="location">
+                <option value="">Select your town / area</option>
+                ${locationOptions}
+              </select>
+            </p>
+
+            <p class="form-field">
+              <label for="message">${esc(quoteCopy.fields.message)}</label>
+              <textarea id="message" name="message" rows="4" maxlength="600" placeholder="Tell us more about the project, building size, number of CCTV cameras or inverter load required..."></textarea>
+              <span class="counter" id="message-count" aria-live="polite">0/600</span>
+            </p>
+
+            <p class="honeypot" aria-hidden="true">
+              <label for="website">Website</label>
+              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </p>
+            <input type="hidden" name="sourcePage" id="source-page" value="">
+
+            <p class="consent">
+              <label>
+                <input type="checkbox" name="consent" value="true" required>
+                <span>${esc(quoteCopy.fields.consent)} <a href="/privacy/">Privacy Policy</a></span>
+              </label>
+            </p>
+
+            <button class="button button-full" type="submit">Submit Quote Request &rarr;</button>
+            <p class="form-guarantee-note">🔒 Fast response. We assess your needs before giving final estimates.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>`;
+  return {
+    title: quoteCopy.seoTitle,
+    description: quoteCopy.seoDescription,
+    canonical: urls.for("/quote/"),
+    inner,
+    jsonLd: [],
     extraScripts: [assets.form],
   };
 }
@@ -1043,7 +1154,7 @@ function renderSuccess() {
 }
 
 const headerRules = [];
-const sitemapPaths = ["/", "/courses/", "/services/", "/about/", "/apply/", "/contact/", "/privacy/"];
+const sitemapPaths = ["/", "/courses/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/"];
 
 function emitPage(file, meta) {
   const hashes = meta.jsonLd.map((item) => crypto.createHash("sha256").update(json(item)).digest("base64"));
@@ -1076,6 +1187,7 @@ const pages = [
   ["services/index.html", renderServices()],
   ["about/index.html", renderAbout()],
   ["apply/index.html", renderApply()],
+  ["quote/index.html", renderQuote()],
   ["contact/index.html", renderContact()],
   ["privacy/index.html", renderPrivacy()],
   ["success/index.html", renderSuccess()],

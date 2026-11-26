@@ -80,6 +80,8 @@ function validate(data) {
   const goal = clean(data.goal, 60);
   const laptop = clean(data.has_laptop, 20);
   const referral = clean(data.referral, 80);
+  const propertyType = clean(data.property_type, 60);
+  const location = clean(data.location, 60);
   const rawMsg = clean(data.message, 600);
 
   const details = [];
@@ -87,7 +89,9 @@ function validate(data) {
   if (goal) details.push(`Goal: ${goal}`);
   if (laptop) details.push(`Laptop & Internet: ${laptop}`);
   if (referral) details.push(`Heard via: ${referral}`);
-  if (rawMsg) details.push(`Note: ${rawMsg}`);
+  if (propertyType) details.push(`Property: ${propertyType}`);
+  if (location) details.push(`Location: ${location}`);
+  if (rawMsg) details.push(`Details: ${rawMsg}`);
 
   out.message = details.length ? details.join(" | ").slice(0, 600) : "";
   out.consent = data.consent === true || data.consent === "true" || data.consent === "on" || data.consent === "1";
@@ -99,7 +103,7 @@ function validate(data) {
   if (!out.phone) return { error: "phone" };
   if (out.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(out.email)) return { error: "email" };
   if (out.type === "learn" && out.course !== "not-sure-yet" && !config.courseSlugs.includes(out.course)) return { error: "course" };
-  if (out.type === "service" && !config.serviceSlugs.includes(out.service)) return { error: "service" };
+  if (out.type === "service" && !config.serviceSlugs.includes(out.service) && out.service !== "custom-setup") return { error: "service" };
   if (!["In person", "Online", "Not sure", ""].includes(out.mode)) return { error: "mode" };
   if (!["As soon as possible", "Within a month", "Just exploring", ""].includes(out.start)) return { error: "start" };
   if (!out.consent) return { error: "consent" };
@@ -108,16 +112,16 @@ function validate(data) {
 
 async function sendEmail(env, lead) {
   if (!env.RESEND_API_KEY || !env.NOTIFY_EMAIL) return false;
-  const subjectLabel = lead.type === "service" ? lead.service : lead.course || "course enquiry";
+  const subjectLabel = lead.type === "service" ? `${lead.service || "service"} quote request` : lead.course || "course enquiry";
   const lines = [
     `Name: ${clean(lead.name, 80)}`,
     `Phone: ${lead.phone}`,
     `Email: ${lead.email || "not supplied"}`,
+    `Type: ${lead.type === "service" ? "Service Quote Request" : "Course Application"}`,
     `Course: ${lead.type === "learn" ? lead.course || "not supplied" : "not applicable"}`,
-    `Service: ${lead.type === "service" ? lead.service : "not applicable"}`,
+    `Service: ${lead.type === "service" ? lead.service || "not supplied" : "not applicable"}`,
     `Mode: ${lead.mode || "not supplied"}`,
-    `Start preference: ${lead.start || "not supplied"}`,
-    `Message: ${lead.message || "not supplied"}`,
+    `Details: ${lead.message || "not supplied"}`,
     `Page: ${lead.sourcePage || "not supplied"}`,
     `Time: ${new Date().toISOString()}`,
   ];
@@ -130,7 +134,7 @@ async function sendEmail(env, lead) {
     body: JSON.stringify({
       from: env.RESEND_FROM || "OCATECH website <onboarding@resend.dev>",
       to: [env.NOTIFY_EMAIL],
-      subject: clean(`New ${subjectLabel} enquiry from ${lead.name}`, 140),
+      subject: clean(`New ${subjectLabel} from ${lead.name}`, 140),
       text: lines.join("\n"),
     }),
   });
@@ -205,8 +209,12 @@ export async function onRequestPost(context) {
   }
   if (!emailed) console.log(JSON.stringify({ route: "apply", status: "email-fallback", ms: Date.now() - started }));
 
+  const waText = lead.type === "service"
+    ? `Hello OCATECH, I just requested a quote for ${lead.service || "installation services"}. My name is ${lead.name}.`
+    : `Hello OCATECH, I just applied for ${lead.course || "a course"}. My name is ${lead.name}.`;
+
   return finish(200, {
     ok: true,
-    whatsappUrl: `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent("Hello OCATECH, I sent my details on the website.")}`,
+    whatsappUrl: `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(waText)}`,
   }, "/success/");
 }
