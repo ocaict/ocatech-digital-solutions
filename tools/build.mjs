@@ -215,13 +215,27 @@ function renderHome() {
     <source src="/assets/video/ict-training.mp4" type="video/mp4">
   </video>
   <div class="hero-video-overlay" aria-hidden="true"></div>
-  <div class="wrap hero-content">
-    <p class="hero-kicker">${esc(site.brand.descriptor)}</p>
-    <h1>${esc(home.h1)}</h1>
-    <p class="hero-copy">${esc(home.subheading)}</p>
-    <div class="hero-actions">
-      <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
-      <a class="button button-quiet" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a>
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="hero-kicker">${esc(site.brand.descriptor)}</p>
+      <h1>${esc(home.h1)}</h1>
+      <p class="hero-copy">${esc(home.subheading)}</p>
+      <div class="hero-actions">
+        <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+        <a class="button button-quiet" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a>
+      </div>
+    </div>
+    <div class="hero-instructor-wrap" aria-hidden="true">
+      <img class="hero-instructor-img"
+        src="/assets/img/instructor-guide-960.webp"
+        srcset="/assets/img/instructor-guide-480.webp 480w, /assets/img/instructor-guide-960.webp 960w, /assets/img/instructor-guide-1600.webp 1600w"
+        sizes="(min-width: 900px) 420px, 0px"
+        width="960" height="540"
+        alt="OCATECH instructor guiding students in digital skills training">
+      <div class="hero-instructor-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Practical, hands-on training</span>
+      </div>
     </div>
   </div>
 </section>
@@ -267,7 +281,6 @@ ${renderPickerFallback()}
 <figure><img src="/assets/img/training-960.webp" srcset="/assets/img/training-480.webp 480w, /assets/img/training-960.webp 960w, /assets/img/training-1600.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="960" height="540" loading="lazy" alt="OCATECH training session"><figcaption>Training at the center.</figcaption></figure>
 <figure><img src="/assets/img/instructor-guide-960.webp" srcset="/assets/img/instructor-guide-480.webp 480w, /assets/img/instructor-guide-960.webp 960w, /assets/img/instructor-guide-1600.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="960" height="540" loading="lazy" alt="OCATECH digital skills instructor guide"><figcaption>Digital skills guide used at OCATECH.</figcaption></figure>
 </div>
-<video class="center-video" controls preload="none" poster="/assets/img/video-poster.webp"><source src="/assets/video/ict-training.mp4" type="video/mp4"></video>
 </div></section>
 ${testimonials}
 <section class="section" aria-labelledby="home-faq-heading"><div class="wrap">

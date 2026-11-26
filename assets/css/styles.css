@@ -225,11 +225,26 @@ button, input, select, textarea { font: inherit; }
   mask-image: linear-gradient(to bottom, black, transparent 80%);
 }
 
-.hero-content {
+.hero-grid {
   position: relative;
   z-index: 2;
-  padding: 6rem 0 5rem;
+  padding: 5rem 0 4.5rem;
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
   animation: hero-arrive 800ms ease-out both;
+}
+
+@media (min-width: 860px) {
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    padding: 6rem 0 5.5rem;
+  }
+}
+
+.hero-text {
+  max-width: 600px;
 }
 
 @keyframes hero-arrive {
@@ -239,14 +254,67 @@ button, input, select, textarea { font: inherit; }
 
 .hero-kicker { color: var(--cyan); font-weight: 600; }
 .hero h1,
-.hero-content h1 { max-width: 16ch; color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,.4); }
-.hero-copy { max-width: 56ch; color: rgba(247, 249, 255, 0.85); font-size: 1.15rem; }
+.hero-text h1 { max-width: 16ch; color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,.45); }
+.hero-copy { max-width: 54ch; color: rgba(247, 249, 255, 0.9); font-size: 1.15rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+
+.hero-instructor-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  background: var(--surface);
+  max-width: 460px;
+  justify-self: center;
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 860px) {
+  .hero-instructor-wrap {
+    justify-self: end;
+    width: 100%;
+  }
+}
+
+.hero-instructor-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  filter: contrast(1.04) brightness(0.98);
+}
+
+.hero-instructor-badge {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  background: rgba(7, 17, 37, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero-instructor-badge svg {
+  color: var(--green);
+  flex-shrink: 0;
+}
 
 /* Pause video for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .hero-video { animation: none; }
-  .hero-content { animation: none; }
+  .hero-grid { animation: none; }
 }
 
 /* Legacy hero-art kept for other pages that may still use it */
