@@ -198,10 +198,26 @@ function courseCard(course, lead = false) {
 
 function renderHome() {
   const lead = site.leadCourses.map((slug) => courseBySlug.get(slug)).filter(Boolean);
-  const paths = site.paths.map((item, index) => `<li>
-<h3>${esc(item.name)}</h3>
-<ol>${item.courses.map((slug) => { const c = courseBySlug.get(slug); return c ? `<li><a href="/courses/${esc(slug)}/">${esc(c.shortName || c.title)}</a></li>` : ""; }).join("")}</ol>
-</li>`).join("");
+  const serviceIcons = {
+    "software-installation": "/assets/img/service-software.svg",
+    "cctv-installation": "/assets/img/service-cctv.svg",
+    "solar-installation": "/assets/img/service-solar.svg",
+  };
+
+  const serviceList = Object.entries(home.services.items).map(([slug, item]) => {
+    const iconSrc = serviceIcons[slug] || "/assets/img/service-software.svg";
+    return `
+      <li class="home-service-item">
+        <div class="service-item-icon-wrap" aria-hidden="true">
+          <img class="service-item-icon" src="${iconSrc}" width="56" height="56" alt="" loading="lazy">
+        </div>
+        <div class="service-item-body">
+          <h3>${esc(item.name)}</h3>
+          <p>${esc(item.text)}</p>
+          <a class="service-item-link" href="/quote/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)} &rarr;</a>
+        </div>
+      </li>`;
+  }).join("");
   const why = home.why.items.filter(([,], index) => index !== 2 || site.flags.showServicesClaim).map(([term, text]) => `<li><strong>${esc(term)}</strong> ${esc(text)}</li>`).join("");
   const testimonials = site.flags.showTestimonials && Array.isArray(site.testimonials) && site.testimonials.length
     ? `<section class="section" aria-labelledby="testimonials"><h2 id="testimonials">${esc(home.testimonials.heading)}</h2></section>`
@@ -280,12 +296,44 @@ ${renderPickerFallback()}
     </div>
   </div>
 </div></section>
-<section class="section section-alt" aria-labelledby="services-heading"><div class="wrap">
-<h2 id="services-heading">${esc(home.services.heading)}</h2>
-<p>${esc(home.services.intro)}</p>
-<ul class="service-list">${Object.entries(home.services.items).map(([slug, item]) => `<li><h3>${esc(item.name)}</h3><p>${esc(item.text)}</p><a class="text-link" href="/apply/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)}</a></li>`).join("")}</ul>
-<p><a class="text-link" href="/services/">${esc(home.services.link)}</a></p>
-</div></section>
+<section class="section section-alt home-services-section" aria-labelledby="services-heading">
+  <div class="wrap">
+    <div class="home-services-grid">
+      <div class="home-services-left">
+        <div class="section-title-wrap">
+          <span class="path-badge">Technical Installations</span>
+          <h2 id="services-heading">${esc(home.services.heading)}</h2>
+          <p class="section-subtitle">${esc(home.services.intro)}</p>
+        </div>
+        
+        <figure class="home-services-media">
+          <img src="/assets/img/services-showcase-960.webp"
+               srcset="/assets/img/services-showcase-480.webp 480w, /assets/img/services-showcase-960.webp 960w, /assets/img/services-showcase.webp 1376w"
+               sizes="(min-width: 860px) 480px, 100vw"
+               width="960" height="536"
+               loading="lazy"
+               alt="OCATECH technical installations: CCTV surveillance, solar power inverters, and computer software setup in Onitsha">
+          <figcaption class="home-services-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Certified on-site setup · Onitsha &amp; nearby towns</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="home-services-right">
+        <ul class="home-services-list">
+          ${serviceList}
+        </ul>
+        <div class="home-services-actions">
+          <a class="button button-quiet" href="/services/">${esc(home.services.link)} &rarr;</a>
+          <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.service.replace("{service}", "a technical service")))}">
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="section" aria-labelledby="why-heading"><div class="wrap">
 <h2 id="why-heading">${esc(home.why.heading)}</h2>
 <ul class="why-list">${why}</ul>
@@ -674,9 +722,9 @@ ${renderFaq(courseFaq)}
 
 function renderServices() {
   const serviceIcons = {
-    "software-installation": '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
-    "cctv-installation": '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>',
-    "solar-installation": '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+    "software-installation": '<img src="/assets/img/service-software.svg" width="40" height="40" alt="" class="service-img-icon">',
+    "cctv-installation": '<img src="/assets/img/service-cctv.svg" width="40" height="40" alt="" class="service-img-icon">',
+    "solar-installation": '<img src="/assets/img/service-solar.svg" width="40" height="40" alt="" class="service-img-icon">',
   };
   const fallbackIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
   const checkIcon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <linearGradient id="cctv-bg" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#122547"/>
+      <stop offset="100%" stop-color="#071125"/>
+    </linearGradient>
+    <linearGradient id="cctv-body" x1="20" y1="20" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#46CEFF"/>
+      <stop offset="100%" stop-color="#012D96"/>
+    </linearGradient>
+    <linearGradient id="cctv-lens" x1="32" y1="32" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF8533"/>
+      <stop offset="100%" stop-color="#FF6600"/>
+    </linearGradient>
+    <filter id="cctv-glow" x="0" y="0" width="80" height="80" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Container -->
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="url(#cctv-bg)" stroke="#26406D" stroke-width="2"/>
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="none" stroke="#46CEFF" stroke-opacity="0.2" stroke-width="1"/>
+  
+  <!-- Wall Mount Bracket -->
+  <path d="M16 26H22V46H16" stroke="#46CEFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 36H28" stroke="#46CEFF" stroke-width="3"/>
+  
+  <!-- CCTV Camera Body (Bullet angled down) -->
+  <path d="M28 28L54 22C57.3137 21.2 60 23.5 60 27V43C60 46.5 57.3137 48.8 54 48L28 42C26.5 41.5 25.5 40 25.5 38.5V31.5C25.5 30 26.5 28.5 28 28Z" fill="#0D1B35" stroke="url(#cctv-body)" stroke-width="2.5" stroke-linejoin="round"/>
+  
+  <!-- Sun Shield Visor Top -->
+  <path d="M26 24L58 18" stroke="#46CEFF" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- Lens Housing Front -->
+  <ellipse cx="56" cy="35" rx="3.5" ry="9.5" fill="#122547" stroke="#46CEFF" stroke-width="2"/>
+  <circle cx="56" cy="35" r="3.5" fill="url(#cctv-lens)" filter="url(#cctv-glow)"/>
+  
+  <!-- Infrared / Recording LED Indicator -->
+  <circle cx="56" cy="24" r="1.5" fill="#FF0000"/>
+  
+  <!-- Surveillance Wave Signals -->
+  <path d="M63 31C64.5 32.2 65.5 33.5 65.5 35C65.5 36.5 64.5 37.8 63 39" stroke="#FF6600" stroke-width="2" stroke-linecap="round"/>
+  <path d="M67 27C69.5 29.5 71 32 71 35C71 38 69.5 40.5 67 43" stroke="#46CEFF" stroke-width="2" stroke-linecap="round"/>
+</svg>

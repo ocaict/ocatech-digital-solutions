@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <linearGradient id="soft-bg" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#122547"/>
+      <stop offset="100%" stop-color="#071125"/>
+    </linearGradient>
+    <linearGradient id="soft-cyan" x1="16" y1="20" x2="64" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#46CEFF"/>
+      <stop offset="100%" stop-color="#012D96"/>
+    </linearGradient>
+    <linearGradient id="soft-orange" x1="30" y1="30" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF8533"/>
+      <stop offset="100%" stop-color="#FF6600"/>
+    </linearGradient>
+    <filter id="soft-glow" x="0" y="0" width="80" height="80" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Container -->
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="url(#soft-bg)" stroke="#26406D" stroke-width="2"/>
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="none" stroke="#46CEFF" stroke-opacity="0.2" stroke-width="1"/>
+  
+  <!-- Monitor Base -->
+  <path d="M28 58H52" stroke="#46CEFF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 50V58" stroke="#46CEFF" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Monitor Screen -->
+  <rect x="16" y="18" width="48" height="32" rx="6" fill="#0D1B35" stroke="url(#soft-cyan)" stroke-width="2.5"/>
+  
+  <!-- Window Header Bar -->
+  <line x1="16" y1="26" x2="64" y2="26" stroke="#26406D" stroke-width="1.5"/>
+  <circle cx="22" cy="22" r="2" fill="#FF6600"/>
+  <circle cx="28" cy="22" r="2" fill="#46CEFF"/>
+  <circle cx="34" cy="22" r="2" fill="#3FB200"/>
+
+  <!-- Code / Settings Content -->
+  <path d="M24 33L29 37L24 41" stroke="#46CEFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="33" y1="41" x2="43" y2="41" stroke="#46CEFF" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Setup / Verified Shield Badge -->
+  <g transform="translate(44, 28)" filter="url(#soft-glow)">
+    <circle cx="12" cy="12" r="10" fill="#071125" stroke="#FF6600" stroke-width="2"/>
+    <path d="M8 12L11 15L16 9" stroke="#FF8533" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

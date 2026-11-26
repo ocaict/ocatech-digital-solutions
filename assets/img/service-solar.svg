@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <linearGradient id="solar-bg" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#122547"/>
+      <stop offset="100%" stop-color="#071125"/>
+    </linearGradient>
+    <linearGradient id="solar-grid" x1="18" y1="28" x2="62" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#46CEFF"/>
+      <stop offset="100%" stop-color="#012D96"/>
+    </linearGradient>
+    <linearGradient id="sun-glow" x1="30" y1="12" x2="50" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF8533"/>
+      <stop offset="100%" stop-color="#FF6600"/>
+    </linearGradient>
+    <filter id="solar-glow-filter" x="0" y="0" width="80" height="80" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Background Container -->
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="url(#solar-bg)" stroke="#26406D" stroke-width="2"/>
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="none" stroke="#46CEFF" stroke-opacity="0.2" stroke-width="1"/>
+  
+  <!-- Sun Rays & Core in upper corner -->
+  <circle cx="24" cy="22" r="6" fill="url(#sun-glow)" filter="url(#solar-glow-filter)"/>
+  <path d="M24 12V14" stroke="#FF6600" stroke-width="2" stroke-linecap="round"/>
+  <path d="M24 30V32" stroke="#FF6600" stroke-width="2" stroke-linecap="round"/>
+  <path d="M14 22H16" stroke="#FF6600" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 22H34" stroke="#FF6600" stroke-width="2" stroke-linecap="round"/>
+  <path d="M17 15L18.5 16.5" stroke="#FF8533" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M29.5 27.5L31 29" stroke="#FF8533" stroke-width="1.8" stroke-linecap="round"/>
+
+  <!-- Solar Photovoltaic Panel (Isometric tilted) -->
+  <!-- Stand / Mounting Legs -->
+  <path d="M28 54L22 62" stroke="#46CEFF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M52 54L58 62" stroke="#46CEFF" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M30 62H50" stroke="#46CEFF" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Panel Frame -->
+  <polygon points="26,32 58,26 54,55 18,55" fill="#0D1B35" stroke="url(#solar-grid)" stroke-width="2.5" stroke-linejoin="round"/>
+  
+  <!-- Panel Grid Lines -->
+  <!-- Horizontal partition -->
+  <path d="M22 43.5L56 40.5" stroke="#46CEFF" stroke-width="1.5" stroke-opacity="0.7"/>
+  <!-- Vertical partitions -->
+  <path d="M34 30.5L30 55" stroke="#46CEFF" stroke-width="1.5" stroke-opacity="0.7"/>
+  <path d="M42 29L39 55" stroke="#46CEFF" stroke-width="1.5" stroke-opacity="0.7"/>
+  <path d="M50 27.5L47 55" stroke="#46CEFF" stroke-width="1.5" stroke-opacity="0.7"/>
+
+  <!-- Lightning Energy Symbol Badge -->
+  <g transform="translate(46, 36)" filter="url(#solar-glow-filter)">
+    <circle cx="11" cy="11" r="10" fill="#071125" stroke="#FF6600" stroke-width="2"/>
+    <path d="M12 6L8 12H13L10 17L16 11H11L12 6Z" fill="#FF8533" stroke="#FF6600" stroke-width="0.5"/>
+  </g>
+</svg>
