@@ -6,8 +6,5 @@ dist/
 .DS_Store
 assets/incoming/*
 !assets/incoming/.gitkeep
-assets/video/*.mp4
-assets/video/*.webm
-assets/img/video-poster.webp
 inspirations/
 .vscode/
