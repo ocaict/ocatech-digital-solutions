@@ -2319,6 +2319,381 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
 .chat-form button { min-width: 56px; min-height: 44px; border: 0; border-radius: 10px; background: var(--orange); color: var(--navy-text); font-weight: 700; cursor: pointer; }
 .chat-footer { padding: .5rem 1rem; color: var(--muted); font-size: .72rem; border-top: 1px solid var(--border); background: var(--surface); text-align: center; }
 
+/* ── Home Page Paths CTA ── */
+.home-paths-cta { padding: 4.5rem 0; }
+.paths-cta-card {
+  display: grid;
+  gap: 2.5rem;
+  background: linear-gradient(135deg, rgba(13, 27, 53, 0.95), rgba(7, 17, 37, 0.98));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+.paths-cta-card::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(70, 206, 255, 0.15), transparent 70%);
+  pointer-events: none;
+}
+.paths-cta-text h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: .4rem 0 .8rem; }
+.paths-cta-text p { color: var(--muted); max-width: 58ch; font-size: 1.05rem; }
+.path-badge {
+  display: inline-block;
+  padding: .25rem .75rem;
+  border-radius: 999px;
+  background: rgba(70, 206, 255, 0.12);
+  border: 1px solid rgba(70, 206, 255, 0.3);
+  color: var(--cyan);
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.paths-cta-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem;
+  align-content: center;
+}
+.paths-pill-item {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .75rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: .92rem;
+}
+.pill-icon { font-size: 1.25rem; }
+
+@media (min-width: 860px) {
+  .paths-cta-card {
+    grid-template-columns: 1.25fr 0.85fr;
+    align-items: center;
+    padding: 3.5rem 3rem;
+  }
+}
+
+/* ── Courses Page Banner ── */
+.courses-paths-banner {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, rgba(18, 37, 71, 0.7), rgba(13, 27, 53, 0.9));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.banner-text strong { display: block; color: var(--text); font-size: 1.05rem; margin-bottom: .2rem; }
+.banner-text p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+/* ── Learning Paths Page Hero ── */
+.paths-hero {
+  position: relative;
+  padding: 4.5rem 0 3.5rem;
+  background: radial-gradient(circle at 80% 20%, rgba(1, 45, 150, 0.25), transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(255, 102, 0, 0.08), transparent 50%),
+              var(--navy);
+  border-bottom: 1px solid var(--border);
+}
+.paths-hero-content { max-width: 800px; }
+.paths-kicker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .35rem .85rem;
+  border-radius: 999px;
+  background: rgba(70, 206, 255, 0.1);
+  border: 1px solid rgba(70, 206, 255, 0.25);
+  color: var(--cyan);
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 1rem;
+}
+.paths-hero-lead { font-size: 1.2rem; color: var(--muted); line-height: 1.6; max-width: 65ch; margin-bottom: 1.8rem; }
+.paths-hero-trust { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+/* ── Main Paths Grid ── */
+.paths-main-section { padding: 4rem 0; }
+.paths-intro-bar { margin-bottom: 2.5rem; }
+.paths-intro-bar h2 { margin: .3rem 0 .5rem; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.paths-grid { display: grid; gap: 3rem; }
+
+/* ── Path Card (Roadmap Style) ── */
+.path-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+  transition: border-color .2s ease;
+}
+.path-card:hover { border-color: rgba(70, 206, 255, 0.4); }
+
+.path-card-header {
+  padding: 2rem 2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+.path-badge-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.path-category-pill {
+  padding: .25rem .75rem;
+  border-radius: 6px;
+  background: var(--orange);
+  color: var(--navy-text);
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.path-level-pill {
+  padding: .25rem .75rem;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 600;
+}
+.path-title-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: .8rem;
+}
+.path-icon {
+  font-size: 2.4rem;
+  line-height: 1;
+  padding: .6rem;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+.path-title { font-size: clamp(1.5rem, 3.5vw, 2.1rem); margin: 0 0 .3rem; color: var(--text); }
+.path-tagline { margin: 0; color: var(--cyan); font-size: 1rem; font-weight: 600; }
+.path-description { color: var(--muted); font-size: 1.02rem; line-height: 1.6; margin: 1rem 0 1.25rem; max-width: 75ch; }
+
+.path-outcomes {
+  display: grid;
+  gap: .75rem;
+  padding: 1rem 1.2rem;
+  background: var(--navy);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+@media (min-width: 640px) {
+  .path-outcomes { grid-template-columns: 1fr 1fr; }
+}
+.outcome-item { display: flex; flex-direction: column; gap: .2rem; }
+.outcome-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.outcome-value { font-size: .92rem; font-weight: 600; color: var(--text); }
+
+/* ── Timeline / Steps Progression ── */
+.path-roadmap-wrap {
+  padding: 2rem 2rem 1.5rem;
+}
+.roadmap-heading {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.roadmap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.25rem;
+}
+.roadmap-step {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 1.25rem;
+  position: relative;
+}
+.step-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 2px solid var(--cyan);
+  color: var(--cyan);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+.step-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(180deg, var(--cyan), var(--border));
+  margin: .5rem 0;
+  min-height: 40px;
+}
+.step-body {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.2rem 1.35rem;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.roadmap-step:hover .step-body {
+  border-color: rgba(70, 206, 255, 0.4);
+  transform: translateX(3px);
+}
+.step-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: .45rem;
+}
+.step-stage-tag {
+  padding: .15rem .55rem;
+  border-radius: 4px;
+  background: rgba(70, 206, 255, 0.15);
+  color: var(--cyan);
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.step-level-tag {
+  padding: .15rem .55rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 600;
+}
+.step-title { font-size: 1.15rem; margin: 0 0 .3rem; }
+.step-title a { color: var(--text); text-decoration: none; }
+.step-title a:hover { color: var(--cyan); text-decoration: underline; }
+.step-desc { color: var(--muted); font-size: .92rem; margin: 0 0 .8rem; line-height: 1.5; }
+.step-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  padding-top: .6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.step-fee { font-weight: 700; color: var(--orange); font-size: .95rem; }
+.step-link { font-size: .85rem; color: var(--cyan); font-weight: 600; text-decoration: none; }
+.step-link:hover { text-decoration: underline; }
+
+/* ── Path Card Actions ── */
+.path-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+}
+.path-actions-left {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+.path-admissions-note { font-size: .8rem; color: var(--muted); }
+
+/* ── How Paths Work ── */
+.paths-how-section { padding: 4rem 0; }
+.paths-how-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+@media (min-width: 640px) {
+  .paths-how-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .paths-how-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.path-how-card {
+  padding: 1.75rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  position: relative;
+}
+.how-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--cyan);
+  display: block;
+  margin-bottom: .6rem;
+  opacity: .8;
+}
+.path-how-card h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+.path-how-card p { font-size: .9rem; color: var(--muted); margin: 0; line-height: 1.5; }
+
+/* ── Advisory CTA Strip ── */
+.paths-advisory-section { padding: 4rem 0 5rem; }
+.paths-advisory-box {
+  display: grid;
+  gap: 2rem;
+  padding: 3rem 2.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+@media (min-width: 860px) {
+  .paths-advisory-box {
+    grid-template-columns: 1.4fr 0.8fr;
+    align-items: center;
+  }
+}
+.paths-advisory-text h2 { margin: .5rem 0 .7rem; font-size: clamp(1.5rem, 3.5vw, 2.2rem); }
+.paths-advisory-text p { color: var(--muted); font-size: 1.05rem; margin: 0; max-width: 58ch; }
+.paths-advisory-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+@media (min-width: 480px) {
+  .paths-advisory-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
 @media (min-width: 640px) {
   .lead-grid, .course-grid { grid-template-columns: repeat(2, 1fr); }
 }

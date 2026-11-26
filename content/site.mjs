@@ -1,6 +1,7 @@
 export const shared = {
   nav: [
     ["Courses", "/courses/"],
+    ["Paths", "/paths/"],
     ["Services", "/services/"],
     ["About", "/about/"],
     ["Contact", "/contact/"],
@@ -61,6 +62,12 @@ export const home = {
     heading: "Not sure what comes next?",
     intro: "Follow a path, or take one course on its own.",
   },
+  pathsCta: {
+    badge: "Career Roadmaps",
+    heading: "Follow a structured learning path to your dream career",
+    text: "Not sure where to begin? We have mapped out 6 step-by-step career roadmaps — from web engineering and artificial intelligence to creative design and business growth.",
+    button: "Explore all 6 Learning Paths",
+  },
   services: {
     heading: "We also install technology",
     intro: "Need CCTV, solar power or software set up properly? Our team can do it for your home or business.",
@@ -107,6 +114,92 @@ export const coursesPage = {
   h1: "Courses at OCATECH",
   intro: "Take one course or follow a path. Admission is open all year. Ask us how each course runs.",
   empty: "Cannot find what you need?",
+};
+
+export const pathsPage = {
+  seoTitle: "Learning Paths & Career Roadmaps | OCATECH Onitsha",
+  seoDescription: "Step-by-step digital learning paths for web development, AI, data analysis, business growth, creative design and hardware repair at OCATECH in Onitsha.",
+  h1: "Not sure what comes next?",
+  lead: "Stop guessing what to learn next. Follow an end-to-end career roadmap designed to take you from beginner to job-ready competence at our Onitsha training center.",
+  kicker: "Structured Career Roadmaps",
+  tracks: [
+    { id: "all", name: "All Paths" },
+    { id: "web-software", name: "Web & Software" },
+    { id: "ai-data", name: "AI & Data" },
+    { id: "business-creative", name: "Business & Creative" },
+    { id: "hardware-it", name: "Hardware & IT" },
+  ],
+  meta: {
+    "business-owner": {
+      category: "business-creative",
+      badge: "Business Growth",
+      tagline: "From computer literacy to digital growth & online sales",
+      outcome: "Run a modern, tech-enabled enterprise and generate sales online",
+      targetRoles: "Business Owner, Entrepreneur, Digital Marketing Manager",
+      icon: "📈",
+      description: "Equip your business with modern digital tools. Master office productivity, leverage AI tools to automate work and customer communication, run profitable digital marketing campaigns, and build an e-commerce website.",
+    },
+    "creator": {
+      category: "business-creative",
+      badge: "Design & Content",
+      tagline: "Create high-impact branding, graphics and video content",
+      outcome: "Create brand assets, professional graphics and viral videos",
+      targetRoles: "Graphic Designer, Video Creator, Social Media Specialist",
+      icon: "🎨",
+      description: "Master visual communication and content production. Learn design foundations, produce marketing materials in Photoshop & Illustrator, edit engaging short and long-form video, and grow an audience online.",
+    },
+    "web-developer": {
+      category: "web-software",
+      badge: "Full-Stack Web",
+      tagline: "Build modern, responsive web applications from zero to deployment",
+      outcome: "Build, launch and scale modern websites and web applications",
+      targetRoles: "Frontend Developer, React Specialist, Full-Stack Developer",
+      icon: "🌐",
+      description: "The complete web engineering progression. Start from computer foundations and semantic HTML/CSS/JavaScript, master component-driven UI with React, build backend APIs and databases with Node.js, and launch capstone web apps.",
+    },
+    "build-with-ai": {
+      category: "ai-data",
+      badge: "AI Engineering",
+      tagline: "Harness AI models and automated workflows in modern development",
+      outcome: "Develop AI-powered software, chatbots and automation agents",
+      targetRoles: "AI Software Engineer, Automation Specialist, AI Developer",
+      icon: "🤖",
+      description: "Step into modern software development accelerated by artificial intelligence. Combine frontend web development, AI coding copilots, Python programming, and LLM API integration with automated workflows.",
+    },
+    "data-analyst": {
+      category: "ai-data",
+      badge: "Data Analytics",
+      tagline: "Extract insights, analyze trends and build automated reports",
+      outcome: "Transform raw numbers into interactive dashboards and business decisions",
+      targetRoles: "Data Analyst, BI Analyst, Python Data Specialist",
+      icon: "📊",
+      description: "From data wrangling to predictive analytics. Master data collection and spreadsheets, learn relational SQL databases, analyze data with Python and pandas, and build automated reporting pipelines.",
+    },
+    "it-support-networking": {
+      category: "hardware-it",
+      badge: "IT & Infrastructure",
+      tagline: "Repair hardware, configure business networks and defend systems",
+      outcome: "Troubleshoot computer hardware, manage networks and defend systems",
+      targetRoles: "Hardware Technician, Network Engineer, Cybersecurity Analyst",
+      icon: "🛠️",
+      description: "Hands-on engineering for systems and networks. Diagnose and repair computer hardware, configure routers and switches, prepare for Cisco CCNA certification, and implement cybersecurity defensive controls.",
+    },
+  },
+  howItWorks: {
+    heading: "How our learning paths work",
+    points: [
+      ["Start from where you are", "Step 1 in beginner paths requires zero computer experience. We guide you step by step."],
+      ["Skip ahead if you already know it", "Already comfortable with the basics? You can test in and begin directly at Step 2 or 3."],
+      ["Earn certificates as you advance", "Receive a verified certificate of completion for each individual course milestone you achieve."],
+      ["Hands-on projects in every step", "Every course in the sequence ends with a practical project for your portfolio."],
+    ],
+  },
+  advisory: {
+    heading: "Still undecided which path matches your career goal?",
+    text: "Speak with an instructor at our Onitsha center. We assess your background, current interests, and help you pick the most profitable starting point.",
+    whatsappBtn: "Chat with an Advisor on WhatsApp",
+    applyBtn: "Apply for a Path",
+  },
 };
 
 export const courseTemplate = {

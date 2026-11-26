@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { esc, json, page, wa } from "../templates/layout.mjs";
 import {
-  shared, home, coursesPage, courseTemplate, services, about,
+  shared, home, coursesPage, pathsPage, courseTemplate, services, about,
   apply as applyCopy, quote as quoteCopy, contact, faq, homeFaqCount, privacy, notFound, chat,
 } from "../content/site.mjs";
 
@@ -259,10 +259,26 @@ ${renderPickerFallback()}
 <h2 id="how-heading">${esc(home.how.heading)}</h2>
 <ol class="steps">${home.how.steps.map(([term, text]) => `<li><strong>${esc(term)}</strong> ${esc(text)}</li>`).join("")}</ol>
 </div></section>
-<section class="section" aria-labelledby="paths-heading"><div class="wrap">
-<h2 id="paths-heading">${esc(home.paths.heading)}</h2>
-<p>${esc(home.paths.intro)}</p>
-<ol class="paths">${paths}</ol>
+<section class="section home-paths-cta" aria-labelledby="paths-heading"><div class="wrap">
+  <div class="paths-cta-card">
+    <div class="paths-cta-text">
+      <span class="path-badge">${esc(home.pathsCta.badge)}</span>
+      <h2 id="paths-heading">${esc(home.pathsCta.heading)}</h2>
+      <p>${esc(home.pathsCta.text)}</p>
+      <div class="hero-actions">
+        <a class="button" href="/paths/">${esc(home.pathsCta.button)} &rarr;</a>
+        <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+      </div>
+    </div>
+    <div class="paths-cta-chips-grid" aria-hidden="true">
+      <div class="paths-pill-item"><span class="pill-icon">🌐</span><span>Web Development</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">🤖</span><span>Artificial Intelligence</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">📊</span><span>Data Analytics</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">🎨</span><span>Design &amp; Media</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">📈</span><span>Business Growth</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">🛠️</span><span>Hardware &amp; IT</span></div>
+    </div>
+  </div>
 </div></section>
 <section class="section section-alt" aria-labelledby="services-heading"><div class="wrap">
 <h2 id="services-heading">${esc(home.services.heading)}</h2>
@@ -317,6 +333,13 @@ function renderCourses() {
   const inner = `<section class="page-head wrap">
 <h1>${esc(coursesPage.h1)}</h1>
 <p>${esc(coursesPage.intro)}</p>
+<div class="courses-paths-banner">
+  <div class="banner-text">
+    <strong>Not sure what comes next?</strong>
+    <p>Explore our step-by-step career roadmaps to see how courses connect from beginner to advanced.</p>
+  </div>
+  <a class="button button-small button-quiet" href="/paths/">View Learning Paths &rarr;</a>
+</div>
 </section>
 <section class="section"><div class="wrap">
 <nav class="filters" aria-label="Filter courses by track">${filters}</nav>
@@ -324,6 +347,164 @@ function renderCourses() {
 <p>${esc(coursesPage.empty)} <a class="text-link" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a> and tell us your goal.</p>
 </div></section>`;
   return { title: coursesPage.seoTitle, description: coursesPage.seoDescription, canonical: urls.for("/courses/"), inner, jsonLd: [] };
+}
+
+function renderPaths() {
+  const stepLabels = ["Digital Foundation", "Core Skill", "Specialization", "Advanced Practice", "Capstone Project"];
+
+  const pathCards = site.paths.map((path) => {
+    const meta = pathsPage.meta[path.id] || {};
+    const courses = path.courses.map((slug) => courseBySlug.get(slug)).filter(Boolean);
+    const startCourse = courses[0];
+    const applyUrl = `/apply/?course=${esc(startCourse?.slug || "")}`;
+    const waUrl = whatsapp(`Hello OCATECH, I want to learn more about the ${path.name} learning path.`);
+
+    const steps = courses.map((course, idx) => {
+      const stepName = stepLabels[idx] || `Stage 0${idx + 1}`;
+      const formatNaira = (num) => Number(num || 0).toLocaleString("en-NG");
+      return `
+        <li class="roadmap-step">
+          <div class="step-marker" aria-hidden="true">
+            <span class="step-num">0${idx + 1}</span>
+            ${idx < courses.length - 1 ? '<span class="step-line"></span>' : ""}
+          </div>
+          <div class="step-body">
+            <div class="step-header">
+              <span class="step-stage-tag">${esc(stepName)}</span>
+              <span class="step-level-tag">${esc(course.level)}</span>
+            </div>
+            <h3 class="step-title"><a href="/courses/${esc(course.slug)}/">${esc(course.title)}</a></h3>
+            <p class="step-desc">${esc(course.summary || course.subtitle)}</p>
+            <div class="step-footer">
+              <span class="step-fee">₦${formatNaira(course.fee)}</span>
+              <a class="step-link" href="/courses/${esc(course.slug)}/">Course details &rarr;</a>
+            </div>
+          </div>
+        </li>`;
+    }).join("");
+
+    return `
+      <article class="path-card" id="${esc(path.id)}" data-category="${esc(meta.category || 'all')}">
+        <header class="path-card-header">
+          <div class="path-badge-strip">
+            <span class="path-category-pill">${esc(meta.badge || "Career Path")}</span>
+            <span class="path-level-pill">${courses.length} sequential courses</span>
+          </div>
+          <div class="path-title-wrap">
+            <span class="path-icon" aria-hidden="true">${meta.icon || "🚀"}</span>
+            <div>
+              <h2 class="path-title">${esc(path.name)}</h2>
+              <p class="path-tagline">${esc(meta.tagline || "")}</p>
+            </div>
+          </div>
+          <p class="path-description">${esc(meta.description || "")}</p>
+          <div class="path-outcomes">
+            <div class="outcome-item">
+              <span class="outcome-label">Target Roles:</span>
+              <span class="outcome-value">${esc(meta.targetRoles || "Tech Professional")}</span>
+            </div>
+            <div class="outcome-item">
+              <span class="outcome-label">Key Outcome:</span>
+              <span class="outcome-value">${esc(meta.outcome || "")}</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="path-roadmap-wrap">
+          <h3 class="roadmap-heading">Recommended Sequence:</h3>
+          <ol class="roadmap-list">
+            ${steps}
+          </ol>
+        </div>
+
+        <footer class="path-card-actions">
+          <div class="path-actions-left">
+            <a class="button button-small" href="${applyUrl}">Apply for this Path &rarr;</a>
+            <a class="button button-small button-wa" href="${esc(waUrl)}">Chat with Advisor</a>
+          </div>
+          <span class="path-admissions-note">Open admissions · Learn at your pace</span>
+        </footer>
+      </article>`;
+  }).join("");
+
+  const howPoints = (pathsPage.howItWorks.points || []).map(([title, desc], idx) => `
+    <div class="path-how-card">
+      <span class="how-num">0${idx + 1}</span>
+      <h3>${esc(title)}</h3>
+      <p>${esc(desc)}</p>
+    </div>`).join("");
+
+  const inner = `<section class="paths-hero">
+  <div class="wrap">
+    <div class="paths-hero-content">
+      <div class="paths-kicker-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>${esc(pathsPage.kicker)}</span>
+      </div>
+      <h1>${esc(pathsPage.h1)}</h1>
+      <p class="paths-hero-lead">${esc(pathsPage.lead)}</p>
+      
+      <div class="paths-hero-trust" aria-label="Key highlights">
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> 6 Structured Tracks</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> From Absolute Beginner</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Recognized Certificates</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section paths-main-section">
+  <div class="wrap">
+    <div class="paths-intro-bar">
+      <div>
+        <p class="hero-kicker">End-to-End Progression</p>
+        <h2>Select your career destination</h2>
+        <p class="section-subtitle">Each path is logically sequenced so you always build on what you previously mastered.</p>
+      </div>
+    </div>
+
+    <div class="paths-grid">
+      ${pathCards}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt paths-how-section">
+  <div class="wrap">
+    <div class="section-title-wrap text-center">
+      <p class="hero-kicker">Guaranteed Clarity</p>
+      <h2>${esc(pathsPage.howItWorks.heading)}</h2>
+      <p class="section-subtitle">Designed to help you build real-world capability without tutorial frustration.</p>
+    </div>
+    <div class="paths-how-grid">
+      ${howPoints}
+    </div>
+  </div>
+</section>
+
+<section class="section paths-advisory-section">
+  <div class="wrap">
+    <div class="paths-advisory-box">
+      <div class="paths-advisory-text">
+        <span class="path-badge">Personalized Assessment</span>
+        <h2>${esc(pathsPage.advisory.heading)}</h2>
+        <p>${esc(pathsPage.advisory.text)}</p>
+      </div>
+      <div class="paths-advisory-actions">
+        <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(pathsPage.advisory.whatsappBtn)}</a>
+        <a class="button button-quiet" href="/apply/">${esc(pathsPage.advisory.applyBtn)} &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+  return {
+    title: pathsPage.seoTitle,
+    description: pathsPage.seoDescription,
+    canonical: urls.for("/paths/"),
+    inner,
+    jsonLd: [],
+  };
 }
 
 function renderCourse(course) {
@@ -1168,7 +1349,7 @@ function renderSuccess() {
 }
 
 const headerRules = [];
-const sitemapPaths = ["/", "/courses/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/"];
+const sitemapPaths = ["/", "/courses/", "/paths/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/"];
 
 function emitPage(file, meta) {
   const hashes = meta.jsonLd.map((item) => crypto.createHash("sha256").update(json(item)).digest("base64"));
@@ -1198,6 +1379,7 @@ function emitPage(file, meta) {
 const pages = [
   ["index.html", renderHome()],
   ["courses/index.html", renderCourses()],
+  ["paths/index.html", renderPaths()],
   ["services/index.html", renderServices()],
   ["about/index.html", renderAbout()],
   ["apply/index.html", renderApply()],
