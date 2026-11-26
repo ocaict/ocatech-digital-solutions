@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="posBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a192f"/>
+      <stop offset="100%" stop-color="#071125"/>
+    </linearGradient>
+    <linearGradient id="posAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#012d96"/>
+      <stop offset="100%" stop-color="#46ceff"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#posBg)"/>
+  <!-- Browser topbar -->
+  <rect width="600" height="42" fill="#040b17"/>
+  <circle cx="24" cy="21" r="5" fill="#ff5f56"/>
+  <circle cx="40" cy="21" r="5" fill="#ffbd2e"/>
+  <circle cx="56" cy="21" r="5" fill="#27c93f"/>
+  <rect x="80" y="10" width="320" height="22" rx="4" fill="#0f223f"/>
+  <text x="92" y="25" fill="#8892b0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">app.onitshamarket-pos.ng/dashboard</text>
+  <!-- App Header -->
+  <rect x="24" y="60" width="552" height="50" rx="8" fill="#0d203d"/>
+  <text x="44" y="90" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="700">Main Market POS &amp; Stock Manager</text>
+  <rect x="470" y="72" width="90" height="26" rx="4" fill="#10b981"/>
+  <text x="486" y="89" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600">ONLINE</text>
+  <!-- KPI Metrics -->
+  <rect x="24" y="124" width="170" height="74" rx="8" fill="#112240" stroke="#1d3557" stroke-width="1"/>
+  <text x="40" y="146" fill="#8892b0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Today’s Gross Sales</text>
+  <text x="40" y="178" fill="#46ceff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="19" font-weight="700">₦482,500</text>
+  <rect x="215" y="124" width="170" height="74" rx="8" fill="#112240" stroke="#1d3557" stroke-width="1"/>
+  <text x="231" y="146" fill="#8892b0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Inventory Units</text>
+  <text x="231" y="178" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="19" font-weight="700">1,248 Pcs</text>
+  <rect x="406" y="124" width="170" height="74" rx="8" fill="#112240" stroke="#1d3557" stroke-width="1"/>
+  <text x="422" y="146" fill="#8892b0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Receipts Issued</text>
+  <text x="422" y="178" fill="#ff9944" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="19" font-weight="700">84 Slips</text>
+  <!-- Table Section -->
+  <rect x="24" y="214" width="552" height="142" rx="8" fill="#112240" stroke="#1d3557" stroke-width="1"/>
+  <rect x="24" y="214" width="552" height="32" rx="8" fill="#162c52"/>
+  <text x="40" y="235" fill="#a0aec0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600">ITEM / SKU</text>
+  <text x="250" y="235" fill="#a0aec0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600">QTY</text>
+  <text x="350" y="235" fill="#a0aec0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600">PRICE</text>
+  <text x="480" y="235" fill="#a0aec0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600">STATUS</text>
+  <!-- Rows -->
+  <text x="40" y="270" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">HP EliteBook 840 G5 Core i5</text>
+  <text x="250" y="270" fill="#a0aec0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">3 pcs</text>
+  <text x="350" y="270" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">₦265,000</text>
+  <rect x="480" y="258" width="60" height="18" rx="4" fill="rgba(16, 185, 129, 0.2)"/>
+  <text x="492" y="271" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">PAID</text>
+
+  <text x="40" y="306" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">Hikvision 2MP IP Bullet Camera</text>
+  <text x="250" y="306" fill="#a0aec0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">12 pcs</text>
+  <text x="350" y="306" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">₦32,500</text>
+  <rect x="480" y="294" width="60" height="18" rx="4" fill="rgba(16, 185, 129, 0.2)"/>
+  <text x="492" y="307" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">PAID</text>
+
+  <text x="40" y="342" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">Felicity 5KVA Solar Hybrid Inverter</text>
+  <text x="250" y="342" fill="#a0aec0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">1 pc</text>
+  <text x="350" y="342" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">₦620,000</text>
+  <rect x="480" y="330" width="60" height="18" rx="4" fill="rgba(70, 206, 255, 0.2)"/>
+  <text x="488" y="343" fill="#46ceff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">PRINT</text>
+</svg>

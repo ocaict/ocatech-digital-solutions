@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="pharmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1b2b"/>
+      <stop offset="100%" stop-color="#06121e"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#pharmBg)"/>
+  <rect width="600" height="42" fill="#040b17"/>
+  <circle cx="24" cy="21" r="5" fill="#ff5f56"/>
+  <circle cx="40" cy="21" r="5" fill="#ffbd2e"/>
+  <circle cx="56" cy="21" r="5" fill="#27c93f"/>
+  <rect x="80" y="10" width="320" height="22" rx="4" fill="#0f2438"/>
+  <text x="92" y="25" fill="#8892b0" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">carepluspharmacy.com.ng</text>
+  <!-- Store banner -->
+  <rect x="24" y="60" width="552" height="64" rx="8" fill="linear-gradient(90deg, #0284c7, #0369a1)"/>
+  <text x="44" y="92" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800">CarePlus Pharmacy &amp; Wellness</text>
+  <text x="44" y="110" fill="#e0f2fe" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12">Delivering authentic healthcare essentials across Onitsha &amp; Anambra</text>
+  <!-- Product Cards Grid -->
+  <rect x="24" y="140" width="170" height="216" rx="8" fill="#102338" stroke="#1e3a5a" stroke-width="1"/>
+  <rect x="36" y="152" width="146" height="90" rx="6" fill="#1b334d"/>
+  <circle cx="109" cy="197" r="28" fill="#0284c7" opacity="0.3"/>
+  <text x="97" y="204" fill="#38bdf8" font-size="22">💊</text>
+  <text x="36" y="260" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700">Daily Multivitamins 60s</text>
+  <text x="36" y="278" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="800">₦8,500</text>
+  <rect x="36" y="296" width="146" height="30" rx="4" fill="#ff6600"/>
+  <text x="76" y="315" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700">Add to Cart</text>
+
+  <rect x="215" y="140" width="170" height="216" rx="8" fill="#102338" stroke="#1e3a5a" stroke-width="1"/>
+  <rect x="227" y="152" width="146" height="90" rx="6" fill="#1b334d"/>
+  <circle cx="300" cy="197" r="28" fill="#10b981" opacity="0.3"/>
+  <text x="288" y="204" fill="#34d399" font-size="22">🩺</text>
+  <text x="227" y="260" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700">Digital BP Monitor Auto</text>
+  <text x="227" y="278" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="800">₦24,000</text>
+  <rect x="227" y="296" width="146" height="30" rx="4" fill="#ff6600"/>
+  <text x="267" y="315" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700">Add to Cart</text>
+
+  <rect x="406" y="140" width="170" height="216" rx="8" fill="#102338" stroke="#1e3a5a" stroke-width="1"/>
+  <rect x="418" y="152" width="146" height="90" rx="6" fill="#1b334d"/>
+  <circle cx="491" cy="197" r="28" fill="#f59e0b" opacity="0.3"/>
+  <text x="479" y="204" fill="#fbbf24" font-size="22">🩹</text>
+  <text x="418" y="260" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700">First Aid Emergency Kit</text>
+  <text x="418" y="278" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="14" font-weight="800">₦14,500</text>
+  <rect x="418" y="296" width="146" height="30" rx="4" fill="#ff6600"/>
+  <text x="458" y="315" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700">Add to Cart</text>
+</svg>

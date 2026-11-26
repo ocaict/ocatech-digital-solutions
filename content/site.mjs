@@ -2,6 +2,7 @@ export const shared = {
   nav: [
     ["Courses", "/courses/"],
     ["Paths", "/paths/"],
+    ["Showcase", "/showcase/"],
     ["Services", "/services/"],
     ["About", "/about/"],
     ["Contact", "/contact/"],
@@ -468,6 +469,100 @@ export const faq = [
 ];
 
 export const homeFaqCount = 6;
+
+export const showcasePage = {
+  seoTitle: "Student Project Showcase & Portfolio | OCATECH Digital Solutions",
+  seoDescription: "Explore real web applications, brand identities, video edits and analytics dashboards built by students at OCATECH Digital Solutions in Onitsha.",
+  h1: "Student Showcase & Practical Portfolio",
+  intro: "Evidence of real capability. Every student at OCATECH graduates with real-world deliverables they built from scratch, ready for employers and clients.",
+  stats: [
+    ["100%", "Practical Projects"],
+    ["Solar-Powered", "Computer Workstations"],
+    ["Onitsha", "In-Person Mentorship"],
+    ["Industry-Standard", "Tools & Software"],
+  ],
+  categories: [
+    { id: "all", label: "All Projects" },
+    { id: "web", label: "Web & Software" },
+    { id: "design", label: "Branding & Design" },
+    { id: "data", label: "Data & Analytics" },
+    { id: "media", label: "Video & Media" },
+  ],
+  projects: [
+    {
+      title: "Main Market POS & Stock Manager",
+      category: "web",
+      student: "Emeka N.",
+      cohort: "Full-Stack Web Cohort",
+      image: "/assets/img/showcase/showcase-pos.svg",
+      summary: "A high-speed web application tailored for Onitsha wholesale traders with barcode scanning, sales logging, and automatic receipt printing.",
+      tools: ["HTML5", "CSS Grid", "JavaScript", "Node.js", "SQLite"],
+      courseSlug: "full-stack-web-development",
+      courseTitle: "Full-Stack Web Development",
+    },
+    {
+      title: "CarePlus Pharmacy E-Commerce Store",
+      category: "web",
+      student: "Chioma O.",
+      cohort: "WordPress & Web Design Cohort",
+      image: "/assets/img/showcase/showcase-ecommerce.svg",
+      summary: "A complete online pharmacy storefront featuring instant product search, Paystack checkout, prescription upload, and WhatsApp notifications.",
+      tools: ["WordPress", "WooCommerce", "Paystack", "Elementor"],
+      courseSlug: "wordpress",
+      courseTitle: "WordPress Website Design",
+    },
+    {
+      title: "Apex Logistics Corporate Brand Guide",
+      category: "design",
+      student: "Blessing A.",
+      cohort: "Graphic Design Masterclass",
+      image: "/assets/img/showcase/showcase-branding.svg",
+      summary: "End-to-end brand identity package including vector logo marks, corporate business cards, delivery vehicle vinyl mockups, and typography guidelines.",
+      tools: ["Adobe Photoshop", "CorelDRAW", "Adobe Illustrator"],
+      courseSlug: "graphic-design",
+      courseTitle: "Graphic Design Masterclass",
+    },
+    {
+      title: "Supermarket Sales & Performance Dashboard",
+      category: "data",
+      student: "Chidimma U.",
+      cohort: "Data Analysis Cohort",
+      image: "/assets/img/showcase/showcase-dashboard.svg",
+      summary: "Interactive Power BI dashboard dissecting ₦42M+ in retail transactions across Anambra retail branches, identifying peak sales hours and top-selling SKUs.",
+      tools: ["Microsoft Excel", "Power Query", "Power BI", "DAX"],
+      courseSlug: "data-analysis",
+      courseTitle: "Data Analysis & Business Intelligence",
+    },
+    {
+      title: "Luxury Real Estate Walkthrough Reel",
+      category: "media",
+      student: "David C.",
+      cohort: "Video Editing & Content Creation",
+      image: "/assets/img/showcase/showcase-video.svg",
+      summary: "Commercial-grade 60-second property showcase featuring drone shot color grading, kinetic title animations, and 9:16 mobile optimization for social media.",
+      tools: ["Adobe Premiere Pro", "After Effects", "CapCut Pro"],
+      courseSlug: "video-editing-and-content-creation",
+      courseTitle: "Video Editing & Content Creation",
+    },
+    {
+      title: "Remote Tech Job Board & Portfolio SPA",
+      category: "web",
+      student: "Somtochukwu E.",
+      cohort: "Frontend Development Cohort",
+      image: "/assets/img/showcase/showcase-portfolio.svg",
+      summary: "Modern frontend single page application with live API currency converter, technology filtering, and high-performance semantic layout.",
+      tools: ["React", "CSS3 Flexbox", "JavaScript (ES6+)", "REST API"],
+      courseSlug: "frontend-development",
+      courseTitle: "Frontend Web Development",
+    },
+  ],
+  cta: {
+    heading: "Ready to build projects like these?",
+    text: "Join our next hands-on cohort at 62 New Market Road, Onitsha. No previous coding or design experience required.",
+    applyBtn: "Apply for a Course",
+    whatsappBtn: "Chat on WhatsApp",
+  },
+};
 
 export const privacy = {
   seoTitle: "Privacy | OCATECH Digital Solutions",

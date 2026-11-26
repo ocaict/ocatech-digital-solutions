@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="vidBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1026"/>
+      <stop offset="100%" stop-color="#0a050d"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#vidBg)"/>
+  <rect width="600" height="42" fill="#170c1d"/>
+  <circle cx="24" cy="21" r="5" fill="#a855f7"/>
+  <text x="40" y="25" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700">Premiere Pro · Luxury Real Estate Walkthrough Reel</text>
+  <!-- Video Player Preview -->
+  <rect x="24" y="60" width="340" height="200" rx="8" fill="#2d133b" stroke="#582474" stroke-width="1"/>
+  <circle cx="194" cy="160" r="32" fill="#ff6600"/>
+  <polygon points="186,145 208,160 186,175" fill="#ffffff"/>
+  <text x="40" y="90" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700">Duplex Tour · 4K Drone &amp; Interior Edit</text>
+  <rect x="40" y="235" width="308" height="6" rx="3" fill="#431c59"/>
+  <rect x="40" y="235" width="180" height="6" rx="3" fill="#ff6600"/>
+
+  <!-- Vertical 9:16 Shorts/Reels preview -->
+  <rect x="384" y="60" width="192" height="300" rx="14" fill="#140a1a" stroke="#7e22ce" stroke-width="2"/>
+  <rect x="430" y="70" width="100" height="12" rx="6" fill="#2d133b"/>
+  <circle cx="480" cy="200" r="24" fill="#a855f7" opacity="0.8"/>
+  <polygon points="474,188 492,200 474,212" fill="#ffffff"/>
+  <text x="402" y="310" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700">Kinetic Subtitles</text>
+  <text x="402" y="330" fill="#c084fc" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">Color Graded for Instagram &amp; TikTok</text>
+
+  <!-- Audio Waveform Timeline -->
+  <rect x="24" y="275" width="340" height="85" rx="8" fill="#220e2e" stroke="#582474" stroke-width="1"/>
+  <text x="40" y="295" fill="#e9d5ff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600">Timeline: 4 Tracks Video + Sound FX</text>
+  <line x1="40" y1="330" x2="340" y2="330" stroke="#a855f7" stroke-width="2"/>
+  <rect x="40" y="315" width="60" height="30" rx="3" fill="#7e22ce" opacity="0.7"/>
+  <rect x="105" y="315" width="80" height="30" rx="3" fill="#9333ea" opacity="0.7"/>
+  <rect x="190" y="315" width="70" height="30" rx="3" fill="#c084fc" opacity="0.7"/>
+  <rect x="265" y="315" width="80" height="30" rx="3" fill="#ff6600" opacity="0.7"/>
+</svg>

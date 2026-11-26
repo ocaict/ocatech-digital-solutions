@@ -5,7 +5,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { esc, json, page, wa } from "../templates/layout.mjs";
 import {
-  shared, home, coursesPage, pathsPage, courseTemplate, services, about,
+  shared, home, coursesPage, pathsPage, showcasePage, courseTemplate, services, about,
   apply as applyCopy, quote as quoteCopy, contact, faq, homeFaqCount, privacy, notFound, chat,
 } from "../content/site.mjs";
 
@@ -544,6 +544,79 @@ function renderPaths() {
     canonical: urls.for("/paths/"),
     inner,
     jsonLd: [],
+  };
+}
+
+function renderShowcase() {
+  const statsHtml = showcasePage.stats.map(([num, label]) => `
+    <div class="showcase-stat-card">
+      <span class="showcase-stat-num">${esc(num)}</span>
+      <span class="showcase-stat-label">${esc(label)}</span>
+    </div>
+  `).join("");
+
+  const projectCards = showcasePage.projects.map((proj) => `
+    <article class="showcase-card" data-category="${esc(proj.category)}">
+      <div class="showcase-media">
+        <img src="${esc(proj.image)}" alt="${esc(proj.title)}" width="600" height="380" loading="lazy">
+        <span class="showcase-cat-badge">${esc(showcasePage.categories.find((c) => c.id === proj.category)?.label || proj.category)}</span>
+      </div>
+      <div class="showcase-body">
+        <div class="showcase-author-meta">
+          <span class="showcase-student">&#x1F464; ${esc(proj.student)}</span>
+          <span class="showcase-cohort">${esc(proj.cohort)}</span>
+        </div>
+        <h3 class="showcase-title">${esc(proj.title)}</h3>
+        <p class="showcase-summary">${esc(proj.summary)}</p>
+        <div class="showcase-tools">
+          ${proj.tools.map((t) => `<span class="tool-tag">${esc(t)}</span>`).join("")}
+        </div>
+        <div class="showcase-footer">
+          <span class="showcase-course-label">Built during:</span>
+          <a class="showcase-course-link" href="/courses/${esc(proj.courseSlug)}/">${esc(proj.courseTitle)} &rarr;</a>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  const inner = `<section class="page-head wrap text-center">
+<span class="eyebrow">Practical Proof of Work</span>
+<h1>${esc(showcasePage.h1)}</h1>
+<p class="section-lead">${esc(showcasePage.intro)}</p>
+<div class="showcase-stats-bar">
+  ${statsHtml}
+</div>
+</section>
+
+<section class="section" aria-labelledby="showcase-list-heading">
+<div class="wrap">
+  <div class="section-title-wrap text-center">
+    <h2 id="showcase-list-heading" class="section-title">Featured Student Projects</h2>
+    <p class="section-subtitle">Real web applications, design identities, videos and business dashboards built at 62 New Market Road, Onitsha.</p>
+  </div>
+  <div class="showcase-grid">
+    ${projectCards}
+  </div>
+</div>
+</section>
+
+<section class="section section-alt closing">
+<div class="wrap">
+  <h2>${esc(showcasePage.cta.heading)}</h2>
+  <p>${esc(showcasePage.cta.text)}</p>
+  <div class="hero-actions">
+    <a class="button" href="/apply/">${esc(showcasePage.cta.applyBtn)}</a>
+    <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(showcasePage.cta.whatsappBtn)}</a>
+  </div>
+</div>
+</section>`;
+
+  return {
+    title: showcasePage.seoTitle,
+    description: showcasePage.seoDescription,
+    canonical: urls.for("/showcase/"),
+    inner,
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Student Showcase", urls.for("/showcase/")]])],
   };
 }
 
@@ -1458,7 +1531,7 @@ function renderSuccess() {
 }
 
 const headerRules = [];
-const sitemapPaths = ["/", "/courses/", "/paths/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/"];
+const sitemapPaths = ["/", "/courses/", "/paths/", "/showcase/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/"];
 
 function emitPage(file, meta) {
   const hashes = meta.jsonLd.map((item) => crypto.createHash("sha256").update(json(item)).digest("base64"));
@@ -1489,6 +1562,7 @@ const pages = [
   ["index.html", renderHome()],
   ["courses/index.html", renderCourses()],
   ["paths/index.html", renderPaths()],
+  ["showcase/index.html", renderShowcase()],
   ["services/index.html", renderServices()],
   ["about/index.html", renderAbout()],
   ["apply/index.html", renderApply()],

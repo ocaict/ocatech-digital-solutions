@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="portBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#051c24"/>
+      <stop offset="100%" stop-color="#020e14"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#portBg)"/>
+  <rect width="600" height="42" fill="#03141a"/>
+  <circle cx="24" cy="21" r="5" fill="#ff5f56"/>
+  <circle cx="40" cy="21" r="5" fill="#ffbd2e"/>
+  <circle cx="56" cy="21" r="5" fill="#27c93f"/>
+  <rect x="80" y="10" width="320" height="22" rx="4" fill="#082b36"/>
+  <text x="92" y="25" fill="#2aa198" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">somto-frontend.dev/projects</text>
+
+  <!-- Hero Header Mockup -->
+  <rect x="24" y="60" width="552" height="70" rx="8" fill="#072c38" stroke="#0e4b5e" stroke-width="1"/>
+  <circle cx="65" cy="95" r="22" fill="#2aa198"/>
+  <text x="56" y="102" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="16" font-weight="800">SE</text>
+  <text x="100" y="88" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="800">Somtochukwu Eze · Frontend Developer</text>
+  <text x="100" y="108" fill="#839496" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Building accessible, high-performance web interfaces in Anambra</text>
+  <rect x="475" y="80" width="85" height="30" rx="6" fill="#ff6600"/>
+  <text x="490" y="100" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700">Hire Me</text>
+
+  <!-- Project Cards Grid -->
+  <rect x="24" y="145" width="266" height="210" rx="8" fill="#09313e" stroke="#0e4b5e" stroke-width="1"/>
+  <rect x="36" y="157" width="242" height="90" rx="6" fill="#051c24"/>
+  <text x="50" y="195" fill="#2aa198" font-family="monospace" font-size="13">&lt;React /&gt; Onitsha Job Board</text>
+  <text x="50" y="215" fill="#839496" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">Filterable by tech stack &amp; salary</text>
+  <text x="36" y="270" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700">Remote Tech Jobs Anambra</text>
+  <text x="36" y="290" fill="#839496" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">Responsive SPA with search and filter state</text>
+  <rect x="36" y="315" width="55" height="20" rx="4" fill="#0e4b5e"/>
+  <text x="44" y="329" fill="#2aa198" font-size="9" font-weight="700">REACT</text>
+  <rect x="98" y="315" width="55" height="20" rx="4" fill="#0e4b5e"/>
+  <text x="105" y="329" fill="#2aa198" font-size="9" font-weight="700">CSS3</text>
+
+  <rect x="310" y="145" width="266" height="210" rx="8" fill="#09313e" stroke="#0e4b5e" stroke-width="1"/>
+  <rect x="322" y="157" width="242" height="90" rx="6" fill="#051c24"/>
+  <text x="336" y="195" fill="#2aa198" font-family="monospace" font-size="13">fetch('/api/rates')</text>
+  <text x="336" y="215" fill="#839496" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">Real-time Naira FX converter</text>
+  <text x="322" y="270" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="700">Live Currency Tracker</text>
+  <text x="322" y="290" fill="#839496" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11">API integration with offline caching</text>
+  <rect x="322" y="315" width="60" height="20" rx="4" fill="#0e4b5e"/>
+  <text x="332" y="329" fill="#2aa198" font-size="9" font-weight="700">JS (ES6)</text>
+  <rect x="388" y="315" width="60" height="20" rx="4" fill="#0e4b5e"/>
+  <text x="398" y="329" fill="#2aa198" font-size="9" font-weight="700">REST API</text>
+</svg>

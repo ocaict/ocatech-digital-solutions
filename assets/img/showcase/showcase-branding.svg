@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" width="100%" height="100%">
+  <defs>
+    <linearGradient id="brandBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140f2b"/>
+      <stop offset="100%" stop-color="#080514"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#brandBg)"/>
+  <!-- Canvas Workspace Mockup -->
+  <rect x="20" y="20" width="560" height="340" rx="12" fill="#1a1438" stroke="#31265e" stroke-width="1.5"/>
+  <rect x="40" y="40" width="220" height="140" rx="8" fill="#241b4d" stroke="#4c398f" stroke-width="1"/>
+  <circle cx="85" cy="85" r="28" fill="#ff6600"/>
+  <path d="M72 85 L82 72 L98 98 Z" fill="#ffffff"/>
+  <text x="125" y="80" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="900">APEX</text>
+  <text x="125" y="98" fill="#ff9944" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700" letter-spacing="1">LOGISTICS</text>
+  <text x="50" y="150" fill="#a59dc7" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">Corporate Brand Logo &amp; Identity Guide</text>
+
+  <!-- Color Palette Swatches -->
+  <rect x="40" y="200" width="220" height="140" rx="8" fill="#241b4d" stroke="#4c398f" stroke-width="1"/>
+  <text x="55" y="225" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700">Brand Color Swatches</text>
+  <circle cx="70" cy="265" r="18" fill="#ff6600"/>
+  <circle cx="115" cy="265" r="18" fill="#012d96"/>
+  <circle cx="160" cy="265" r="18" fill="#071125"/>
+  <circle cx="205" cy="265" r="18" fill="#46ceff"/>
+  <text x="55" y="315" fill="#a59dc7" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10">Pantone &amp; Hex Color Systems</text>
+
+  <!-- Stationery Mockup -->
+  <rect x="280" y="40" width="280" height="300" rx="8" fill="#241b4d" stroke="#4c398f" stroke-width="1"/>
+  <rect x="300" y="60" width="240" height="130" rx="6" fill="#ffffff"/>
+  <circle cx="330" cy="90" r="14" fill="#ff6600"/>
+  <text x="350" y="94" fill="#071125" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="13" font-weight="800">APEX LOGISTICS</text>
+  <text x="310" y="130" fill="#333333" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700">Chibuike Eze</text>
+  <text x="310" y="145" fill="#666666" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9">Managing Director · Express Cargo</text>
+  <text x="310" y="165" fill="#012d96" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9">+234 816 000 1234 · Onitsha Depot</text>
+
+  <rect x="300" y="210" width="240" height="110" rx="6" fill="#071125" stroke="#ff6600" stroke-width="1"/>
+  <text x="320" y="240" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700">Van &amp; Dispatch Box Wrap</text>
+  <rect x="320" y="260" width="200" height="40" rx="4" fill="#140f2b"/>
+  <text x="330" y="284" fill="#ff9944" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="700">Fast Interstate Delivery Across Nigeria</text>
+</svg>
