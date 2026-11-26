@@ -81,6 +81,10 @@ else {
   if (!/"name"\s*:\s*"ict"/.test(config)) fail('wrangler.jsonc: Worker name should be "ict".');
   if (!/"main"\s*:\s*"\.\/functions\/worker\.js"/.test(config)) fail("wrangler.jsonc: main should point to functions/worker.js.");
   if (!/"run_worker_first"\s*:\s*\["\/api\/\*"\]/.test(config)) fail('wrangler.jsonc: run_worker_first should be ["/api/*"].');
+  if (!/"d1_databases"\s*:\s*\[/.test(config)) fail('wrangler.jsonc: d1_databases is missing.');
+  if (!/"binding"\s*:\s*"DB"/.test(config)) fail('wrangler.jsonc: D1 binding should be "DB".');
+  if (!/"database_name"\s*:\s*"OCATECH_DB"/i.test(config)) fail('wrangler.jsonc: D1 database name should be "OCATECH_DB".');
+  if (/PASTE-THE-DATABASE-ID-HERE/.test(config)) fail("wrangler.jsonc: replace the D1 database ID placeholder.");
 }
 
 const allFiles = walk(dist);

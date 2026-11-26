@@ -13,7 +13,7 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "OCATECH_DB",
+      "database_name": "ocatech_db",
       "database_id": "41e62e3c-4ec6-4031-bfa0-26b333cfec86"
     }
   ]
