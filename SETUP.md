@@ -29,7 +29,7 @@ The chat and form routes are live now. A 404 means the deploy did not include `w
 ## 3. Add the Groq key for chat
 
 1. Go to https://console.groq.com/keys and create a free API key.
-2. In Cloudflare, open **Workers & Pages → ict → Settings → Variables & Secrets**.
+2. In Cloudflare, open **Workers & Pages → ict → Settings → Runtime variables and secrets**. Do not use **Build variables**; the Worker cannot read those.
 3. Add these variables. Tick **Encrypt** for the key:
 
 | Name | Value |
@@ -71,7 +71,7 @@ Because this Worker is deployed from code, Cloudflare may say “Bindings cannot
 ## 5. Add email notices
 
 1. Go to https://resend.com/api-keys and create a free API key.
-2. In Cloudflare, add these variables under **Settings → Variables & Secrets**. Tick **Encrypt** for the key:
+2. In Cloudflare, add these under **Settings → Runtime variables and secrets**. Tick **Encrypt** for the key:
 
 | Name | Value |
 |---|---|
