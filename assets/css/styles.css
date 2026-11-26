@@ -2838,6 +2838,62 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
   display: block;
 }
 
+/* ── Mobile Sticky Contact Action Bar ── */
+.mobile-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 59;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: .6rem;
+  padding: .55rem .75rem calc(.55rem + env(safe-area-inset-bottom, 0px));
+  background: rgba(7, 17, 37, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -6px 22px rgba(0, 0, 0, 0.45);
+}
+
+.bar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  min-height: 44px;
+  padding: 0 .75rem;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: .86rem;
+  text-decoration: none;
+  transition: transform .15s ease, filter .15s ease;
+}
+
+.bar-btn:active { transform: scale(0.98); }
+
+.bar-call {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.bar-wa {
+  background: linear-gradient(135deg, var(--green), #67d93a);
+  color: var(--navy-text);
+  border: none;
+}
+
+@media (max-width: 759px) {
+  body { padding-bottom: 4.2rem; }
+  .chat-launcher { bottom: 4.8rem; }
+  .chat-widget { bottom: 8.8rem; }
+}
+
+@media (min-width: 760px) {
+  .mobile-action-bar { display: none !important; }
+}
+
 @media (min-width: 640px) {
   .lead-grid, .course-grid { grid-template-columns: repeat(2, 1fr); }
 }
