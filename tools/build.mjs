@@ -1652,7 +1652,7 @@ const facts = [
   site.contact.hours ? `- Opening hours: ${site.contact.hours}.` : null,
   site.contact.landmarkOrDirections ? `- Landmark: ${site.contact.landmarkOrDirections}` : null,
   `- Contact: WhatsApp ${site.contact.whatsapp.display}. Phones ${site.contact.phones.map((p) => p.display).join(" and ")}. Email ${site.contact.email}.`,
-  `- Learning: in person at our Onitsha center with dedicated computer workstations and stable power supply. Online classes are available depending on the course; ask us on WhatsApp about online options. ${site.offer.admission} ${site.offer.certificate}.`,
+  `- Learning: in person at our Onitsha center with computers provided during practical classes and stable power supply. Online classes are available depending on the course; ask us on WhatsApp about online options. ${site.offer.admission} ${site.offer.certificate}.`,
   `- Payment: ${site.offer.paymentMethods.join(", ")}, and installment plans. ${site.offer.feeNote}`,
   `- Students: ${site.audiences.join(", ")}.`,
   `- Services: ${site.services.map((s) => s.name).join(", ")}, for homes and businesses in ${site.areasServed.join(", ")}.`,
