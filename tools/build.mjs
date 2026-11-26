@@ -710,6 +710,16 @@ function renderCourse(course) {
     <p>${esc(item)}</p>
   </div>`).join("")}
 </div>
+<div class="syllabus-download-banner">
+  <div class="syllabus-banner-info">
+    <span class="syllabus-badge">&#x1F4D6; Full Course Syllabus</span>
+    <h3>Want the complete week-by-week module breakdown?</h3>
+    <p>Get the detailed class timetable, practical exercise outlines and capstone project guide delivered directly to your WhatsApp.</p>
+  </div>
+  <div class="syllabus-banner-action">
+    <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+  </div>
+</div>
 </div>
 </section>
 
