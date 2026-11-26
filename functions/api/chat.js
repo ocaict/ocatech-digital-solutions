@@ -5,9 +5,9 @@ const DEFAULT_MODEL = "openai/gpt-oss-20b";
 const WHATSAPP_TEXT = config.whatsappText || "Hello OCATECH, I would like to know more about your courses.";
 const RISKY_REPLY = /[$₦£€]|\b(?:NGN|USD)\b|\b\d+(?:[.,]\d+)?\s?%|\bpercent\b|\bguarantee(?:d|s|ing)?\b/i;
 
-const jsonResponse = (body, status = 200) => new Response(JSON.stringify(body), {
+const jsonResponse = (body, status = 200, extraHeaders = {}) => new Response(JSON.stringify(body), {
   status,
-  headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" },
+  headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", ...extraHeaders },
 });
 
 const whatsappUrl = () => `https://wa.me/${config.whatsappNumber}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
@@ -21,8 +21,9 @@ function handoff(status = 200) {
   }, status);
 }
 
-function friendlyError(status, message) {
-  return jsonResponse({ ok: false, message, whatsappUrl: whatsappUrl() }, status);
+function friendlyError(status, message, code) {
+  const headers = code ? { "X-Chat-Error": code } : {};
+  return jsonResponse({ ok: false, message, whatsappUrl: whatsappUrl() }, status, headers);
 }
 
 async function hashIp(request, salt) {
@@ -71,13 +72,13 @@ export async function onRequestPost(context) {
     payload = await request.json();
   } catch {
     log("invalid");
-    return friendlyError(400, "Please send a valid question.");
+    return friendlyError(400, "Please send a valid question.", "bad-request");
   }
 
   const messages = cleanMessages(payload);
   if (!messages) {
     log("invalid");
-    return friendlyError(400, "Please send a short question.");
+    return friendlyError(400, "Please send a short question.", "bad-request");
   }
 
   let limited = false;
@@ -88,12 +89,12 @@ export async function onRequestPost(context) {
   }
   if (limited) {
     log("limit");
-    return friendlyError(429, config.limit);
+    return friendlyError(429, config.limit, "limit");
   }
 
   if (!env.GROQ_API_KEY) {
     log("not-configured");
-    return friendlyError(502, config.error);
+    return friendlyError(502, config.error, "missing-key");
   }
 
   let response;
@@ -113,12 +114,12 @@ export async function onRequestPost(context) {
     });
   } catch {
     log("upstream-error");
-    return friendlyError(502, config.error);
+    return friendlyError(502, config.error, "upstream-error");
   }
 
   if (!response.ok) {
     log(`upstream-${response.status}`);
-    return friendlyError(502, config.error);
+    return friendlyError(502, config.error, `upstream-${response.status}`);
   }
 
   let payloadFromGroq;
@@ -126,7 +127,7 @@ export async function onRequestPost(context) {
     payloadFromGroq = await response.json();
   } catch {
     log("upstream-invalid");
-    return friendlyError(502, config.error);
+    return friendlyError(502, config.error, "upstream-invalid");
   }
 
   const reply = payloadFromGroq?.choices?.[0]?.message?.content?.trim();
