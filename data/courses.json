@@ -38,8 +38,8 @@
         "data-analysis"
       ],
       "duration": "6 weeks",
-      "fee": 35000,
-      "originalFee": 140000,
+      "fee": 30000,
+      "originalFee": 50000,
       "isPopular": true,
       "image": "/assets/img/courses/certificate-in-computer-application.svg"
     },
@@ -79,8 +79,8 @@
         "ai-assisted-software-development"
       ],
       "duration": "4 weeks",
-      "fee": 40000,
-      "originalFee": 160000,
+      "fee": 90000,
+      "originalFee": 120000,
       "isPopular": true,
       "image": "/assets/img/courses/ai-tools-for-business-and-productivity.svg"
     },
@@ -120,8 +120,8 @@
         "wordpress"
       ],
       "duration": "8 weeks",
-      "fee": 45000,
-      "originalFee": 180000,
+      "fee": 100000,
+      "originalFee": 120000,
       "isPopular": true,
       "image": "/assets/img/courses/digital-marketing.svg"
     },
@@ -159,8 +159,8 @@
         "wordpress"
       ],
       "duration": "8 weeks",
-      "fee": 40000,
-      "originalFee": 160000,
+      "fee": 60000,
+      "originalFee": 80000,
       "isPopular": true,
       "image": "/assets/img/courses/graphic-design.svg"
     },
@@ -197,8 +197,8 @@
         "digital-marketing"
       ],
       "duration": "6 weeks",
-      "fee": 45000,
-      "originalFee": 180000,
+      "fee": 120000,
+      "originalFee": 150000,
       "isPopular": false,
       "image": "/assets/img/courses/video-editing-and-content-creation.svg"
     },
@@ -235,8 +235,8 @@
         "ai-engineering-and-automation"
       ],
       "duration": "10 weeks",
-      "fee": 55000,
-      "originalFee": 220000,
+      "fee": 110000,
+      "originalFee": 140000,
       "isPopular": true,
       "image": "/assets/img/courses/data-analysis.svg"
     },
@@ -274,8 +274,8 @@
         "ccna-networking"
       ],
       "duration": "12 weeks",
-      "fee": 65000,
-      "originalFee": 260000,
+      "fee": 120000,
+      "originalFee": 150000,
       "isPopular": true,
       "image": "/assets/img/courses/cybersecurity.svg"
     },
@@ -314,7 +314,7 @@
         "cybersecurity"
       ],
       "duration": "6 weeks",
-      "fee": 45000,
+      "fee": 150000,
       "originalFee": 180000,
       "isPopular": false,
       "image": "/assets/img/courses/hardware-maintenance-and-wifi-networking.svg"
@@ -351,8 +351,8 @@
         "cybersecurity"
       ],
       "duration": "10 weeks",
-      "fee": 60000,
-      "originalFee": 240000,
+      "fee": 130000,
+      "originalFee": 180000,
       "isPopular": false,
       "image": "/assets/img/courses/ccna-networking.svg"
     },
@@ -394,8 +394,8 @@
         "backend-development"
       ],
       "duration": "10 weeks",
-      "fee": 55000,
-      "originalFee": 220000,
+      "fee": 80000,
+      "originalFee": 100000,
       "isPopular": false,
       "image": "/assets/img/courses/frontend-development.svg"
     },
@@ -435,8 +435,8 @@
         "full-stack-web-development"
       ],
       "duration": "6 weeks",
-      "fee": 50000,
-      "originalFee": 200000,
+      "fee": 80000,
+      "originalFee": 100000,
       "isPopular": false,
       "image": "/assets/img/courses/react-js.svg"
     },
@@ -473,8 +473,8 @@
         "full-stack-web-development"
       ],
       "duration": "10 weeks",
-      "fee": 60000,
-      "originalFee": 240000,
+      "fee": 150000,
+      "originalFee": 180000,
       "isPopular": false,
       "image": "/assets/img/courses/backend-development.svg"
     },
@@ -513,8 +513,8 @@
         "ai-engineering-and-automation"
       ],
       "duration": "16 weeks",
-      "fee": 85000,
-      "originalFee": 340000,
+      "fee": 250000,
+      "originalFee": 300000,
       "isPopular": true,
       "image": "/assets/img/courses/full-stack-web-development.svg"
     },
@@ -554,8 +554,8 @@
         "frontend-development"
       ],
       "duration": "4 weeks",
-      "fee": 35000,
-      "originalFee": 140000,
+      "fee": 60000,
+      "originalFee": 80000,
       "isPopular": false,
       "image": "/assets/img/courses/wordpress.svg"
     },
@@ -594,8 +594,8 @@
         "backend-development"
       ],
       "duration": "8 weeks",
-      "fee": 50000,
-      "originalFee": 200000,
+      "fee": 120000,
+      "originalFee": 150000,
       "isPopular": false,
       "image": "/assets/img/courses/python-programming.svg"
     },
@@ -631,7 +631,7 @@
       "nextSteps": [],
       "duration": "12 weeks",
       "fee": 70000,
-      "originalFee": 280000,
+      "originalFee": 100000,
       "isPopular": true,
       "image": "/assets/img/courses/ai-engineering-and-automation.svg"
     },
@@ -669,8 +669,8 @@
         "ai-engineering-and-automation"
       ],
       "duration": "8 weeks",
-      "fee": 60000,
-      "originalFee": 240000,
+      "fee": 90000,
+      "originalFee": 120000,
       "isPopular": false,
       "image": "/assets/img/courses/ai-assisted-software-development.svg"
     }
