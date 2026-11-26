@@ -285,16 +285,16 @@ A hidden honeypot field named `website` must stay empty. Preselect the course or
 
 Use these in order on Home and Apply. Mark up with `FAQPage` data. Show only answers that stay true.
 
-1. **Do I need computer experience?** No. Start with the Certificate in Computer Application if you are new. Each course page lists what you need beforehand.
-2. **When can I start?** Admission is open all year and there is no fixed start date. Tell us when you want to begin and we will confirm your start date.
-3. **How much do courses cost?** Fees differ by course. Message us on WhatsApp for the current fee. Installment payment is available.
+1. **Do I need computer experience?** No. Many students start with zero previous experience. If you are new to computers, start with the Certificate in Computer Application. Each course page lists what you need beforehand.
+2. **When can I start?** Admission is open all year and there is no fixed start date. Because our training is personalized and practical, you do not have to wait for a new semester to begin. Tell us when you want to begin and we will confirm your start date.
+3. **How much do courses cost?** Fees differ by course. Message us on WhatsApp for the current fee or view transparent fees on each course page. Installment payment is available for all courses (including paying a 50% deposit to start).
 4. **How can I pay?** By bank transfer, by POS at the center, or in cash at the center. Installment plans are available. We will give you payment details directly. We never ask you to pay into an account sent by anyone else.
-5. **Will I get a certificate?** Yes. You receive a certificate of completion when you finish your course.
-6. **Can I learn online?** Courses are in person by default. Message us on WhatsApp to ask about online options.
-7. **Where are you?** At 62 New Market Road, Onitsha, Anambra State.
-8. **Is there Wi-Fi at the center?** Yes, free Wi-Fi.
-9. **Can I take more than one course?** Yes. Every course is separate, so you can take one or follow a path.
-10. **Do you install CCTV and solar systems?** Yes. See our services page and request a quote.
+5. **Will I get a certificate?** Yes. You receive a certificate of completion and finish with a tangible final project when you complete your course.
+6. **Can I learn online?** Online classes are available depending on the course. While learning at our Onitsha center provides dedicated workstations and stable power supply, remote virtual training is offered for select courses. Message us on WhatsApp to ask about online options for your preferred course.
+7. **Do I need my own laptop before enrolling?** No. Dedicated computer workstations with stable power supply are provided for every student during practical classes at our Onitsha center. Having your own laptop is helpful for extra practice at home, but it is not required to enrol.
+8. **Can I combine classes with my work, shop, or school?** Yes. We offer flexible morning, afternoon, and Saturday session options so traders, business owners, professionals, and students can learn without disrupting their daily commitments.
+9. **Where are you?** At 62 New Market Road, Onitsha, Anambra State (beside the Glo Office and Mr Biggs at Ogbommanu, just before Onitsha Main Market).
+10. **Can I take more than one course?** Yes. Every course is separate, so you can take one course at a time or follow our structured career learning paths to master multiple connected skills.
 
 ---
 

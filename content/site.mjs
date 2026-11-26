@@ -216,7 +216,7 @@ export const courseTemplate = {
   questions: "Questions",
   qExperience: "Do I need experience?",
   qOnline: "Can I take this course online?",
-  aOnline: "Courses are in person by default. Message us on WhatsApp to ask about online options.",
+  aOnline: "Online classes are available depending on the course. While learning at our Onitsha center provides dedicated computers and stable power supply, remote one-on-one virtual training is offered for select courses. Message us on WhatsApp to confirm online availability for this course.",
   qEnd: "What will I get at the end?",
   aEnd: "A certificate of completion and your final project.",
   closing: "Ready to start {course}?",
@@ -456,19 +456,19 @@ export const contact = {
 };
 
 export const faq = [
-  ["Do I need computer experience?", "No. Start with the Certificate in Computer Application if you are new. Each course page lists what you need beforehand."],
-  ["When can I start?", "Admission is open all year and there is no fixed start date. Tell us when you want to begin and we will confirm your start date."],
-  ["How much do courses cost?", "Fees differ by course. Message us on WhatsApp for the current fee. Installment payment is available."],
+  ["Do I need computer experience?", "No. Many students start with zero previous experience. If you are new to computers, start with the Certificate in Computer Application. Each course page clearly lists what you need beforehand."],
+  ["When can I start?", "Admission is open all year and there is no fixed start date. Because our training is personalized and practical, you do not have to wait for a new semester to begin. Tell us when you want to begin and we will confirm your start date."],
+  ["How much do courses cost?", "Fees differ by course. Message us on WhatsApp for the current fee or view transparent fees on each course page. Installment payment is available for all courses (including paying a 50% deposit to start)."],
   ["How can I pay?", "By bank transfer, by POS at the center, or in cash at the center. Installment plans are available. We will give you payment details directly. We never ask you to pay into an account sent by anyone else."],
-  ["Will I get a certificate?", "Yes. You receive a certificate of completion when you finish your course."],
-  ["Can I learn online?", "Courses are in person by default. Message us on WhatsApp to ask about online options."],
-  ["Where are you?", "At 62 New Market Road, Onitsha, Anambra State."],
-  ["Are computers provided for students?", "Yes, dedicated computer workstations and backup solar power are provided at our center."],
-  ["Can I take more than one course?", "Yes. Every course is separate, so you can take one or follow a path."],
-  ["Do you install CCTV and solar systems?", "Yes. See our services page and request a quote."],
+  ["Will I get a certificate?", "Yes. You receive a certificate of completion and finish with a tangible final project when you complete your course."],
+  ["Can I learn online?", "Online classes are available depending on the course. While learning at our Onitsha center provides dedicated workstations and stable power supply, remote virtual training is offered for select courses. Message us on WhatsApp to ask about online options for your preferred course."],
+  ["Do I need my own laptop before enrolling?", "No. Dedicated computer workstations with stable power supply are provided for every student during practical classes at our Onitsha center. Having your own laptop is helpful for extra practice at home, but it is not required to enrol."],
+  ["Can I combine classes with my work, shop, or school?", "Yes. We offer flexible morning, afternoon, and Saturday session options so traders, business owners, professionals, and students can learn without disrupting their daily commitments."],
+  ["Where are you?", "At 62 New Market Road, Onitsha, Anambra State (beside the Glo Office and Mr Biggs at Ogbommanu, just before Onitsha Main Market)."],
+  ["Can I take more than one course?", "Yes. Every course is separate, so you can take one course at a time or follow our structured career learning paths to master multiple connected skills."],
 ];
 
-export const homeFaqCount = 6;
+export const homeFaqCount = 8;
 
 export const showcasePage = {
   seoTitle: "Student Project Showcase & Portfolio | OCATECH Digital Solutions",
@@ -601,7 +601,7 @@ Your job is to answer visitor questions about OCATECH's courses, services, locat
 
 Rules:
 1. Use only the FACTS. If the answer is not in the FACTS, say you do not have that information and invite the person to message the team on WhatsApp. Never guess.
-2. Never state prices, discounts, durations, start dates, trainer names, accreditation, job guarantees or exam pass rates. Fees are not published: tell people to ask on WhatsApp. State opening hours only from the FACTS. Courses are in person by default; do not claim online delivery for every course.
+2. Never state prices, discounts, durations, start dates, trainer names, accreditation, job guarantees or exam pass rates. Fees differ by course: tell people to check the course page or ask on WhatsApp. State opening hours only from the FACTS. Online classes are available depending on the course; do not claim online delivery for every course. Mention stable power supply at the center.
 3. Never ask for or accept passwords, bank card numbers, bank account details or ID numbers.
 4. Keep replies short: two to five sentences, plain English, friendly and direct. Use a short list only when comparing courses.
 5. When someone describes a goal, recommend one to three courses from the FACTS and name them exactly.
