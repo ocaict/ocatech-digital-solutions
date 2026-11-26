@@ -498,19 +498,105 @@ ${items}
 
 function renderAbout() {
   const founder = site.flags.showFounder ? `<p>${esc(site.brand.founder.title)}: ${esc(site.brand.founder.name)}.</p>` : "";
-  const inner = `<section class="page-head wrap"><h1>${esc(about.h1)}</h1></section>
-<section class="section"><div class="wrap prose"><h2>Who we are</h2><p>${esc(about.who)}${site.flags.showServicesClaim ? esc(about.onePlaceClaim) : "."}</p></div></section>
-<section class="section section-alt"><div class="wrap prose"><h2>What we do</h2><p>${esc(about.what)}</p></div></section>
-<section class="section"><div class="wrap prose"><h2>How we teach</h2><ul>${about.how.map((item) => `<li>${esc(item)}</li>`).join("")}</ul></div></section>
-<section class="section section-alt"><div class="wrap prose"><h2>Who we teach</h2><p>${esc(about.audiences)}</p></div></section>
-<section class="section"><div class="wrap prose"><h2>Registered business</h2><p>${esc(about.registered)}</p>${founder}</div></section>
-<section class="section section-alt"><div class="wrap prose"><h2>Visit us</h2><p>${esc(about.visit)}</p>
-${site.contact.landmarkOrDirections ? `<p>${esc(site.contact.landmarkOrDirections)}</p>` : ""}
-${site.contact.hours ? `<p>Open ${esc(site.contact.hours)}.</p>` : ""}
-<div class="hero-actions">
-${site.contact.googleMapsUrl ? `<a class="button" href="${esc(site.contact.googleMapsUrl)}">Get directions</a>` : ""}
-<a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
-</div></div></section>`;
+  const pillarIcons = [
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  ];
+  const pillars = about.pillars.map(([title, text], idx) => `
+    <article class="pillar-card">
+      <span class="pillar-icon" aria-hidden="true">${pillarIcons[idx] || pillarIcons[0]}</span>
+      <h3>${esc(title)}</h3>
+      <p>${esc(text)}</p>
+    </article>`).join("");
+  const approach = about.approach.map(([title, text], idx) => `
+    <li class="approach-step">
+      <span class="approach-num">${String(idx + 1).padStart(2, "0")}</span>
+      <div class="approach-card">
+        <h3>${esc(title)}</h3>
+        <p>${esc(text)}</p>
+      </div>
+    </li>`).join("");
+
+  const inner = `<section class="page-head wrap about-hero">
+  <div class="about-hero-text">
+    <p class="hero-kicker">${esc(site.brand.descriptor)}</p>
+    <h1>${esc(about.h1)}</h1>
+    <p class="course-lead-copy">${esc(about.who)}${site.flags.showServicesClaim ? esc(about.onePlaceClaim) : "."}</p>
+    <div class="hero-actions">
+      <a class="button" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a>
+      <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+    </div>
+  </div>
+  <figure class="about-hero-media">
+    <img src="/assets/img/training-960.webp" srcset="/assets/img/training-480.webp 480w, /assets/img/training-960.webp 960w, /assets/img/training-1600.webp 1600w" sizes="(min-width: 820px) 480px, 100vw" width="960" height="540" alt="Students learning practical ICT skills at OCATECH in Onitsha">
+  </figure>
+</section>
+
+<section class="section" aria-labelledby="pillars-heading">
+  <div class="wrap">
+    <h2 id="pillars-heading" class="sr-only">Our Mission, Vision and Goal</h2>
+    <div class="pillars-grid">${pillars}</div>
+  </div>
+</section>
+
+<section class="section facts-strip" aria-label="Verified center facts">
+  <div class="wrap">
+    <ul>
+      <li><strong>${courseData.length}</strong> Practical courses</li>
+      <li><strong>${site.tracks.length}</strong> Learning tracks</li>
+      <li><strong>BN 9677251</strong> Registered business</li>
+      <li><strong>Mon–Sat</strong> Open 8AM–6PM</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="approach-heading">
+  <div class="wrap">
+    <div class="approach-head">
+      <h2 id="approach-heading">${esc(about.approachHeading)}</h2>
+      <p class="contact-muted">${esc(about.approachIntro)}</p>
+    </div>
+    <ol class="approach-timeline">${approach}</ol>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="inside-about-heading">
+  <div class="wrap">
+    <h2 id="inside-about-heading">Inside our Onitsha center</h2>
+    <video class="center-video" controls preload="none" poster="/assets/img/video-poster.webp"><source src="/assets/video/ict-training.mp4" type="video/mp4"></video>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="about-scope-heading">
+  <div class="wrap two-col-info">
+    <div class="info-card">
+      <h2 id="about-scope-heading">What we do</h2>
+      <p>${esc(about.what)}</p>
+    </div>
+    <div class="info-card">
+      <h2>Who we teach</h2>
+      <p>${esc(about.audiences)}</p>
+      <p class="about-reg">${esc(about.registered)}</p>
+      ${founder}
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt closing" aria-labelledby="about-visit-heading">
+  <div class="wrap about-closing">
+    <div>
+      <h2 id="about-visit-heading">Visit us in Onitsha</h2>
+      <p>${esc(about.visit)}</p>
+      ${site.contact.landmarkOrDirections ? `<p class="contact-muted">${esc(site.contact.landmarkOrDirections)}</p>` : ""}
+      ${site.contact.hours ? `<p class="contact-hours">Open ${esc(site.contact.hours)}.</p>` : ""}
+    </div>
+    <div class="hero-actions">
+      <a class="button" href="/apply/">${esc(sharedCopy.buttons.applyNow)}</a>
+      ${site.contact.googleMapsUrl ? `<a class="button button-quiet" href="${esc(site.contact.googleMapsUrl)}">Get directions &nearr;</a>` : ""}
+    </div>
+  </div>
+</section>`;
   return { title: about.seoTitle, description: about.seoDescription, canonical: urls.for("/about/"), inner, jsonLd: [] };
 }
 

@@ -159,6 +159,20 @@ export const about = {
   h1: "About OCATECH Digital Solutions",
   who: "OCATECH Digital Solutions is an ICT hub and training center at 62 New Market Road, Onitsha. We opened in 2026 to give people in Onitsha and nearby towns practical technology skills and dependable ICT services",
   onePlaceClaim: " in one place.",
+  pillars: [
+    ["Our Mission", "Equip beginners, students and business owners in Onitsha and nearby towns with practical digital skills they can use immediately."],
+    ["Our Vision", "Be a trusted ICT hub in Anambra State where learners master modern tools and businesses get dependable technology support."],
+    ["Our Goal", "Bridge the gap between theory and real work through hands-on projects, clear step-by-step guidance and flexible entry all year."],
+  ],
+  approachHeading: "Our approach to training",
+  approachIntro: "Every class is built around real tasks, clear steps and practical support.",
+  approach: [
+    ["Practical learning", "We teach by doing. Every course ends with a real project you can show."],
+    ["Start from where you are", "You do not need prior experience for our beginner courses."],
+    ["Structured tracks", "Follow a step-by-step career path or take a single course on its own."],
+    ["Flexible entry and payment", "Admission is open all year, with bank transfer, POS, cash and installment options."],
+    ["In-person guidance", "Learn at our Onitsha center with instructor support and free Wi-Fi."],
+  ],
   what: "We teach computer applications, AI tools, design, video, digital marketing, data, programming, web development, cybersecurity and networking. We also install software, CCTV and solar power for homes and businesses.",
   how: [
     "We teach by doing. Every course ends with a project you can show.",
