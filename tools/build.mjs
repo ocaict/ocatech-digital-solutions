@@ -1155,6 +1155,23 @@ function renderApply() {
           </a>
         </div>
       </div>
+
+      <div class="apply-tour-card">
+        <div class="tour-card-header">
+          <span class="tour-badge">&#x1F4CD; Free Center Walkthrough</span>
+          <h3>Prefer to see the lab in person first?</h3>
+        </div>
+        <p class="tour-desc">You are always welcome at 62 New Market Road, Onitsha. Come test our solar-powered computers, see our active classes, and speak 1-on-1 with an instructor before making any commitment.</p>
+        <ul class="tour-perks">
+          <li><span class="check-mark">&#x2713;</span> Free 1-on-1 course advice</li>
+          <li><span class="check-mark">&#x2713;</span> Hands-on test of our lab computers</li>
+          <li><span class="check-mark">&#x2713;</span> No pressure, zero upfront obligation</li>
+        </ul>
+        <p class="tour-note">Open ${esc(site.contact.hours || "Monday–Saturday, 8AM–6PM")}.</p>
+        <a class="button button-wa button-full" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">
+          ${esc(sharedCopy.buttons.whatsapp)}
+        </a>
+      </div>
     </aside>
 
     <div class="apply-form-col">
@@ -1472,6 +1489,15 @@ function renderContact() {
             <h3>Email</h3>
             <p><a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></p>
           </div>
+        </div>
+      </div>
+
+      <div class="contact-tour-banner">
+        <div class="tour-banner-icon" aria-hidden="true">&#x1F3EB;</div>
+        <div>
+          <h3>Book a Free Lab Tour &amp; Consultation</h3>
+          <p>Want to see our setup before deciding? Walk in anytime during opening hours for a free guided tour of our computer lab, test our workstations, and discuss your career goals with an instructor.</p>
+          <p><a class="text-link" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">Let us know on WhatsApp before you come &rarr;</a></p>
         </div>
       </div>
     </div>
