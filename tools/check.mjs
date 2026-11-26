@@ -87,6 +87,13 @@ else {
   if (/PASTE-THE-DATABASE-ID-HERE/.test(config)) fail("wrangler.jsonc: replace the D1 database ID placeholder.");
 }
 
+for (const file of ["assets/js/picker.js", "assets/js/chat.js", "assets/js/form.js"]) {
+  const source = fs.readFileSync(path.join(root, file), "utf8");
+  if (!/https?:\/\/wa\.me|dataset\.whatsapp/.test(source)) continue;
+  if (!/\.target\s*=\s*["']_blank/.test(source)) fail(`${file}: dynamic WhatsApp link without target="_blank".`);
+  if (!/\.rel\s*=\s*["']noopener noreferrer/.test(source)) fail(`${file}: dynamic WhatsApp link without rel="noopener noreferrer".`);
+}
+
 const allFiles = walk(dist);
 const htmlFiles = allFiles.filter((file) => file.endsWith(".html")).sort();
 const headers = fs.existsSync(path.join(dist, "_headers")) ? fs.readFileSync(path.join(dist, "_headers"), "utf8") : "";
@@ -176,6 +183,13 @@ for (const file of htmlFiles) {
     const tag = match[0];
     if (!/\balt\s*=/.test(tag)) fail(`${rel}: image without alt text.`);
     if (!/\bwidth\s*=/.test(tag) || !/\bheight\s*=/.test(tag)) fail(`${rel}: image without width and height.`);
+  }
+
+  for (const match of html.matchAll(/<a\b[^>]*\bhref="https?:\/\/[^"]+"[^>]*>/gi)) {
+    const tag = match[0];
+    if (!/\btarget="_blank"/i.test(tag)) fail(`${rel}: external link without target="_blank".`);
+    const linkRel = tag.match(/\brel="([^"]*)"/i)?.[1] || "";
+    if (!/\bnoopener\b/i.test(linkRel) || !/\bnoreferrer\b/i.test(linkRel)) fail(`${rel}: external link without rel="noopener noreferrer".`);
   }
 
   const refs = [];

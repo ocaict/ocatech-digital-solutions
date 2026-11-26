@@ -34,7 +34,13 @@
     const whatsapp = document.createElement("a");
     whatsapp.className = "button button-wa";
     whatsapp.href = `https://wa.me/2348165321429?text=${encodeURIComponent(text)}`;
-    whatsapp.textContent = "Chat on WhatsApp";
+    whatsapp.target = "_blank";
+    whatsapp.rel = "noopener noreferrer";
+    whatsapp.append(document.createTextNode("Chat on WhatsApp"));
+    const notice = document.createElement("span");
+    notice.className = "sr-only";
+    notice.textContent = " (opens in a new tab)";
+    whatsapp.append(notice);
     const apply = document.createElement("a");
     apply.className = "button button-quiet";
     apply.href = "/apply/";

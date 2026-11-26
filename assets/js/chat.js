@@ -58,6 +58,12 @@
   const whatsappLink = () => {
     const link = make("a", "button button-wa", copy.whatsapp);
     link.href = `https://wa.me/2348165321429?text=${encodeURIComponent("Hello OCATECH, I would like to know more about your courses.")}`;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    const notice = document.createElement("span");
+    notice.className = "sr-only";
+    notice.textContent = " (opens in a new tab)";
+    link.append(notice);
     return link;
   };
 

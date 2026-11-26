@@ -85,7 +85,13 @@
     const link = document.createElement("a");
     link.className = "button button-wa";
     link.href = form.dataset.whatsapp;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
     link.textContent = "Continue on WhatsApp";
+    const notice = document.createElement("span");
+    notice.className = "sr-only";
+    notice.textContent = " (opens in a new tab)";
+    link.append(notice);
     panel.append(heading, text, link);
     form.replaceWith(panel);
   };

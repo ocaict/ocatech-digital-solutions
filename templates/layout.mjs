@@ -6,10 +6,20 @@ export const json = (value) => JSON.stringify(value).replace(/</g, "\\u003c");
 
 export const wa = (number, text) => `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
 
+export const notice = '<span class="sr-only"> (opens in a new tab)</span>';
+
+export function markExternalLinks(html) {
+  return html.replace(/(<a\b[^>]*\bhref="https?:\/\/[^"]+"[^>]*>)([\s\S]*?)(<\/a>)/gi, (match, open, text, close) => {
+    const attrs = `${/\btarget=/i.test(open) ? "" : ' target="_blank"'}${/\brel=/i.test(open) ? "" : ' rel="noopener noreferrer"'}`;
+    const updated = attrs ? open.replace(/^<a/, `<a${attrs}`) : open;
+    return `${updated}${text}${text.includes("sr-only") ? "" : notice}${close}`;
+  });
+}
+
 export function shell({ title, description, canonical, body, assets, jsonLd = [], noindex = false, bodyClass = "", extraScripts = [], chatSrc = "" }) {
   const ld = jsonLd.map((item) => `<script type="application/ld+json">${json(item)}</script>`).join("\n");
   const robots = noindex ? "noindex, nofollow" : "index, follow";
-  return `<!doctype html>
+  return markExternalLinks(`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -44,7 +54,7 @@ ${extraScripts.map((src) => `<script src="${src}" defer></script>`).join("\n")}
 <script src="${assets.main}" defer></script>
 </body>
 </html>
-`;
+`);
 }
 
 export function header(site, shared, assets, canonicalPath) {
