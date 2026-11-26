@@ -37,6 +37,8 @@ function copyHashed(source, label) {
   return `/${target}`;
 }
 
+fs.rmSync(path.join(dist, "assets"), { recursive: true, force: true });
+
 const assets = {
   css: copyHashed("assets/css/styles.css"),
   main: copyHashed("assets/js/main.js"),
@@ -46,9 +48,6 @@ const assets = {
   font: "/assets/fonts/figtree-latin.woff2",
 };
 
-fs.rmSync(path.join(dist, "assets", "img"), { recursive: true, force: true });
-fs.rmSync(path.join(dist, "assets", "fonts"), { recursive: true, force: true });
-fs.rmSync(path.join(dist, "assets", "video"), { recursive: true, force: true });
 for (const folder of ["img", "fonts", "video"]) {
   fs.cpSync(path.join(root, "assets", folder), path.join(dist, "assets", folder), { recursive: true });
 }
@@ -161,19 +160,28 @@ function renderPickerFallback() {
   return `<noscript><p>${esc(home.picker.helper)}</p><ul class="plain-list">${site.tracks.map((track) => `<li><a href="/courses/?track=${esc(track.id)}">${esc(track.name)}</a></li>`).join("")}</ul></noscript>`;
 }
 
-function courseRow(course, lead = false) {
+function courseCard(course, lead = false) {
   const track = trackById.get(course.track);
   const url = `/courses/${course.slug}/`;
-  return `<article class="course-row${lead ? " course-row-lead" : ""} track-${esc(track?.color || "green")}">
-<div class="course-row-main">
-<p class="course-track">${esc(trackName(course.track))}</p>
-<h3><a href="${url}">${esc(course.title)}</a></h3>
-<p class="course-subtitle-small">${esc(course.subtitle)}</p>
-<p>${esc(course.summary)}</p>
+  const trackColorClass = `track-${esc(track?.color || "green")}`;
+  const tools = (course.tools || []).slice(0, 4);
+  const remaining = (course.tools || []).length - tools.length;
+  const toolsList = tools.map((t) => `<li class="card-tool-tag">${esc(t)}</li>`).join("")
+    + (remaining > 0 ? `<li class="card-tool-tag card-tool-more">+${remaining} more</li>` : "");
+
+  return `<article class="course-card ${trackColorClass}${lead ? " course-card-lead" : ""}" data-course-track="${esc(course.track)}">
+<div class="course-card-head">
+<span class="course-card-track">${esc(trackName(course.track))}</span>
+<span class="course-card-level">${esc(course.level)}</span>
 </div>
-<div class="course-row-side">
-<p class="course-level">${esc(course.level)}</p>
-<a class="text-link" href="${url}">View course</a>
+<h3 class="course-card-title"><a class="course-card-link" href="${url}">${esc(course.title)}</a></h3>
+<p class="course-card-desc">${esc(course.subtitle)}</p>
+<div class="course-card-tools-wrap">
+<span class="course-card-tools-label">Tools:</span>
+<ul class="course-card-tools" aria-label="Tools learned in ${esc(course.title)}">${toolsList}</ul>
+</div>
+<div class="course-card-footer">
+<span class="course-card-cta">View course <span class="cta-arrow" aria-hidden="true">&rarr;</span></span>
 </div>
 </article>`;
 }
@@ -215,7 +223,7 @@ ${renderPickerFallback()}
 <section class="section" aria-labelledby="lead-heading"><div class="wrap">
 <h2 id="lead-heading">${esc(home.leadCourses.heading)}</h2>
 <p>${esc(home.leadCourses.intro)}</p>
-<div class="lead-grid">${lead.map((course) => courseRow(course, true)).join("")}</div>
+<div class="lead-grid">${lead.map((course) => courseCard(course, true)).join("")}</div>
 <p><a class="text-link" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a></p>
 </div></section>
 <section class="section section-alt" aria-labelledby="how-heading"><div class="wrap">
@@ -277,14 +285,14 @@ function renderCourses() {
     const href = track.id === "all" ? "/courses/" : `/courses/?${params.toString()}`;
     return `<a class="filter-link" data-track-filter="${esc(track.id)}" href="${esc(href)}">${esc(track.name)}</a>`;
   }).join("");
-  const rows = courseData.map((course) => `<div data-course-track="${esc(course.track)}">${courseRow(course)}</div>`).join("");
+  const cards = courseData.map((course) => courseCard(course)).join("");
   const inner = `<section class="page-head wrap">
 <h1>${esc(coursesPage.h1)}</h1>
 <p>${esc(coursesPage.intro)}</p>
 </section>
 <section class="section"><div class="wrap">
 <nav class="filters" aria-label="Filter courses by track">${filters}</nav>
-<div id="course-list" class="course-list">${rows}</div>
+<div id="course-list" class="course-grid">${cards}</div>
 <p>${esc(coursesPage.empty)} <a class="text-link" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a> and tell us your goal.</p>
 </div></section>`;
   return { title: coursesPage.seoTitle, description: coursesPage.seoDescription, canonical: urls.for("/courses/"), inner, jsonLd: [] };

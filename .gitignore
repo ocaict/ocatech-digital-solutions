@@ -6,3 +6,5 @@ dist/
 .DS_Store
 assets/incoming/*
 !assets/incoming/.gitkeep
+inspirations/
+.vscode/
