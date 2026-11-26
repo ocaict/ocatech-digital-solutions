@@ -68,7 +68,7 @@ Chat on WhatsApp · Apply for this course · Apply now · See all courses · Req
 - Where: 62 New Market Road, Onitsha
 - Certificate of completion
 - Free Wi-Fi at the center
-- In person or online
+- In person at our Onitsha center
 - Installments available
 
 ### Six courses to start with
@@ -80,7 +80,7 @@ Show these six from `leadCourses` in `site.json`, each with its short summary an
 **Heading:** How it works
 1. **Pick a course.** Choose from the list or ask us which one fits your goal.
 2. **Choose when to start.** Admission is open all year, so you do not wait for a term.
-3. **Learn by doing.** Work on real tasks at our center or online.
+3. **Learn by doing.** Work on real tasks at our center.
 4. **Get your certificate.** Finish your course and receive a certificate of completion.
 
 ### Paths
@@ -99,7 +99,7 @@ Link: **See our services**
 ### Why OCATECH
 **Heading:** Why learn at OCATECH
 - **Hands-on from day one.** You spend your time practising on real tasks, not only listening.
-- **Flexible to your life.** Start any time, learn in person or online, and pay by bank transfer, POS, cash or installments.
+- **Flexible to your life.** Start any time, learn at our center, and pay by bank transfer, POS, cash or installments.
 - **Skills and services in one place.** The same center that teaches CCTV, networking and software also installs them, so you learn how the work is really done.
 **[Only keep the third point if the owner confirms the center does the installation work itself.]**
 
@@ -132,9 +132,9 @@ Show these FAQ items (the full list is in section 9). Mark up as FAQ structured 
 ## 3. Courses (`/courses/`)
 
 **SEO title:** Courses in Onitsha | OCATECH Digital Solutions
-**Meta description:** Computer, AI, design, web development, data, cybersecurity and networking courses at OCATECH in Onitsha. Start any time, in person or online.
+**Meta description:** Computer, AI, design, web development, data, cybersecurity and networking courses at OCATECH in Onitsha. Start any time, in person.
 **H1:** Courses at OCATECH
-**Intro:** Take one course or follow a path. Admission is open all year. Tell us whether you prefer to learn at our center or online.
+**Intro:** Take one course or follow a path. Admission is open all year. Ask us how each course runs.
 **Filters:** All, then one filter per track name in `site.json`. Filtering works with plain links as well as with JavaScript.
 **Course card:** title, subtitle, level, a one-line summary, track name, and a link to the course page. Do not show fees while `flags.showFees` is false.
 **Under the list:** Cannot find what you need? **Chat on WhatsApp** and tell us your goal.
@@ -147,7 +147,7 @@ Use `seoTitle` and `metaDescription` from `courses.json`.
 
 - **H1:** {title}, then the subtitle underneath.
 - **Summary:** the `summary` text.
-- **Key facts panel:** Level: {level}. Track: {track name}. Learn: in person at our Onitsha center or online. Start: any time. Duration: confirmed when you enrol. Fee: {feeNote}. Certificate: certificate of completion.
+- **Key facts panel:** Level: {level}. Track: {track name}. Learn: in person at our Onitsha center. Start: any time. Duration: confirmed when you enrol. Fee: {feeNote}. Certificate: certificate of completion.
 - **Buttons:** Apply for this course · Chat on WhatsApp (course preset).
 - **Who this course is for:** the `whoFor` text.
 - **What you will learn:** the `outcomes` list.
@@ -157,7 +157,7 @@ Use `seoTitle` and `metaDescription` from `courses.json`.
 - **What to learn next:** links to each course in `nextSteps` (omit the section if empty).
 - **Questions:** show the course-specific questions below plus the top four items from section 9.
   - Do I need experience? Answer from `prerequisites`.
-  - Can I take this course online? Yes. Tell us you prefer online when you apply and we will confirm how it will run.
+  - Can I take this course online? Courses are in person by default. Message us on WhatsApp to ask about online options.
   - What will I get at the end? A certificate of completion and your final project.
 - **Closing line:** Ready to start {shortName}? **Apply for this course** · **Chat on WhatsApp**
 - **Structured data:** `Course` with `provider` set to OCATECH Digital Solutions, plus `BreadcrumbList` (Home, Courses, {title}).
@@ -206,7 +206,7 @@ We teach computer applications, AI tools, design, video, digital marketing, data
 ### How we teach
 - We teach by doing. Every course ends with a project you can show.
 - We start from where you are. You do not need experience for our beginner courses.
-- We keep things flexible. You can start any time, learn in person or online, and pay by bank transfer, POS, cash or installments.
+- We keep things flexible. You can start any time, learn at our center, and pay by bank transfer, POS, cash or installments.
 
 ### Who we teach
 Beginners, students, graduates, professionals, entrepreneurs, business owners, job seekers, freelancers and career changers.
@@ -274,9 +274,9 @@ A hidden honeypot field named `website` must stay empty. Preselect the course or
 - **WhatsApp:** 0816 532 1429 (button: Chat on WhatsApp)
 - **Phone:** 0816 532 1429 and 0706 262 0862 (tap to call)
 - **Email:** ocatechskill@gmail.com
-- **Opening hours:** only if provided
-- **Directions:** landmark text and a maps link, only if provided
-- **Map:** an embedded or linked map only once the owner supplies a Google Maps link. Do not guess the pin.
+- **Opening hours:** Monday–Saturday, 8AM–6PM
+- **Directions:** landmark text still needed; show it only when provided
+- **Map:** Google Maps link: https://maps.app.goo.gl/soyJPWoAeGUUwZWQ7
 **Closing line:** Prefer to write it down? **Apply now**
 
 ---
@@ -290,7 +290,7 @@ Use these in order on Home and Apply. Mark up with `FAQPage` data. Show only ans
 3. **How much do courses cost?** Fees differ by course. Message us on WhatsApp for the current fee. Installment payment is available.
 4. **How can I pay?** By bank transfer, by POS at the center, or in cash at the center. Installment plans are available. We will give you payment details directly. We never ask you to pay into an account sent by anyone else.
 5. **Will I get a certificate?** Yes. You receive a certificate of completion when you finish your course.
-6. **Can I learn online?** Yes. We teach at our Onitsha center and online. Tell us your preference when you apply.
+6. **Can I learn online?** Courses are in person by default. Message us on WhatsApp to ask about online options.
 7. **Where are you?** At 62 New Market Road, Onitsha, Anambra State.
 8. **Is there Wi-Fi at the center?** Yes, free Wi-Fi.
 9. **Can I take more than one course?** Yes. Every course is separate, so you can take one or follow a path.
@@ -372,7 +372,7 @@ Your job is to answer visitor questions about OCATECH's courses, services, locat
 
 Rules:
 1. Use only the FACTS. If the answer is not in the FACTS, say you do not have that information and invite the person to message the team on WhatsApp. Never guess.
-2. Never state prices, discounts, durations, start dates, opening hours, trainer names, accreditation, job guarantees or exam pass rates. Fees are not published: tell people to ask on WhatsApp.
+2. Never state prices, discounts, durations, start dates, trainer names, accreditation, job guarantees or exam pass rates. Fees are not published: tell people to ask on WhatsApp. State opening hours only from the FACTS. Courses are in person by default; do not claim online delivery for every course.
 3. Never ask for or accept passwords, bank card numbers, bank account details or ID numbers.
 4. Keep replies short: two to five sentences, plain English, friendly and direct. Use a short list only when comparing courses.
 5. When someone describes a goal, recommend one to three courses from the FACTS and name them exactly.
@@ -385,8 +385,9 @@ Rules:
 ### FACTS (generate from the data files at build time and append to the prompt)
 - Business: OCATECH Digital Solutions, ICT Hub & Training Center. Tagline: Choose OCATECH, Choose Excellence. Registered business BN 9677251.
 - Address: 62 New Market Road, Onitsha, Anambra State, Nigeria.
+- Opening hours: Monday–Saturday, 8AM–6PM.
 - Contact: WhatsApp 0816 532 1429. Phones 0816 532 1429 and 0706 262 0862. Email ocatechskill@gmail.com.
-- Learning: in person at the Onitsha center or online. Admission is open all year with no fixed start date. Certificate of completion. Free Wi-Fi at the center.
+- Learning: in person at the Onitsha center. Courses are in person by default; ask us about online options. Admission is open all year with no fixed start date. Certificate of completion. Free Wi-Fi at the center.
 - Payment: bank transfer, POS at the center, cash at the center, and installment plans. Fees differ by course and are confirmed on WhatsApp.
 - Students: beginners, students, graduates, professionals, entrepreneurs, business owners, job seekers, freelancers and career changers.
 - Services: software installation, CCTV installation, solar installation, for homes and businesses in Onitsha, Nkpor, Obosi and Awka.
@@ -400,13 +401,13 @@ Low temperature (about 0.2), a maximum reply length of around 300 tokens, the la
 
 ## 14. Items the owner must confirm (never show unconfirmed claims)
 
-1. Opening days and hours.
-2. Landmarks or directions, and a Google Maps link for the center.
-3. Social media links.
+1. Opening days and hours: confirmed as Monday–Saturday, 8AM–6PM.
+2. Google Maps link confirmed; one or two landmarks are still needed.
+3. Facebook and YouTube links confirmed: https://web.facebook.com/ocatechskills/ and https://www.youtube.com/@ocatechskills.
 4. Course durations and fees, and whether to show “from ₦X”.
 5. The 75% discount: original price, discounted price and end date. Until confirmed, do not show it.
 6. Whether the founder’s name may appear on the About page.
 7. What the installation services include and cover, plus whether the “skills and services in one place” point is true.
-8. Whether online delivery applies to every course.
+8. Online delivery: courses are in person by default; whether every course can run online is still to be confirmed.
 9. Retention period for enquiries and which analytics are used (for the privacy page).
 10. Any certificate wording, for example a sample certificate image, and whether a certificate can be verified online.

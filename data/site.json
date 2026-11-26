@@ -29,15 +29,16 @@
     ],
     "whatsapp": { "display": "0816 532 1429", "number": "2348165321429" },
     "email": "ocatechskill@gmail.com",
-    "hours": null,
+    "hours": "Monday–Saturday, 8AM–6PM",
+    "openingHoursSchema": "Mo-Sa 08:00-18:00",
     "landmarkOrDirections": null,
-    "googleMapsUrl": null,
+    "googleMapsUrl": "https://maps.app.goo.gl/soyJPWoAeGUUwZWQ7",
     "googleBusinessProfileUrl": null,
     "social": {
-      "facebook": null,
+      "facebook": "https://web.facebook.com/ocatechskills/",
       "instagram": null,
       "tiktok": null,
-      "youtube": null,
+      "youtube": "https://www.youtube.com/@ocatechskills",
       "x": null
     }
   },
@@ -45,7 +46,7 @@
   "siteUrl": "https://ict.ocatech.workers.dev",
 
   "offer": {
-    "delivery": ["In person at our Onitsha center", "Online"],
+    "delivery": ["In person at our Onitsha center"],
     "admission": "Open all year. There is no fixed start date.",
     "certificate": "Certificate of completion",
     "perks": ["Free Wi-Fi at the center"],

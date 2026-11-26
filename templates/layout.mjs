@@ -71,8 +71,9 @@ export function footer(site, shared) {
   const links = [...shared.nav, ["Apply", "/apply/"], ["Privacy", "/privacy/"]]
     .map(([label, href]) => `<a href="${href}">${esc(label)}</a>`).join("");
   const phones = site.contact.phones.map((phone) => `<a href="tel:${esc(phone.e164)}">${esc(phone.display)}</a>`).join("");
+  const socialLabels = { facebook: "Facebook", instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube", x: "X" };
   const social = Object.entries(site.contact.social).filter(([, url]) => url)
-    .map(([name, url]) => `<a href="${esc(url)}">${esc(name)}</a>`).join("");
+    .map(([name, url]) => `<a href="${esc(url)}">${esc(socialLabels[name] || name)}</a>`).join("");
   const maps = site.contact.googleMapsUrl ? `<p><a href="${esc(site.contact.googleMapsUrl)}">Get directions</a></p>` : "";
   return `<footer class="site-footer">
   <div class="wrap footer-grid">
@@ -84,6 +85,8 @@ export function footer(site, shared) {
     <section aria-labelledby="footer-visit">
       <h2 id="footer-visit" class="footer-title">Visit us</h2>
       <p>${esc(site.contact.addressLine)}, ${esc(site.contact.city)}, ${esc(site.contact.state)}</p>
+      ${site.contact.landmarkOrDirections ? `<p>${esc(site.contact.landmarkOrDirections)}</p>` : ""}
+      ${site.contact.hours ? `<p>Open ${esc(site.contact.hours)}.</p>` : ""}
       ${maps}
     </section>
     <section aria-labelledby="footer-contact">

@@ -43,7 +43,7 @@ export const home = {
       ["Protect systems and data", ["cybersecurity", "hardware-maintenance-and-wifi-networking"]],
     ],
   },
-  facts: ["Where: 62 New Market Road, Onitsha", "Certificate of completion", "Free Wi-Fi at the center", "In person or online", "Installments available"],
+  facts: ["Where: 62 New Market Road, Onitsha", "Open Monday–Saturday, 8AM–6PM", "Certificate of completion", "Free Wi-Fi at the center", "In person at our Onitsha center", "Installments available"],
   leadCourses: {
     heading: "Six courses to start with",
     intro: "New to this? Begin here. Every course is its own course, so you pick only what you need.",
@@ -53,7 +53,7 @@ export const home = {
     steps: [
       ["Pick a course.", "Choose from the list or ask us which one fits your goal."],
       ["Choose when to start.", "Admission is open all year, so you do not wait for a term."],
-      ["Learn by doing.", "Work on real tasks at our center or online."],
+      ["Learn by doing.", "Work on real tasks at our center."],
       ["Get your certificate.", "Finish your course and receive a certificate of completion."],
     ],
   },
@@ -84,7 +84,7 @@ export const home = {
     heading: "Why learn at OCATECH",
     items: [
       ["Hands-on from day one.", "You spend your time practising on real tasks, not only listening."],
-      ["Flexible to your life.", "Start any time, learn in person or online, and pay by bank transfer, POS, cash or installments."],
+      ["Flexible to your life.", "Start any time, learn at our center, and pay by bank transfer, POS, cash or installments."],
       ["Skills and services in one place.", "The same center that teaches CCTV, networking and software also installs them, so you learn how the work is really done."],
     ],
     confirmThird: true,
@@ -103,14 +103,14 @@ export const home = {
 
 export const coursesPage = {
   seoTitle: "Courses in Onitsha | OCATECH Digital Solutions",
-  seoDescription: "Computer, AI, design, web development, data, cybersecurity and networking courses at OCATECH in Onitsha. Start any time, in person or online.",
+  seoDescription: "Computer, AI, design, web development, data, cybersecurity and networking courses at OCATECH in Onitsha. Start any time, in person.",
   h1: "Courses at OCATECH",
-  intro: "Take one course or follow a path. Admission is open all year. Tell us whether you prefer to learn at our center or online.",
+  intro: "Take one course or follow a path. Admission is open all year. Ask us how each course runs.",
   empty: "Cannot find what you need?",
 };
 
 export const courseTemplate = {
-  learn: "Learn: in person at our Onitsha center or online",
+  learn: "Learn: in person at our Onitsha center",
   start: "Start: any time",
   duration: "Duration: confirmed when you enrol",
   whoFor: "Who this course is for",
@@ -122,7 +122,7 @@ export const courseTemplate = {
   questions: "Questions",
   qExperience: "Do I need experience?",
   qOnline: "Can I take this course online?",
-  aOnline: "Yes. Tell us you prefer online when you apply and we will confirm how it will run.",
+  aOnline: "Courses are in person by default. Message us on WhatsApp to ask about online options.",
   qEnd: "What will I get at the end?",
   aEnd: "A certificate of completion and your final project.",
   closing: "Ready to start {course}?",
@@ -163,7 +163,7 @@ export const about = {
   how: [
     "We teach by doing. Every course ends with a project you can show.",
     "We start from where you are. You do not need experience for our beginner courses.",
-    "We keep things flexible. You can start any time, learn in person or online, and pay by bank transfer, POS, cash or installments.",
+    "We keep things flexible. You can start any time, learn at our center, and pay by bank transfer, POS, cash or installments.",
   ],
   audiences: "Beginners, students, graduates, professionals, entrepreneurs, business owners, job seekers, freelancers and career changers.",
   registered: "OCATECH Digital Solutions is a registered business (BN 9677251).",
@@ -182,7 +182,7 @@ export const apply = {
     phone: "Phone or WhatsApp number",
     email: "Email",
     course: "Course",
-    mode: "How do you want to learn?",
+    mode: "How would you prefer to learn?",
     start: "When do you want to start?",
     service: "Service",
     message: "Tell us more",
@@ -218,7 +218,7 @@ export const faq = [
   ["How much do courses cost?", "Fees differ by course. Message us on WhatsApp for the current fee. Installment payment is available."],
   ["How can I pay?", "By bank transfer, by POS at the center, or in cash at the center. Installment plans are available. We will give you payment details directly. We never ask you to pay into an account sent by anyone else."],
   ["Will I get a certificate?", "Yes. You receive a certificate of completion when you finish your course."],
-  ["Can I learn online?", "Yes. We teach at our Onitsha center and online. Tell us your preference when you apply."],
+  ["Can I learn online?", "Courses are in person by default. Message us on WhatsApp to ask about online options."],
   ["Where are you?", "At 62 New Market Road, Onitsha, Anambra State."],
   ["Is there Wi-Fi at the center?", "Yes, free Wi-Fi."],
   ["Can I take more than one course?", "Yes. Every course is separate, so you can take one or follow a path."],
@@ -265,7 +265,7 @@ Your job is to answer visitor questions about OCATECH's courses, services, locat
 
 Rules:
 1. Use only the FACTS. If the answer is not in the FACTS, say you do not have that information and invite the person to message the team on WhatsApp. Never guess.
-2. Never state prices, discounts, durations, start dates, opening hours, trainer names, accreditation, job guarantees or exam pass rates. Fees are not published: tell people to ask on WhatsApp.
+2. Never state prices, discounts, durations, start dates, trainer names, accreditation, job guarantees or exam pass rates. Fees are not published: tell people to ask on WhatsApp. State opening hours only from the FACTS. Courses are in person by default; do not claim online delivery for every course.
 3. Never ask for or accept passwords, bank card numbers, bank account details or ID numbers.
 4. Keep replies short: two to five sentences, plain English, friendly and direct. Use a short list only when comparing courses.
 5. When someone describes a goal, recommend one to three courses from the FACTS and name them exactly.

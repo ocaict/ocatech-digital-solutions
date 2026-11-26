@@ -4,9 +4,9 @@ Nothing here is shown as a fact on the site yet. Answer with **later** and the i
 
 | Item | What is needed | Current site behaviour |
 |---|---|---|
-| Opening hours | Days and times the center is open | Hours are hidden |
-| Map and directions | Google Maps link and one or two landmarks | Directions and map link are hidden |
-| Social links | Facebook, Instagram, TikTok, YouTube or X URLs | Social links are hidden |
+| Opening hours | Days and times the center is open | Monday–Saturday, 8AM–6PM is shown |
+| Map and directions | One or two landmarks near the center | Maps link is shown; landmark text is hidden |
+| Social links | Facebook, Instagram, TikTok, YouTube or X URLs | Facebook and YouTube are shown |
 | Website address | Live address confirmed | `siteUrl` is `https://ict.ocatech.workers.dev` |
 | Inspiration site | A site you like, if you have one | Not used yet |
 | Course fees | Current fee per course, and whether to show “from ₦X” | Only “Fees differ by course. Ask on WhatsApp.” is shown |
@@ -15,7 +15,7 @@ Nothing here is shown as a fact on the site yet. Answer with **later** and the i
 | Founder visibility | May “Founder & Director: Oluegwu Chigozie” appear on About? | Founder line is hidden |
 | Installation scope | Exactly what software, CCTV and solar jobs include and cover | Short, factual descriptions are shown; no prices or guarantees |
 | “One place” claim | Does the center really teach and do the installation work itself? | The home and About claim is hidden |
-| Online delivery | Does online delivery apply to every course? | Site says to state your preference and we will confirm how it will run |
+| Online delivery | Does online delivery apply to every course? | Courses are in person by default; online availability is not claimed |
 | Privacy retention | How long enquiries are kept, and which analytics are used | Draft uses “as long as needed, then deleted”; no analytics |
 | Certificate | Exact wording, sample image, and whether it can be verified online | “Certificate of completion” is shown; no verification claim |
 | Photo consent | Confirmation that people in supplied photos agreed to appear | Supplied photos are used with factual alt text only |
