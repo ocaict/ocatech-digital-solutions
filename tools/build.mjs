@@ -675,21 +675,90 @@ function renderCourse(course) {
 
 <section class="section section-alt" aria-labelledby="tuition-heading">
 <div class="wrap">
-<div class="tuition-card">
-  <div class="tuition-content">
-    <h2 id="tuition-heading">Tuition &amp; Enrolment</h2>
-    <p class="tuition-lead">Gain in-demand practical skills with step-by-step instructor guidance in Onitsha.</p>
-    <div class="tuition-pricing">
-      <span class="tuition-current">₦${formatNaira(course.fee)}</span>
-      ${course.originalFee ? `<span class="tuition-original"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
-    </div>
-    <p class="tuition-note">${esc(site.offer.feeNote)} Payment methods: ${site.offer.paymentMethods.join(", ")}.</p>
+  <div class="section-head text-center">
+    <span class="eyebrow">Tuition &amp; Flexible Payments</span>
+    <h2 id="tuition-heading">Transparent Fees, No Hidden Charges</h2>
+    <p class="tuition-lead">Start your practical training in Onitsha with a single payment or spread your investment with flexible installment milestones.</p>
   </div>
-  <div class="tuition-actions">
-    <a class="button" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
+
+  ${site.flags.showFees && course.fee ? `
+  <div class="installments-grid">
+    <div class="installment-plan-card">
+      <div class="plan-header">
+        <span class="plan-tier-badge">Option 1 · Full Payment</span>
+        <h3 class="plan-title">Single Tuition</h3>
+        <p class="plan-desc">Pay once at registration and focus 100% on learning with zero payment worries.</p>
+      </div>
+      <div class="plan-price-wrap">
+        <span class="plan-price">₦${formatNaira(course.fee)}</span>
+        ${course.originalFee ? `<span class="plan-price-orig"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
+      </div>
+      <ul class="plan-perks-list">
+        <li><span class="check-mark">&#x2713;</span> Full course access &amp; lab computer</li>
+        <li><span class="check-mark">&#x2713;</span> Dedicated instructor mentoring</li>
+        <li><span class="check-mark">&#x2713;</span> Solar-powered continuous learning</li>
+        <li><span class="check-mark">&#x2713;</span> Certificate of completion</li>
+      </ul>
+      <a class="button button-block" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
+    </div>
+
+    <div class="installment-plan-card featured-plan">
+      <div class="plan-popular-ribbon">Most Popular</div>
+      <div class="plan-header">
+        <span class="plan-tier-badge">Option 2 · 2-Part Split</span>
+        <h3 class="plan-title">50 / 50 Installment</h3>
+        <p class="plan-desc">Start right away with 50% deposit. Pay the balance midway through the program.</p>
+      </div>
+      <div class="plan-price-wrap">
+        <span class="plan-price">₦${formatNaira(Math.round(course.fee * 0.5))} <span class="plan-price-period">to start</span></span>
+        <span class="plan-split-sub">Then ₦${formatNaira(course.fee - Math.round(course.fee * 0.5))} at mid-term</span>
+      </div>
+      <ul class="plan-perks-list">
+        <li><span class="check-mark">&#x2713;</span> Enrol immediately with 50% deposit</li>
+        <li><span class="check-mark">&#x2713;</span> Mid-term balance halfway through</li>
+        <li><span class="check-mark">&#x2713;</span> Full access to workstations &amp; tools</li>
+        <li><span class="check-mark">&#x2713;</span> Certificate upon full completion</li>
+      </ul>
+      <a class="button button-block" href="/apply/?course=${esc(course.slug)}">Enrol with 2 Payments &rarr;</a>
+    </div>
+
+    <div class="installment-plan-card">
+      <div class="plan-header">
+        <span class="plan-tier-badge">Option 3 · 3-Stage Milestone</span>
+        <h3 class="plan-title">40 / 30 / 30 Plan</h3>
+        <p class="plan-desc">Maximum flexibility across three study milestones as you hit project checkpoints.</p>
+      </div>
+      <div class="plan-price-wrap">
+        <span class="plan-price">₦${formatNaira(Math.round(course.fee * 0.4))} <span class="plan-price-period">to start</span></span>
+        <span class="plan-split-sub">₦${formatNaira(Math.round(course.fee * 0.3))} month 2 &middot; ₦${formatNaira(course.fee - Math.round(course.fee * 0.4) - Math.round(course.fee * 0.3))} final milestone</span>
+      </div>
+      <ul class="plan-perks-list">
+        <li><span class="check-mark">&#x2713;</span> 40% initial deposit at sign-up</li>
+        <li><span class="check-mark">&#x2713;</span> 30% second installment at month 2</li>
+        <li><span class="check-mark">&#x2713;</span> 30% balance before capstone project</li>
+        <li><span class="check-mark">&#x2713;</span> Certificate upon final completion</li>
+      </ul>
+      <a class="button button-outline button-block" href="/apply/?course=${esc(course.slug)}">Apply on 3-Part Plan &rarr;</a>
+    </div>
+  </div>
+  ` : `
+  <div class="tuition-card">
+    <div class="tuition-content">
+      <h2 id="tuition-heading">Tuition &amp; Enrolment</h2>
+      <p class="tuition-lead">Gain in-demand practical skills with step-by-step instructor guidance in Onitsha.</p>
+      <p class="tuition-note">${esc(site.offer.feeNote)} Payment methods: ${site.offer.paymentMethods.join(", ")}.</p>
+    </div>
+    <div class="tuition-actions">
+      <a class="button" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
+      <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+    </div>
+  </div>
+  `}
+
+  <div class="tuition-footer-note">
+    <p class="tuition-note">&#x1F4B3; Accepted payment methods: ${site.offer.paymentMethods.join(", ")}. No hidden computer usage fees or unexpected levies.</p>
     <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
   </div>
-</div>
 </div>
 </section>
 
