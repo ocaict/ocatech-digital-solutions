@@ -558,17 +558,107 @@ function renderApply() {
 }
 
 function renderContact() {
-  const inner = `<section class="page-head wrap"><h1>${esc(contact.h1)}</h1><p>${esc(contact.intro)}</p></section>
-<section class="section"><div class="wrap contact-grid">
-<section><h2>Visit us</h2><p>${esc(site.contact.addressLine)}, ${esc(site.contact.city)}, ${esc(site.contact.state)}</p>
-${site.contact.landmarkOrDirections ? `<p>${esc(site.contact.landmarkOrDirections)}</p>` : ""}
-${site.contact.hours ? `<p>Open ${esc(site.contact.hours)}.</p>` : ""}
-${site.contact.googleMapsUrl ? `<p><a href="${esc(site.contact.googleMapsUrl)}">Get directions</a></p>` : ""}</section>
-<section><h2>WhatsApp</h2><p>${esc(site.contact.whatsapp.display)}</p><a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a></section>
-<section><h2>Phone</h2><ul>${site.contact.phones.map((phone) => `<li><a href="tel:${esc(phone.e164)}">${esc(phone.display)}</a></li>`).join("")}</ul></section>
-<section><h2>Email</h2><p><a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></p></section>
-</div></section>
-<section class="section section-alt closing"><div class="wrap"><p>${esc(contact.closing)} <a class="text-link" href="/apply/">${esc(sharedCopy.buttons.applyNow)}</a></p></div></section>`;
+  const mapQuery = encodeURIComponent(`${site.contact.addressLine}, ${site.contact.city}, ${site.contact.state}, ${site.contact.country}`);
+  const mapEmbedUrl = `https://www.google.com/maps?q=${mapQuery}&output=embed`;
+  const inner = `<section class="page-head wrap">
+  <h1>${esc(contact.h1)}</h1>
+  <p class="course-lead-copy">${esc(contact.intro)}</p>
+</section>
+
+<section class="section contact-visual-section" aria-label="Our training center">
+  <div class="wrap">
+    <figure class="contact-hero-media">
+      <img src="/assets/img/training-lab-960.webp" srcset="/assets/img/training-lab-480.webp 480w, /assets/img/training-lab-960.webp 960w, /assets/img/training-lab-1600.webp 1600w" sizes="(min-width: 960px) 920px, 100vw" width="960" height="540" loading="lazy" alt="OCATECH Digital Solutions training center in Onitsha">
+      <figcaption>Inside our Onitsha training center at ${esc(site.contact.addressLine)}.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="contact-details-heading">
+  <div class="wrap contact-split">
+    <div class="contact-info-panel">
+      <h2 id="contact-details-heading">Reach us directly</h2>
+      <p class="contact-panel-intro">The quickest way to get an answer is on WhatsApp or by calling our desk during opening hours.</p>
+
+      <div class="contact-item-list">
+        <div class="contact-item">
+          <span class="contact-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <div>
+            <h3>Visit the center</h3>
+            <p>${esc(site.contact.addressLine)}, ${esc(site.contact.city)}, ${esc(site.contact.state)}</p>
+            ${site.contact.landmarkOrDirections ? `<p class="contact-muted">${esc(site.contact.landmarkOrDirections)}</p>` : ""}
+            ${site.contact.hours ? `<p class="contact-hours">Open ${esc(site.contact.hours)}.</p>` : ""}
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <div>
+            <h3>Phone &amp; WhatsApp</h3>
+            <ul class="contact-phones">
+              ${site.contact.phones.map((phone) => `<li><a href="tel:${esc(phone.e164)}">${esc(phone.display)}</a></li>`).join("")}
+            </ul>
+            <p class="contact-wa-wrap"><a class="button button-small button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-item-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
+          <div>
+            <h3>Email</h3>
+            <p><a href="mailto:${esc(site.contact.email)}">${esc(site.contact.email)}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-card">
+      <h2>Have a question? Let’s talk</h2>
+      <p class="contact-panel-intro">Send a quick note and our team will reply on WhatsApp or call you back.</p>
+      <form class="contact-quick-form" action="/api/apply" method="post">
+        <input type="hidden" name="type" value="learn">
+        <input type="hidden" name="course" value="not-sure-yet">
+        <input type="hidden" name="sourcePage" value="/contact/">
+        <p class="honeypot"><label>Leave this blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <p><label for="contact-name">Your name *</label><input id="contact-name" type="text" name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Enter your full name"></p>
+        <div class="contact-form-row">
+          <p><label for="contact-phone">Phone / WhatsApp *</label><input id="contact-phone" type="tel" name="phone" required autocomplete="tel" placeholder="e.g. 0816 532 1429"></p>
+          <p><label for="contact-email">Email (optional)</label><input id="contact-email" type="email" name="email" autocomplete="email" placeholder="you@example.com"></p>
+        </div>
+        <p><label for="contact-message">How can we help? *</label><textarea id="contact-message" name="message" required maxlength="600" placeholder="Ask about a course, schedule, fees or installation service..."></textarea></p>
+        <p class="consent"><label><input type="checkbox" name="consent" required><span>I agree that OCATECH can contact me about this enquiry.</span></label></p>
+        <p><button class="button contact-submit-btn" type="submit">Send message</button></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" aria-labelledby="map-heading">
+  <div class="wrap">
+    <div class="map-header">
+      <div>
+        <h2 id="map-heading">Find us on the map</h2>
+        <p class="contact-muted">${esc(site.contact.addressLine)}, ${esc(site.contact.city)} — ${esc(site.contact.landmarkOrDirections)}</p>
+      </div>
+      ${site.contact.googleMapsUrl ? `<a class="button button-quiet" href="${esc(site.contact.googleMapsUrl)}">Open in Google Maps &nearr;</a>` : ""}
+    </div>
+    <div class="map-embed-wrap">
+      <iframe
+        title="Map showing OCATECH Digital Solutions at 62 New Market Road, Onitsha"
+        src="${esc(mapEmbedUrl)}"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>`;
   return { title: contact.seoTitle, description: contact.seoDescription, canonical: urls.for("/contact/"), inner, jsonLd: [] };
 }
 
@@ -597,6 +687,10 @@ const sitemapPaths = ["/", "/courses/", "/services/", "/about/", "/apply/", "/co
 
 function emitPage(file, meta) {
   const hashes = meta.jsonLd.map((item) => crypto.createHash("sha256").update(json(item)).digest("base64"));
+  const frameSources = [
+    site.flags.enableTurnstile ? "https://challenges.cloudflare.com" : null,
+    file === "contact/index.html" ? "https://www.google.com https://maps.google.com" : null,
+  ].filter(Boolean);
   const csp = [
     "default-src 'self'",
     "base-uri 'self'",
@@ -608,7 +702,7 @@ function emitPage(file, meta) {
     "font-src 'self'",
     `connect-src 'self'${site.flags.enableTurnstile ? " https://challenges.cloudflare.com" : ""}`,
     "form-action 'self' https://wa.me",
-    `frame-src 'none'${site.flags.enableTurnstile ? " https://challenges.cloudflare.com" : ""}`,
+    `frame-src ${frameSources.length ? frameSources.join(" ") : "'none'"}`,
     "upgrade-insecure-requests",
   ].join("; ");
   const route = file === "index.html" ? "/" : `/${file.replace(/index\.html$/, "")}`;
