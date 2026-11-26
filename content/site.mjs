@@ -160,9 +160,36 @@ export const about = {
   who: "OCATECH Digital Solutions is an ICT hub and training center at 62 New Market Road, Onitsha. We opened in 2026 to give people in Onitsha and nearby towns practical technology skills and dependable ICT services",
   onePlaceClaim: " in one place.",
   pillars: [
-    ["Our Mission", "Equip beginners, students and business owners in Onitsha and nearby towns with practical digital skills they can use immediately."],
-    ["Our Vision", "Be a trusted ICT hub in Anambra State where learners master modern tools and businesses get dependable technology support."],
-    ["Our Goal", "Bridge the gap between theory and real work through hands-on projects, clear step-by-step guidance and flexible entry all year."],
+    {
+      title: "Our Mission",
+      tag: "Purpose",
+      text: "Equip beginners, students, professionals and business owners in Onitsha and nearby towns with practical digital skills they can use immediately.",
+      points: [
+        "100% practical, hands-on learning from day one",
+        "Direct mastery of modern tools: coding, design, AI and data",
+        "Immediate career, freelance and business readiness",
+      ],
+    },
+    {
+      title: "Our Vision",
+      tag: "Future",
+      text: "Be the most trusted ICT hub in Anambra State where learners master modern tools and businesses get dependable technology support.",
+      points: [
+        "The leading tech education hub across Onitsha and Anambra State",
+        "Bridging the divide between academic theory and industry standards",
+        "Empowering local businesses with dependable tech infrastructure",
+      ],
+    },
+    {
+      title: "Our Goal",
+      tag: "Action",
+      text: "Bridge the gap between theory and real work through hands-on capstone projects, clear step-by-step guidance and flexible entry all year.",
+      points: [
+        "A real, portfolio-ready project delivered for every course",
+        "Zero-friction entry with open admission all year round",
+        "Flexible installment tuition and dedicated in-person mentors",
+      ],
+    },
   ],
   approachHeading: "Our approach to training",
   approachIntro: "Every class is built around real tasks, clear steps and practical support.",

@@ -499,43 +499,72 @@ ${items}
 function renderAbout() {
   const founder = site.flags.showFounder ? `<p>${esc(site.brand.founder.title)}: ${esc(site.brand.founder.name)}.</p>` : "";
   const pillarIcons = [
-    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>',
-    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
   ];
-  const pillars = about.pillars.map(([title, text], idx) => `
+  const checkIcon = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  const pillars = about.pillars.map((item, idx) => {
+    const icon = pillarIcons[idx] || pillarIcons[0];
+    const points = (item.points || []).map((pt) => `<li><span class="pillar-check" aria-hidden="true">${checkIcon}</span><span>${esc(pt)}</span></li>`).join("");
+    return `
     <article class="pillar-card">
-      <span class="pillar-icon" aria-hidden="true">${pillarIcons[idx] || pillarIcons[0]}</span>
+      <div class="pillar-card-top">
+        <span class="pillar-icon" aria-hidden="true">${icon}</span>
+        <span class="pillar-tag">${esc(item.tag || "Core")}</span>
+      </div>
+      <h3>${esc(item.title)}</h3>
+      <p class="pillar-text">${esc(item.text)}</p>
+      ${points ? `<ul class="pillar-points">${points}</ul>` : ""}
+    </article>`;
+  }).join("");
+
+  const approach = about.approach.map(([title, text], idx) => `
+    <div class="approach-grid-card">
+      <span class="approach-num">${String(idx + 1).padStart(2, "0")}</span>
       <h3>${esc(title)}</h3>
       <p>${esc(text)}</p>
-    </article>`).join("");
-  const approach = about.approach.map(([title, text], idx) => `
-    <li class="approach-step">
-      <span class="approach-num">${String(idx + 1).padStart(2, "0")}</span>
-      <div class="approach-card">
-        <h3>${esc(title)}</h3>
-        <p>${esc(text)}</p>
-      </div>
-    </li>`).join("");
+    </div>`).join("");
 
-  const inner = `<section class="page-head wrap about-hero">
-  <div class="about-hero-text">
-    <p class="hero-kicker">${esc(site.brand.descriptor)}</p>
-    <h1>${esc(about.h1)}</h1>
-    <p class="course-lead-copy">${esc(about.who)}${site.flags.showServicesClaim ? esc(about.onePlaceClaim) : "."}</p>
-    <div class="hero-actions">
-      <a class="button" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a>
-      <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+  const inner = `<section class="about-hero-section">
+  <div class="wrap about-hero-grid">
+    <div class="about-hero-text">
+      <div class="about-kicker-badge">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span>${esc(site.brand.descriptor)}</span>
+      </div>
+      <h1>${esc(about.h1)}</h1>
+      <p class="about-lead">${esc(about.who)}${site.flags.showServicesClaim ? esc(about.onePlaceClaim) : "."}</p>
+      <div class="hero-actions">
+        <a class="button" href="/courses/">${esc(sharedCopy.buttons.allCourses)}</a>
+        <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
+      </div>
+      <div class="about-hero-trust" aria-label="Key highlights">
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Registered BN 9677251</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Mon–Sat 8AM–6PM</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free Wi-Fi at Hub</span>
+      </div>
+    </div>
+    <div class="about-hero-media-wrap">
+      <figure class="about-hero-media">
+        <img src="/assets/img/training-960.webp" srcset="/assets/img/training-480.webp 480w, /assets/img/training-960.webp 960w, /assets/img/training-1600.webp 1600w" sizes="(min-width: 820px) 520px, 100vw" width="960" height="540" alt="Students learning practical digital skills at OCATECH Digital Solutions in Onitsha">
+        <figcaption class="hero-media-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><strong>62 New Market Road, Onitsha</strong> · Beside Glo Office &amp; Mr Bigs</span>
+        </figcaption>
+      </figure>
     </div>
   </div>
-  <figure class="about-hero-media">
-    <img src="/assets/img/training-960.webp" srcset="/assets/img/training-480.webp 480w, /assets/img/training-960.webp 960w, /assets/img/training-1600.webp 1600w" sizes="(min-width: 820px) 480px, 100vw" width="960" height="540" alt="Students learning practical ICT skills at OCATECH in Onitsha">
-  </figure>
 </section>
 
-<section class="section" aria-labelledby="pillars-heading">
+<section class="section section-pillars" aria-labelledby="pillars-heading">
   <div class="wrap">
-    <h2 id="pillars-heading" class="sr-only">Our Mission, Vision and Goal</h2>
+    <div class="section-title-wrap text-center">
+      <p class="hero-kicker">Guiding Principles</p>
+      <h2 id="pillars-heading">Our Mission, Vision &amp; Goal</h2>
+      <p class="section-subtitle">The standard behind our teaching, mentorship and technology solutions in Onitsha.</p>
+    </div>
     <div class="pillars-grid">${pillars}</div>
   </div>
 </section>
@@ -553,18 +582,25 @@ function renderAbout() {
 
 <section class="section" aria-labelledby="approach-heading">
   <div class="wrap">
-    <div class="approach-head">
+    <div class="section-title-wrap">
+      <p class="hero-kicker">How We Teach</p>
       <h2 id="approach-heading">${esc(about.approachHeading)}</h2>
-      <p class="contact-muted">${esc(about.approachIntro)}</p>
+      <p class="section-subtitle">${esc(about.approachIntro)}</p>
     </div>
-    <ol class="approach-timeline">${approach}</ol>
+    <div class="approach-grid">${approach}</div>
   </div>
 </section>
 
 <section class="section section-alt" aria-labelledby="inside-about-heading">
   <div class="wrap">
-    <h2 id="inside-about-heading">Inside our Onitsha center</h2>
-    <video class="center-video" controls preload="none" poster="/assets/img/video-poster.webp"><source src="/assets/video/ict-training.mp4" type="video/mp4"></video>
+    <div class="section-title-wrap text-center">
+      <p class="hero-kicker">Center Facilities</p>
+      <h2 id="inside-about-heading">Inside our Onitsha center</h2>
+      <p class="section-subtitle">Comfortable, air-conditioned lab with individual computer workstations and high-speed internet.</p>
+    </div>
+    <div class="about-video-wrap">
+      <video class="center-video" controls preload="none" poster="/assets/img/video-poster.webp"><source src="/assets/video/ict-training.mp4" type="video/mp4"></video>
+    </div>
   </div>
 </section>
 
