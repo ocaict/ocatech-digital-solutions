@@ -150,7 +150,7 @@ function courseJsonLd(course) {
 }
 
 function renderFaq(items) {
-  return `<div class="faq-list">${items.map(([question, answer], index) => `<details class="faq-item"${index === 0 ? " open" : ""}>
+  return `<div class="faq-list">${items.map(([question, answer]) => `<details class="faq-item" name="faq">
 <summary>${esc(question)}</summary>
 <p>${esc(answer)}</p>
 </details>`).join("")}</div>`;

@@ -645,10 +645,69 @@ button, input, select, textarea { font: inherit; }
 .gallery figcaption { padding: .75rem 1rem; color: var(--muted); font-size: .9rem; }
 .center-video { width: 100%; margin-top: 1rem; border: 1px solid var(--border); border-radius: var(--radius); background: #000; }
 
-.faq-list { display: grid; gap: .6rem; }
-.faq-item { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
-.faq-item summary { min-height: 48px; padding: .8rem 1rem; cursor: pointer; font-weight: 600; }
-.faq-item p { padding: 0 1rem 1rem; color: var(--muted); margin: 0; }
+.faq-list { display: grid; gap: .75rem; }
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.faq-item[open] {
+  border-color: rgba(70, 206, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(180deg, var(--surface) 0%, rgba(1, 45, 150, 0.12) 100%);
+}
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 52px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--text);
+  list-style: none;
+  user-select: none;
+  transition: background .15s ease, color .15s ease;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::marker {
+  display: none;
+}
+.faq-item summary::after {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--brand-orange);
+  border-bottom: 2px solid var(--brand-orange);
+  transform: rotate(45deg);
+  transition: transform .25s ease, border-color .2s ease;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::after {
+  transform: rotate(-135deg);
+  border-color: #46ceff;
+}
+.faq-item summary:hover {
+  background: var(--surface-2);
+}
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: -2px;
+}
+.faq-item p {
+  padding: 0 1.25rem 1.25rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+  font-size: .95rem;
+}
 
 .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
 .filter-link { min-height: 44px; display: inline-flex; align-items: center; padding: .5rem .85rem; border: 1px solid var(--border); border-radius: 999px; text-decoration: none; color: var(--muted); background: var(--surface); }
