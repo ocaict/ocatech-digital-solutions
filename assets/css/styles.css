@@ -303,19 +303,6 @@ button, input, select, textarea { font: inherit; }
   transform: scale(1.03);
 }
 
-.badge-sale {
-  position: absolute;
-  top: .75rem;
-  left: .75rem;
-  background: var(--orange);
-  color: var(--navy-text);
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: .05em;
-  padding: .2rem .55rem;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
 
 /* Card Body */
 .course-card-body {

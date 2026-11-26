@@ -170,7 +170,6 @@ function courseCard(course, lead = false) {
   return `<article class="course-card${lead ? " course-card-lead" : ""}" data-course-track="${esc(course.track)}">
 <div class="course-card-media">
   <img src="${esc(course.image)}" width="600" height="340" alt="${esc(course.title)}" loading="lazy">
-  <span class="badge-sale">75% OFF</span>
 </div>
 <div class="course-card-body">
   <div class="course-card-meta">
