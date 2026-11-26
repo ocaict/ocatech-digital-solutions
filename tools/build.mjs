@@ -290,14 +290,6 @@ ${renderPickerFallback()}
 <h2 id="why-heading">${esc(home.why.heading)}</h2>
 <ul class="why-list">${why}</ul>
 </div></section>
-<section class="section section-alt" aria-labelledby="inside-heading"><div class="wrap">
-<h2 id="inside-heading">${esc(home.inside.heading)}</h2>
-<div class="gallery">
-<figure><img src="/assets/img/training-lab-960.webp" srcset="/assets/img/training-lab-480.webp 480w, /assets/img/training-lab-960.webp 960w, /assets/img/training-lab-1600.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="960" height="540" loading="lazy" alt="OCATECH training lab"><figcaption>${esc(home.inside.caption)}</figcaption></figure>
-<figure><img src="/assets/img/training-960.webp" srcset="/assets/img/training-480.webp 480w, /assets/img/training-960.webp 960w, /assets/img/training-1600.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="960" height="540" loading="lazy" alt="OCATECH training session"><figcaption>Training at the center.</figcaption></figure>
-<figure><img src="/assets/img/instructor-guide-960.webp" srcset="/assets/img/instructor-guide-480.webp 480w, /assets/img/instructor-guide-960.webp 960w, /assets/img/instructor-guide-1600.webp 1600w" sizes="(min-width: 800px) 50vw, 100vw" width="960" height="540" loading="lazy" alt="OCATECH digital skills instructor guide"><figcaption>Digital skills guide used at OCATECH.</figcaption></figure>
-</div>
-</div></section>
 ${testimonials}
 <section class="section" aria-labelledby="home-faq-heading"><div class="wrap">
 <h2 id="home-faq-heading">${esc(home.questions.heading)}</h2>
