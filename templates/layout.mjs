@@ -27,6 +27,7 @@ export function shell({ title, description, canonical, body, assets, jsonLd = []
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <meta name="robots" content="${robots}">
+<meta name="google-site-verification" content="X4wu9MJh9bKsta3_t3elWPtAvpn-7Ew40b0o3Yv528o">
 <meta name="chat-src" content="${esc(chatSrc)}">
 <link rel="canonical" href="${esc(canonical)}">
 <meta property="og:type" content="website">
