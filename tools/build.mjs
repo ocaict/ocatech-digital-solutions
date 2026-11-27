@@ -1491,15 +1491,6 @@ function renderContact() {
           </div>
         </div>
       </div>
-
-      <div class="contact-tour-banner">
-        <div class="tour-banner-icon" aria-hidden="true">&#x1F3EB;</div>
-        <div>
-          <h3>Book a Free Lab Tour &amp; Consultation</h3>
-          <p>Want to see our setup before deciding? Walk in anytime during opening hours for a free guided tour of our computer lab, test our workstations, and discuss your career goals with an instructor.</p>
-          <p><a class="text-link" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">Let us know on WhatsApp before you come &rarr;</a></p>
-        </div>
-      </div>
     </div>
 
     <div class="contact-form-card">

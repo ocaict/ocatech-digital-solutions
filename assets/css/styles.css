@@ -3441,41 +3441,6 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
   margin: 0 0 1rem;
 }
 
-.contact-tour-banner {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-top: 1.75rem;
-  padding: 1.25rem;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--brand-orange);
-  border-radius: 10px;
-}
-
-.tour-banner-icon {
-  font-size: 1.75rem;
-  flex-shrink: 0;
-  line-height: 1;
-}
-
-.contact-tour-banner h3 {
-  font-size: 1.05rem;
-  margin: 0 0 0.35rem;
-  color: var(--text);
-}
-
-.contact-tour-banner p {
-  font-size: 0.88rem;
-  color: var(--muted);
-  margin: 0 0 0.5rem;
-  line-height: 1.45;
-}
-
-.contact-tour-banner p:last-child {
-  margin-bottom: 0;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
