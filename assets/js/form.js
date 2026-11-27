@@ -52,6 +52,14 @@
     if (source) {
       source.value = location.pathname;
     }
+    try {
+      ["utm_source", "utm_medium", "utm_campaign", "referrer"].forEach((k) => {
+        const val = sessionStorage.getItem(`ocatech_${k}`) || params.get(k);
+        if (val && form.elements[k]) {
+          form.elements[k].value = val;
+        }
+      });
+    } catch {}
   };
 
   const validate = () => {
@@ -110,6 +118,14 @@
     const label = button.textContent;
     button.textContent = messages.sending;
     const payload = Object.fromEntries(new FormData(form).entries());
+    try {
+      ["utm_source", "utm_medium", "utm_campaign", "referrer"].forEach((k) => {
+        if (!payload[k]) {
+          const val = sessionStorage.getItem(`ocatech_${k}`);
+          if (val) payload[k] = val;
+        }
+      });
+    } catch {}
     try {
       const response = await fetch("/api/apply", {
         method: "POST",

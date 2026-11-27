@@ -173,6 +173,17 @@ function renderFaq(items) {
 </details>`).join("")}</div>`;
 }
 
+function renderBreadcrumbs(items) {
+  const sep = `<span class="breadcrumb-sep" aria-hidden="true">/</span>`;
+  const crumbs = items.map(([label, href], i) => {
+    const last = i === items.length - 1;
+    return last
+      ? `<li class="breadcrumb-item" aria-current="page">${esc(label)}</li>`
+      : `<li class="breadcrumb-item"><a href="${esc(href)}">${esc(label)}</a>${sep}</li>`;
+  }).join("");
+  return `<nav class="breadcrumbs-nav wrap" aria-label="Breadcrumb"><ol class="breadcrumb-list">${crumbs}</ol></nav>`;
+}
+
 function renderPickerFallback() {
   return `<noscript><ul class="plain-list">${site.tracks.map((track) => `<li><a href="/courses/?track=${esc(track.id)}">${esc(track.name)}</a></li>`).join("")}</ul></noscript>`;
 }
@@ -247,8 +258,9 @@ function renderHome() {
     : "";
   const inner = `${discount}
 <section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/assets/img/video-poster.webp" aria-hidden="true">
+  <video class="hero-video" autoplay muted loop playsinline preload="none" poster="/assets/img/video-poster.webp" aria-hidden="true">
     <source src="/assets/video/ict-training.mp4" type="video/mp4">
+    <p>Video of OCATECH training center in Onitsha.</p>
   </video>
   <div class="hero-video-overlay" aria-hidden="true"></div>
   <div class="wrap hero-grid">
@@ -435,7 +447,7 @@ function renderPaths() {
       <p>${esc(desc)}</p>
     </div>`).join("");
 
-  const inner = `<section class="paths-hero">
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Paths", "/paths/"]])}<section class="paths-hero">
   <div class="wrap">
     <div class="paths-hero-content">
       <div class="paths-kicker-badge">
@@ -543,7 +555,7 @@ function renderShowcase() {
     } catch (e) {}
   }
 
-  const inner = `<section class="page-head wrap text-center">
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Projects you will build", "/showcase/"]])}<section class="page-head wrap text-center">
 <span class="eyebrow">Projects</span>
 <h1>${esc(showcasePage.h1)}</h1>
 <p class="section-lead">${esc(showcasePage.intro)}</p>
@@ -602,6 +614,7 @@ function renderCourse(course) {
       </div>`;
 
   const inner = `<article class="course-page">
+${renderBreadcrumbs([["Home", "/"], ["Courses", "/courses/"], [course.title, `/courses/${course.slug}/`]])}
 <header class="page-head wrap">
 <span class="course-track-pill">${esc(trackName(course.track))}</span>
 <h1>${esc(course.title)}</h1>
@@ -877,7 +890,7 @@ function renderServices() {
       <p>${esc(desc)}</p>
     </div>`).join("");
 
-  const inner = `<section class="services-hero">
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Services", "/services/"]])}<section class="services-hero">
   <div class="wrap">
     <div class="services-hero-content">
       <div class="services-kicker-badge">
@@ -929,7 +942,7 @@ function renderServices() {
     </div>
   </div>
 </section>`;
-  return { title: services.seoTitle, description: services.seoDescription, canonical: urls.for("/services/"), inner, jsonLd: [] };
+  return { title: services.seoTitle, description: services.seoDescription, canonical: urls.for("/services/"), inner, jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Services", urls.for("/services/")]])] };
 }
 
 function renderAbout() {
@@ -1035,7 +1048,8 @@ function renderAbout() {
       <p class="section-subtitle">Practical training space with computers provided and stable power supply.</p>
     </div>
     <div class="about-video-wrap">
-      <video class="center-video" controls preload="none" poster="/assets/img/video-poster.webp"><source src="/assets/video/ict-training.mp4" type="video/mp4"></video>
+      <video class="center-video" controls playsinline preload="none" poster="/assets/img/video-poster.webp"><source src="/assets/video/ict-training.mp4" type="video/mp4"><p>Video tour of our Onitsha training center.</p></video>
+      <p class="video-transcript-note">Can't play the video? <a class="text-link" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">Message us on WhatsApp</a> for a live tour.</p>
     </div>
   </div>
 </section>
@@ -1228,6 +1242,10 @@ function renderApply() {
               <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
             </p>
             <input type="hidden" name="sourcePage" id="source-page" value="">
+            <input type="hidden" name="utm_source" value="">
+            <input type="hidden" name="utm_medium" value="">
+            <input type="hidden" name="utm_campaign" value="">
+            <input type="hidden" name="referrer" value="">
 
             <p class="consent">
               <label>
@@ -1369,6 +1387,10 @@ function renderQuote() {
               <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
             </p>
             <input type="hidden" name="sourcePage" id="source-page" value="">
+            <input type="hidden" name="utm_source" value="">
+            <input type="hidden" name="utm_medium" value="">
+            <input type="hidden" name="utm_campaign" value="">
+            <input type="hidden" name="referrer" value="">
 
             <p class="consent">
               <label>
@@ -1464,6 +1486,10 @@ function renderContact() {
         <input type="hidden" name="type" value="learn">
         <input type="hidden" name="course" value="not-sure-yet">
         <input type="hidden" name="sourcePage" value="/contact/">
+        <input type="hidden" name="utm_source" value="">
+        <input type="hidden" name="utm_medium" value="">
+        <input type="hidden" name="utm_campaign" value="">
+        <input type="hidden" name="referrer" value="">
         <p class="honeypot" aria-hidden="true"><label>Leave this blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
         <p><label for="contact-name">Your name *</label><input id="contact-name" type="text" name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Enter your full name"></p>
         <div class="contact-form-row">

@@ -34,4 +34,20 @@
     script.async = true;
     document.head.append(script);
   }, { once: true });
+
+  try {
+    const params = new URLSearchParams(location.search);
+    ["utm_source", "utm_medium", "utm_campaign"].forEach((key) => {
+      const val = params.get(key);
+      if (val) sessionStorage.setItem(`ocatech_${key}`, val);
+    });
+    if (document.referrer && !sessionStorage.getItem("ocatech_referrer")) {
+      try {
+        const refUrl = new URL(document.referrer, location.href);
+        if (refUrl.origin !== location.origin) {
+          sessionStorage.setItem("ocatech_referrer", document.referrer);
+        }
+      } catch {}
+    }
+  } catch {}
 })();

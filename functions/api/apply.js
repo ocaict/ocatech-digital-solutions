@@ -98,6 +98,10 @@ function validate(data) {
   out.sourcePage = clean(data.sourcePage, 200);
   out.website = clean(data.website, 200);
   out.turnstileToken = clean(data.turnstileToken, 500);
+  out.utm_source = clean(data.utm_source, 100);
+  out.utm_medium = clean(data.utm_medium, 100);
+  out.utm_campaign = clean(data.utm_campaign, 100);
+  out.referrer = clean(data.referrer, 500);
 
   if (out.name.length < 2) return { error: "name" };
   if (!out.phone) return { error: "phone" };
@@ -123,8 +127,12 @@ async function sendEmail(env, lead) {
     `Mode: ${lead.mode || "not supplied"}`,
     `Details: ${lead.message || "not supplied"}`,
     `Page: ${lead.sourcePage || "not supplied"}`,
+    lead.utm_source ? `UTM Source: ${lead.utm_source}` : null,
+    lead.utm_medium ? `UTM Medium: ${lead.utm_medium}` : null,
+    lead.utm_campaign ? `UTM Campaign: ${lead.utm_campaign}` : null,
+    lead.referrer ? `Referrer: ${lead.referrer}` : null,
     `Time: ${new Date().toISOString()}`,
-  ];
+  ].filter(Boolean);
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -185,12 +193,13 @@ export async function onRequestPost(context) {
   try {
     if (env.DB) {
       await env.DB.prepare(`INSERT INTO leads
-        (type, name, phone, email, course, service, mode, start_pref, message, source_page, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new')`)
+        (type, name, phone, email, course, service, mode, start_pref, message, source_page, status, utm_source, utm_medium, utm_campaign, referrer)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', ?, ?, ?, ?)`)
         .bind(lead.type, lead.name, lead.phone, lead.email || null,
           lead.type === "learn" ? lead.course : null,
           lead.type === "service" ? lead.service : null,
-          lead.mode || null, lead.start || null, lead.message || null, lead.sourcePage || null)
+          lead.mode || null, lead.start || null, lead.message || null, lead.sourcePage || null,
+          lead.utm_source || null, lead.utm_medium || null, lead.utm_campaign || null, lead.referrer || null)
         .run();
       saved = true;
     }

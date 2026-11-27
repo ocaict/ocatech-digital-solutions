@@ -3458,3 +3458,15 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* Breadcrumbs */
+.breadcrumbs-nav { padding: 0.6rem 0 0; }
+.breadcrumb-list { display: flex; flex-wrap: wrap; align-items: center; gap: 0.1rem; list-style: none; padding: 0; margin: 0; font-size: 0.82rem; color: var(--muted); }
+.breadcrumb-item { display: flex; align-items: center; gap: 0.1rem; }
+.breadcrumb-item a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.breadcrumb-item a:hover { color: var(--text); }
+.breadcrumb-item[aria-current="page"] { color: var(--text); font-weight: 500; }
+.breadcrumb-sep { margin: 0 0.25rem; color: var(--border); }
+
+/* Video transcript note */
+.video-transcript-note { font-size: 0.82rem; color: var(--muted); margin: 0.6rem 0 0; text-align: center; }

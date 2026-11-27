@@ -11,8 +11,18 @@ CREATE TABLE IF NOT EXISTS leads (
   start_pref TEXT,
   message TEXT,
   source_page TEXT,
-  status TEXT NOT NULL DEFAULT 'new'
+  status TEXT NOT NULL DEFAULT 'new',
+  utm_source TEXT,
+  utm_medium TEXT,
+  utm_campaign TEXT,
+  referrer TEXT
 );
+
+-- Migration for existing databases:
+-- ALTER TABLE leads ADD COLUMN utm_source TEXT;
+-- ALTER TABLE leads ADD COLUMN utm_medium TEXT;
+-- ALTER TABLE leads ADD COLUMN utm_campaign TEXT;
+-- ALTER TABLE leads ADD COLUMN referrer TEXT;
 
 CREATE TABLE IF NOT EXISTS usage (
   day TEXT NOT NULL,

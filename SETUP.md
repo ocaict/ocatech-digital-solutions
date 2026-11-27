@@ -52,7 +52,10 @@ Because this Worker is deployed from code, Cloudflare may say “Bindings cannot
 
 1. In Cloudflare, go to **Workers & Pages → D1 SQL database** and click **Create Database**.
 2. Name it `OCATECH_DB`. Choose a location near Nigeria if offered; otherwise leave the default. Click **Create**.
-3. Open `OCATECH_DB`, click **Console**, paste everything inside `db/schema.sql`, and click **Execute**.
+3. Open `OCATECH_DB`, click **Console**, paste everything inside `db/schema.sql`, and click **Execute**. If your database was already created earlier, run this one-line migration in the Console to add campaign attribution columns:
+   ```sql
+   ALTER TABLE leads ADD COLUMN utm_source TEXT; ALTER TABLE leads ADD COLUMN utm_medium TEXT; ALTER TABLE leads ADD COLUMN utm_campaign TEXT; ALTER TABLE leads ADD COLUMN referrer TEXT;
+   ```
 4. With `OCATECH_DB` open, click **Settings** and copy the **Database ID** (a long code). Send it to whoever maintains the files. The database ID is not a password.
 5. Add this block to `wrangler.jsonc`, replacing the example ID with the copied one:
 
