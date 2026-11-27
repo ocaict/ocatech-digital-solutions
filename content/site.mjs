@@ -2,7 +2,7 @@ export const shared = {
   nav: [
     ["Courses", "/courses/"],
     ["Paths", "/paths/"],
-    ["Projects you will build", "/showcase/"],
+    ["Projects", "/showcase/"],
     ["Services", "/services/"],
     ["About", "/about/"],
     ["Contact", "/contact/"],

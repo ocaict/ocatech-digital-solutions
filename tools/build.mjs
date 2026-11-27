@@ -555,7 +555,7 @@ function renderShowcase() {
     } catch (e) {}
   }
 
-  const inner = `${renderBreadcrumbs([["Home", "/"], ["Projects you will build", "/showcase/"]])}<section class="page-head wrap text-center">
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Projects", "/showcase/"]])}<section class="page-head wrap text-center">
 <span class="eyebrow">Projects</span>
 <h1>${esc(showcasePage.h1)}</h1>
 <p class="section-lead">${esc(showcasePage.intro)}</p>
