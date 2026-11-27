@@ -137,20 +137,52 @@ button, input, select, textarea { font: inherit; }
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: .65rem;
+  gap: .75rem;
   color: var(--text);
-  font-family: var(--font-head);
-  font-weight: 700;
   text-decoration: none;
   margin-right: auto;
   transition: opacity 0.2s ease;
 }
 
 .brand:hover {
-  opacity: 0.88;
+  opacity: 0.92;
 }
 
 .brand img { width: 44px; height: 44px; object-fit: contain; }
+
+.brand-text {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.brand-oca {
+  color: #ffffff;
+}
+
+.brand-tech {
+  color: var(--red, #ff0000);
+}
+
+.brand-desc {
+  font-family: var(--font-head);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #8fa0b8;
+  text-transform: uppercase;
+  margin-top: 3px;
+  line-height: 1;
+}
 
 .site-nav { display: none; gap: 1.15rem; align-items: center; }
 .site-nav a:not(.button) {
@@ -2395,17 +2427,23 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
 }
 
 .footer-brand-name {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin: 0 0 .15rem;
-  line-height: 1.2;
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1;
 }
 
-.footer-brand-sub {
-  font-size: .82rem;
-  color: var(--muted);
-  margin: 0;
+.footer-brand-desc {
+  font-family: var(--font-head);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #8fa0b8;
+  text-transform: uppercase;
+  margin-top: 4px;
+  line-height: 1;
 }
 
 .footer-tagline {

@@ -65,7 +65,10 @@ export function header(site, shared, assets, canonicalPath) {
   <div class="wrap header-inner">
     <a class="brand" href="/" aria-label="OCATECH Digital Solutions home">
       <img src="/assets/img/logo-480.webp" alt="OCATECH Digital Solutions logo" width="96" height="96">
-      <span>${esc(site.brand.name)}</span>
+      <span class="brand-text">
+        <span class="brand-name"><span class="brand-oca">OCA</span><span class="brand-tech">TECH</span></span>
+        <span class="brand-desc">DIGITAL SOLUTIONS</span>
+      </span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
@@ -124,9 +127,9 @@ export function footer(site, shared) {
     <section class="footer-brand-col" aria-labelledby="footer-brand">
       <div class="footer-brand-head">
         <img src="/assets/img/logo-480.webp" alt="" width="48" height="48">
-        <div>
-          <h2 id="footer-brand" class="footer-brand-name">${esc(site.brand.name)}</h2>
-          <p class="footer-brand-sub">${esc(site.brand.descriptor)}</p>
+        <div class="brand-text">
+          <h2 id="footer-brand" class="footer-brand-name"><span class="brand-oca">OCA</span><span class="brand-tech">TECH</span></h2>
+          <span class="footer-brand-desc">DIGITAL SOLUTIONS</span>
         </div>
       </div>
       <p class="footer-tagline">"${esc(site.brand.tagline)}"</p>
