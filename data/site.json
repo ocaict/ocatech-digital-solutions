@@ -214,16 +214,16 @@
   ],
   "services": [
     {
-      "slug": "software-installation",
-      "name": "Software installation"
-    },
-    {
       "slug": "cctv-installation",
-      "name": "CCTV installation"
+      "name": "CCTV camera installation & mobile viewing"
     },
     {
       "slug": "solar-installation",
-      "name": "Solar installation"
+      "name": "Solar & inverter power installation"
+    },
+    {
+      "slug": "software-installation",
+      "name": "Software installation & PC optimization"
     }
   ],
   "leadCourses": [
