@@ -1568,7 +1568,436 @@ function renderReview() {
 }
 
 const headerRules = [];
-const sitemapPaths = ["/", "/courses/", "/paths/", "/showcase/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/", "/review/"];
+
+// ── Fees page ─────────────────────────────────────────────────────────────────
+function renderFees() {
+  const formatNaira = (num) => Number(num || 0).toLocaleString("en-NG");
+  const hasFutureOffer = site.offer.endsOn && new Date(site.offer.endsOn) > new Date();
+  const offerEnd = hasFutureOffer ? new Date(site.offer.endsOn).toLocaleDateString("en-NG", { year: "numeric", month: "long", day: "numeric" }) : null;
+  const trackOrder = ["foundation", "web", "design-media", "business", "data-ai", "security-networking"];
+  const byTrack = new Map(trackOrder.map((id) => [id, []]));
+  for (const course of courseData) {
+    if (!byTrack.has(course.track)) byTrack.set(course.track, []);
+    byTrack.get(course.track).push(course);
+  }
+  const sections = [...byTrack.entries()].filter(([, courses]) => courses.length).map(([trackId, courses]) => {
+    const rows = courses.map((course) => {
+      const priceCell = (course.originalFee && hasFutureOffer)
+        ? `<span class="fees-price">₦${formatNaira(course.fee)}</span> <s class="fees-orig">₦${formatNaira(course.originalFee)}</s>`
+        : `<span class="fees-price">₦${formatNaira(course.fee)}</span>`;
+      return `<tr><td><a href="/courses/${esc(course.slug)}/">${esc(course.title)}</a></td><td>${esc(course.level)}</td><td>${priceCell}</td><td><a class="button button-small" href="/apply/?course=${esc(course.slug)}">Apply</a></td></tr>`;
+    }).join("");
+    return `<section class="fees-track-section" aria-labelledby="fees-track-${esc(trackId)}"><h2 id="fees-track-${esc(trackId)}">${esc(trackName(trackId))}</h2><table class="fees-table"><thead><tr><th>Course</th><th>Level</th><th>Fee</th><th></th></tr></thead><tbody>${rows}</tbody></table></section>`;
+  }).join("");
+
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Course fees", "/fees/"]])}
+<section class="page-head wrap">
+  <h1>Course fees</h1>
+  <p class="course-lead-copy">Clear prices for every course. Installments are available.</p>
+  ${hasFutureOffer ? `<p class="fees-offer-note">Launch prices valid until ${esc(offerEnd)}. Enrol before the offer ends.</p>` : ""}
+</section>
+
+<section class="section">
+  <div class="wrap fees-wrap">
+    ${sections}
+    <div class="fees-installments">
+      <h2>Installment plans</h2>
+      <p>You can split your tuition across two or three payments. Options are available at the center. We will give you payment details directly.</p>
+      <p class="fees-warn">We never ask you to pay into an account sent by anyone else. If you receive such a message, please contact us immediately on WhatsApp.</p>
+      <p>Payment is accepted by ${esc(site.offer.paymentMethods.join(", "))} at the center.</p>
+      <a class="button" href="/apply/">Apply for a course ${svgIcons.arrowRight}</a>
+    </div>
+  </div>
+</section>`;
+  return {
+    title: "Course fees | OCATECH Digital Solutions",
+    description: "See all 17 course fees at OCATECH Digital Solutions, Onitsha. Installment options available. Apply online or visit us at 62 New Market Road.",
+    canonical: urls.for("/fees/"),
+    inner,
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Course fees", urls.for("/fees/")]])],
+  };
+}
+
+// ── Free class page ────────────────────────────────────────────────────────────
+function renderFreeClass() {
+  const tasterDate = site.taster?.date || null;
+  const tasterTime = site.taster?.time || null;
+  const tasterTopic = site.taster?.topic || null;
+  const tasterSeats = site.taster?.seats || null;
+  const hasDate = tasterDate && tasterTopic;
+  const dateLine = hasDate
+    ? `<p class="free-class-date"><strong>Date:</strong> ${esc(tasterDate)}${tasterTime ? ` at ${esc(tasterTime)}` : ""}</p>`
+    : "";
+  const topicLine = tasterTopic ? `<p><strong>Topic:</strong> ${esc(tasterTopic)}</p>` : "";
+  const seatsLine = tasterSeats ? `<p class="free-class-seats">Only ${esc(String(tasterSeats))} seats available. Reserve yours today.</p>` : "";
+  const headline = hasDate ? "Join our next free class" : "Free taster class";
+  const intro = hasDate
+    ? `Come and experience a live session at no cost. No prior knowledge required.`
+    : `Next free class: to be announced. Leave your details and we will message you as soon as it is scheduled.`;
+
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Free taster class", "/free-class/"]])}
+<section class="page-head wrap">
+  <h1>${esc(headline)}</h1>
+  <p class="course-lead-copy">${esc(intro)}</p>
+</section>
+<section class="section">
+  <div class="wrap two-col-info">
+    <div class="info-card">
+      <h2>Session details</h2>
+      ${dateLine}${topicLine}${seatsLine}
+      <p>Bring a pen and notebook. Comfortable clothes. No laptop needed — computers are provided at the center.</p>
+      <p>The session is free. We will show you what practical digital training looks like, and answer your questions about courses and fees.</p>
+    </div>
+    <div class="info-card">
+      <h2>Reserve your spot</h2>
+      <form id="taster-form" action="/api/apply" method="post">
+        <input type="hidden" name="type" value="taster">
+        <input type="hidden" name="course" value="free-taster">
+        <input type="hidden" name="sourcePage" value="/free-class/">
+        <input type="hidden" name="utm_source" value="">
+        <input type="hidden" name="utm_medium" value="">
+        <input type="hidden" name="utm_campaign" value="">
+        <input type="hidden" name="referrer" value="">
+        <p class="honeypot" aria-hidden="true"><label>Leave blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <p class="form-field"><label for="taster-name">Your name *</label><input id="taster-name" name="name" type="text" required minlength="2" maxlength="80" autocomplete="name" placeholder="Enter your full name"></p>
+        <p class="form-field"><label for="taster-phone">Phone / WhatsApp *</label><input id="taster-phone" name="phone" type="tel" required autocomplete="tel" placeholder="e.g. 0816 532 1429"></p>
+        <p class="form-field"><label for="taster-email">Email (optional)</label><input id="taster-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></p>
+        <p class="consent"><label><input type="checkbox" name="consent" value="true" required><span>I agree that OCATECH can contact me about this event and future free sessions. <a href="/privacy/">Privacy Policy</a></span></label></p>
+        <button class="button button-full" type="submit">Reserve my spot ${svgIcons.arrowRight}</button>
+      </form>
+    </div>
+  </div>
+</section>`;
+  return {
+    title: "Free taster class | OCATECH Digital Solutions",
+    description: "Join a free ICT taster class at OCATECH in Onitsha. No experience needed. See hands-on digital training before you enrol.",
+    canonical: urls.for("/free-class/"),
+    inner,
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Free taster class", urls.for("/free-class/")]])],
+    extraScripts: [assets.form],
+  };
+}
+
+// ── Training for teams page ────────────────────────────────────────────────────
+function renderTeams() {
+  const courseGroups = site.tracks.map((track) => {
+    const courses = courseData.filter((c) => c.track === track.id).map((c) => esc(c.title)).join(", ");
+    return courses ? `<li><strong>${esc(track.name)}:</strong> ${courses}</li>` : "";
+  }).filter(Boolean).join("");
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Training for teams", "/training-for-teams/"]])}
+<section class="page-head wrap">
+  <h1>Training for teams, schools and businesses</h1>
+  <p class="course-lead-copy">We can deliver structured digital skills training for your group — at our Onitsha center or at your premises. Tell us your goal and team size, and we will propose a plan.</p>
+</section>
+<section class="section">
+  <div class="wrap two-col-info">
+    <div class="info-card">
+      <h2>What we can teach</h2>
+      <p>All 17 of our courses are available for group delivery. Topics include:</p>
+      <ul class="plain-list">${courseGroups}</ul>
+      <h2>How it works</h2>
+      <ol class="plain-list">
+        <li>Send us a message with your organisation name, team size, and the skills you want covered.</li>
+        <li>We propose a schedule, format, and fee structure based on your group.</li>
+        <li>We confirm dates and begin training.</li>
+      </ol>
+      <p>We do not publish package prices for group training because every group is different. Contact us and we will discuss options.</p>
+    </div>
+    <div class="info-card">
+      <h2>Send an enquiry</h2>
+      <form id="apply-form" action="/api/apply" method="post" data-success="/success/" data-whatsapp="${esc(whatsapp(sharedCopy.whatsappPresets.general))}" data-messages='{"name":"Please enter your full name (at least 2 characters).","phone":"Please enter a valid Nigerian phone number.","consent":"Please accept the privacy policy.","sending":"Sending…","success":"Thank you","successText":"We have received your enquiry. Our team will get back to you on WhatsApp.","limit":"Too many attempts. Please try again later.","error":"Something went wrong. Please try again or contact us on WhatsApp."}'>
+        <div id="form-errors" class="form-errors" role="alert" hidden></div>
+        <input type="hidden" name="type" value="team">
+        <input type="hidden" name="course" value="not-sure-yet">
+        <input type="hidden" name="sourcePage" id="source-page" value="">
+        <input type="hidden" name="utm_source" value="">
+        <input type="hidden" name="utm_medium" value="">
+        <input type="hidden" name="utm_campaign" value="">
+        <input type="hidden" name="referrer" value="">
+        <p class="honeypot" aria-hidden="true"><label>Leave blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <div class="form-grid">
+          <p class="form-field"><label for="org-name">Organisation or school name *</label><input id="org-name" name="name" type="text" required minlength="2" maxlength="80" autocomplete="organization" placeholder="e.g. Swift Logistics Ltd"></p>
+          <p class="form-field"><label for="org-phone">Contact phone / WhatsApp *</label><input id="org-phone" name="phone" type="tel" required autocomplete="tel" placeholder="e.g. 0816 532 1429"></p>
+          <p class="form-field"><label for="org-email">Email (optional)</label><input id="org-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></p>
+          <p class="form-field"><label for="org-size">Number of people</label><input id="org-size" name="team_size" type="text" maxlength="40" placeholder="e.g. 10–15 staff"></p>
+          <p class="form-field"><label for="org-topic">Topic or skill area</label><input id="org-topic" name="topic" type="text" maxlength="120" placeholder="e.g. Microsoft Office, CCTV, Web Design"></p>
+          <p class="form-field"><label for="org-message">Any other details</label><textarea id="org-message" name="message" rows="3" maxlength="600" placeholder="Preferred dates, location preference, any questions…"></textarea></p>
+          <p class="consent"><label><input type="checkbox" name="consent" value="true" required><span>I agree that OCATECH can contact me about this enquiry. <a href="/privacy/">Privacy Policy</a></span></label></p>
+          <button class="button button-full" type="submit">Send enquiry ${svgIcons.arrowRight}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>`;
+  return {
+    title: "Training for teams and businesses | OCATECH Digital Solutions",
+    description: "Group digital skills training for teams, schools and businesses in Onitsha and Anambra. All topics available. Contact us for a custom plan.",
+    canonical: urls.for("/training-for-teams/"),
+    inner,
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Training for teams", urls.for("/training-for-teams/")]])],
+    extraScripts: [assets.form],
+  };
+}
+
+// ── Certificate verify page ────────────────────────────────────────────────────
+function renderVerify() {
+  const params = ""; // server-side result shown via GET params in JS-off fallback
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Verify certificate", "/verify/"]])}
+<section class="page-head wrap">
+  <h1>Verify a certificate</h1>
+  <p class="course-lead-copy">Enter the certificate number printed on your OCATECH certificate to confirm it is genuine.</p>
+</section>
+<section class="section">
+  <div class="wrap verify-wrap">
+    <div id="verify-result" class="verify-result-box" aria-live="polite"></div>
+    <form id="verify-form" action="/api/verify" method="post">
+      <p class="form-field"><label for="cert-code">Certificate number *</label><input id="cert-code" name="code" type="text" required maxlength="40" autocomplete="off" placeholder="e.g. OCA-2026-001" pattern="[A-Za-z0-9\\-]+" inputmode="text"></p>
+      <button class="button" type="submit">Check certificate ${svgIcons.arrowRight}</button>
+    </form>
+    <p class="verify-note">Verification is available for certificates issued by OCATECH Digital Solutions. If the number is not found, please contact us on WhatsApp to confirm.</p>
+    <p class="verify-note">We do not display a list of certificates. Each lookup checks one number only.</p>
+  </div>
+</section>`;
+  return {
+    title: "Verify a certificate | OCATECH Digital Solutions",
+    description: "Check whether an OCATECH Digital Solutions certificate is genuine. Enter the certificate number to verify name, course and issue date.",
+    canonical: urls.for("/verify/"),
+    inner,
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Verify certificate", urls.for("/verify/")]])],
+    extraScripts: [assets.verify],
+  };
+}
+
+// ── Guides index ───────────────────────────────────────────────────────────────
+const guides = [
+  {
+    slug: "choose-a-computer-training-center-onitsha",
+    title: "How to choose a computer training center in Onitsha",
+    description: "What to look for when picking an ICT training center in Onitsha: hands-on time, class size, payment terms and what you finish with.",
+    draft: false,
+    body: `${renderBreadcrumbs([["Home", "/"], ["Guides", "/guides/"], ["How to choose a computer training center", "/guides/choose-a-computer-training-center-onitsha/"]])}
+<article class="guide-page">
+<header class="page-head wrap">
+  <p class="hero-kicker">Local guide · Onitsha</p>
+  <h1>How to choose a computer training center in Onitsha</h1>
+  <p class="course-lead-copy">The number of ICT training centers in Onitsha has grown. Some are excellent; others take your money and leave you with a certificate that opens no doors. Here is what to look for before you pay.</p>
+</header>
+<section class="section">
+  <div class="wrap guide-wrap">
+    <h2>Visit before you pay</h2>
+    <p>Any center that refuses a free visit or trial session is a red flag. A genuine training center will invite you to see the classroom, meet instructors and ask questions before you commit any money.</p>
+    <p>When you visit, look at the computers. Are they working and reasonably current? Is the room set up for learning, with enough space per student? Talk to any students you see there.</p>
+
+    <h2>Ask what you will finish with</h2>
+    <p>The most important question you can ask is: "What will I be able to do when I complete this course?" A good center gives you a straight answer — a project you will build, a skill you will demonstrate, or a task you will complete on your own. Vague answers like "you will be a professional" or "industry-ready" should raise caution.</p>
+    <p>At OCATECH, every course ends with a defined final project. You can see the project briefs on our <a href="/showcase/">Projects you will build</a> page before you enrol.</p>
+
+    <h2>Class size and hands-on time</h2>
+    <p>Large classes where students share one computer between three people cut your practice time. Ask exactly how many students share each machine during practical sessions. The closer to one-to-one, the more you learn.</p>
+    <p>Ask what proportion of class time is spent practising versus listening to a lecture. Good digital skills training is mostly practical. If most sessions are just watching a slideshow or someone else type, you will struggle to apply the skill independently.</p>
+
+    <h2>Understand the payment terms</h2>
+    <p>Ask for the full fee upfront in writing, before you sign or pay anything. Find out whether installments are available and what happens if you miss a payment. Confirm which payment methods are accepted — most honest centers accept bank transfer, POS or cash at the desk. Be cautious if you are asked to pay into a personal account sent by text or WhatsApp rather than a business account confirmed by the center itself.</p>
+
+    <h2>Red flags to watch for</h2>
+    <ul>
+      <li>Promised job placement without any detail of how</li>
+      <li>Certificates from unrecognized bodies used as the main selling point</li>
+      <li>No physical address, or an address that does not match a real premises</li>
+      <li>Pressure to pay immediately before you have visited or asked questions</li>
+      <li>Trainers who cannot answer specific questions about the course content</li>
+    </ul>
+
+    <h2>Local knowledge matters</h2>
+    <p>An Onitsha-based center understands the local market. If you are training to freelance or work locally, it helps to train somewhere that knows Anambra employers, the kinds of projects common in the region and the realistic earning potential for local work.</p>
+
+    <h2>Start with a visit to OCATECH</h2>
+    <p>We are at <a href="/contact/">62 New Market Road, Onitsha</a>, beside the Glo Office and Mr Bigs at Ogbommanu. You are welcome to visit any weekday or Saturday between 8AM and 6PM, see the center, and talk to us about which course fits your goal. There is no obligation.</p>
+    <p>You can also <a href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">message us on WhatsApp</a> to ask a question first.</p>
+  </div>
+</section>
+</article>`,
+  },
+  {
+    slug: "cctv-installation-onitsha",
+    title: "CCTV installation in Onitsha: what to ask before you pay",
+    description: "Questions to ask any CCTV installer in Onitsha before you commit: site visit, camera types, storage, remote viewing and warranty.",
+    draft: false,
+    body: `${renderBreadcrumbs([["Home", "/"], ["Guides", "/guides/"], ["CCTV installation in Onitsha", "/guides/cctv-installation-onitsha/"]])}
+<article class="guide-page">
+<header class="page-head wrap">
+  <p class="hero-kicker">Local guide · Onitsha</p>
+  <h1>CCTV installation in Onitsha: what to ask before you pay</h1>
+  <p class="course-lead-copy">A CCTV system is a significant purchase. Before you agree to anything, here are the questions that will protect you from poor-quality work and future regret.</p>
+</header>
+<section class="section">
+  <div class="wrap guide-wrap">
+    <h2>Ask for a site visit first</h2>
+    <p>Any professional CCTV installer should visit your home or business before quoting. The layout of the building, the entry points, the available power sockets and the light conditions all affect where cameras should go and how many you need. A quote given without a visit is based on guesswork.</p>
+    <p>During the visit, ask the installer to explain which areas they plan to cover and why, where the DVR or NVR will be installed, and how cables will be routed. If they cannot give clear answers, consider another installer.</p>
+
+    <h2>Understand the camera types</h2>
+    <p>Not all cameras are the same. The key questions are:</p>
+    <ul>
+      <li>What is the resolution? Higher resolution (at least 1080p for a modern system) means clearer footage.</li>
+      <li>Is the camera rated for indoor use, outdoor use, or both? Outdoor cameras need weatherproofing.</li>
+      <li>Does it have night vision, and what range is realistic in your conditions?</li>
+      <li>Is it wired or wireless? Wired systems are generally more reliable; wireless systems depend on a stable network.</li>
+    </ul>
+
+    <h2>Storage: how long is footage kept?</h2>
+    <p>Find out exactly how footage is stored and for how long. Most systems use a DVR or NVR with a hard drive. Ask the capacity and how many days of footage it holds at the camera resolution you are installing. Ask whether it records continuously, only on motion, or both.</p>
+    <p>Also ask what happens when storage is full — does it overwrite the oldest footage automatically?</p>
+
+    <h2>Remote viewing</h2>
+    <p>A major advantage of modern CCTV is the ability to view cameras on your phone from anywhere. Ask whether remote access is included in the installation, which app is used, and what happens if your internet goes down.</p>
+
+    <h2>Get the warranty in writing</h2>
+    <p>Ask for the warranty period for both the equipment and the installation work. A reputable installer stands behind their work. Get the terms in writing — not just verbally — before you pay. Find out who you call if a camera stops working in six months.</p>
+
+    <h2>Who maintains it?</h2>
+    <p>Ask whether maintenance is available after the installation, and at what cost. Cameras, cables, connections and hard drives all need occasional attention. Knowing who to call — and what it costs — before you sign up avoids unpleasant surprises later.</p>
+
+    <h2>Contact OCATECH for CCTV in Onitsha</h2>
+    <p>Our team carries out CCTV installation for homes and businesses in Onitsha, Nkpor, Obosi and Awka. We do a site visit before quoting, and we give you a written summary of what will be installed.</p>
+    <p><a href="/services/#service-cctv-installation">See our CCTV installation service</a> or <a href="${esc(whatsapp("Hello OCATECH, I would like to discuss CCTV installation for my property."))}">message us on WhatsApp</a> to arrange a free assessment.</p>
+  </div>
+</section>
+</article>`,
+  },
+  {
+    slug: "ai-tools-for-onitsha-traders",
+    title: "AI tools for Onitsha traders: five ways to save time",
+    description: "Five practical ways Onitsha traders and business owners can use AI tools today to reply to customers, write product descriptions and more.",
+    draft: false,
+    body: `${renderBreadcrumbs([["Home", "/"], ["Guides", "/guides/"], ["AI tools for Onitsha traders", "/guides/ai-tools-for-onitsha-traders/"]])}
+<article class="guide-page">
+<header class="page-head wrap">
+  <p class="hero-kicker">Local guide · Onitsha</p>
+  <h1>AI tools for Onitsha traders: five ways to save time</h1>
+  <p class="course-lead-copy">AI tools are now accessible enough for any business owner with a smartphone. Here are five practical uses that can save you time today — plus a note on what to watch out for.</p>
+</header>
+<section class="section">
+  <div class="wrap guide-wrap">
+    <h2>1. Reply to customer messages faster</h2>
+    <p>If you sell on WhatsApp, Instagram or Facebook, you likely spend a large part of your day replying to the same questions: "Is this available?", "What is the price?", "Can you deliver to Awka?".</p>
+    <p>AI chat tools like ChatGPT or Google Gemini can help you draft quick, polite replies. You type the question and ask the tool to write a short professional response. You read it, adjust it if needed, and send it. This cuts reply time from several minutes to under one minute for each message.</p>
+
+    <h2>2. Write product descriptions</h2>
+    <p>Describing your products clearly and attractively takes time. An AI tool can generate a draft description from a few bullet points you give it — material, size, price, use case. The result is not perfect, but it is a solid starting point that you edit, not write from scratch.</p>
+    <p>This is particularly useful if you sell on Jumia, Jiji or your own WhatsApp catalogue and have many products to list.</p>
+
+    <h2>3. Create price lists and quotations</h2>
+    <p>If you regularly write out price lists or quotations by hand, an AI tool can format them neatly from the information you give it. You tell it your products, quantities and prices; it produces a formatted list you can copy or screenshot.</p>
+
+    <h2>4. Draft social media posts</h2>
+    <p>Posting regularly on Facebook or WhatsApp Status keeps your business visible. AI tools can suggest short posts for promotions, restocks or simply introducing a product. You still need to check the content, add your own photos and make it sound like you — but the AI removes the blank-page problem.</p>
+
+    <h2>5. Simple bookkeeping summaries</h2>
+    <p>If you keep a record of daily sales in a notebook or spreadsheet, you can paste the numbers into an AI chat tool and ask it to summarise your week: total sales, busiest day, which product sold most. This is not a replacement for proper bookkeeping, but it can give you a quick picture without spending an hour adding things up.</p>
+
+    <h2>Important cautions</h2>
+    <p><strong>Always check AI answers before you use them.</strong> AI tools sometimes get facts wrong — a price, a date, a quantity. Never copy an AI response to a customer without reading it first.</p>
+    <p><strong>Protect customer data.</strong> Do not paste customer names, phone numbers or bank details into AI tools. Use only the information needed for the task.</p>
+    <p><strong>AI does not replace human judgment.</strong> Business decisions — what to stock, what to charge, who to trust — still require your knowledge and experience of the local market.</p>
+
+    <h2>Learn more at OCATECH</h2>
+    <p>Our <a href="/courses/ai-tools-for-business-and-productivity/">AI Tools for Business and Productivity</a> course teaches Onitsha traders and professionals how to use the leading AI tools effectively and safely. No technical background is required.</p>
+    <p><a href="${esc(whatsapp("Hello OCATECH, I want to learn more about the AI Tools for Business and Productivity course."))}">Message us on WhatsApp</a> for more information, or <a href="/apply/?course=ai-tools-for-business-and-productivity">apply now</a>.</p>
+  </div>
+</section>
+</article>`,
+  },
+];
+
+function articleJsonLd(guide, url) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    url,
+    author: { "@type": "Organization", name: site.brand.name, url: urls.home },
+    publisher: { "@type": "Organization", name: site.brand.name, url: urls.home },
+    inLanguage: "en",
+  };
+}
+
+function renderGuide(guide) {
+  const url = urls.for(`/guides/${guide.slug}/`);
+  return {
+    title: `${guide.title} | OCATECH Digital Solutions`,
+    description: guide.description,
+    canonical: url,
+    noindex: Boolean(guide.draft),
+    inner: guide.body,
+    jsonLd: [articleJsonLd(guide, url), breadcrumbJsonLd([["Home", urls.home], ["Guides", urls.for("/guides/")], [guide.title, url]])],
+  };
+}
+
+function renderGuidesIndex() {
+  const cards = guides.map((g) => `
+  <article class="guide-card">
+    <h2><a href="/guides/${esc(g.slug)}/">${esc(g.title)}</a></h2>
+    <p>${esc(g.description)}</p>
+    <a class="text-link" href="/guides/${esc(g.slug)}/">Read the guide ${svgIcons.arrowRight}</a>
+  </article>`).join("");
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Guides", "/guides/"]])}
+<section class="page-head wrap">
+  <h1>Local guides</h1>
+  <p class="course-lead-copy">Practical advice for people in Onitsha and Anambra on ICT training, tech services and digital tools for business.</p>
+</section>
+<section class="section"><div class="wrap guides-grid">${cards}</div></section>`;
+  return {
+    title: "Local guides | OCATECH Digital Solutions",
+    description: "Practical guides on ICT training, CCTV installation and AI tools for businesses and traders in Onitsha and Anambra.",
+    canonical: urls.for("/guides/"),
+    inner,
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Guides", urls.for("/guides/")]])],
+  };
+}
+
+// ── Verify JS (inline tiny script for client-side result display) ─────────────
+const verifyJs = `(() => {
+  const form = document.querySelector('#verify-form');
+  const resultBox = document.querySelector('#verify-result');
+  if (!form || !resultBox) return;
+  const params = new URLSearchParams(location.search);
+  const result = params.get('result');
+  const errorKey = params.get('error');
+  if (result === 'found') {
+    const name = params.get('name') || '';
+    const course = params.get('course') || '';
+    const issued = params.get('issued') || '';
+    resultBox.innerHTML = '<p class="verify-found"><strong>Certificate verified.</strong><br>Name: ' + name + '<br>Course: ' + course + '<br>Issued: ' + issued + '</p>';
+  } else if (result === 'not-found') {
+    resultBox.innerHTML = '<p class="verify-error">No certificate found with that number. Please check the number and try again, or contact us on WhatsApp.</p>';
+  } else if (errorKey === 'limit') {
+    resultBox.innerHTML = '<p class="verify-error">Too many attempts. Please try again later.</p>';
+  } else if (errorKey) {
+    resultBox.innerHTML = '<p class="verify-error">Verification is not available right now. Please try again shortly.</p>';
+  }
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const code = form.elements.code?.value?.trim();
+    if (!code) return;
+    resultBox.innerHTML = '<p>Checking…</p>';
+    try {
+      const res = await fetch('/api/verify', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ code }) });
+      const data = await res.json().catch(() => ({}));
+      if (data.ok) {
+        resultBox.innerHTML = '<p class="verify-found"><strong>Certificate verified.</strong><br>Name: ' + (data.name || '') + '<br>Course: ' + (data.course || '') + '<br>Issued: ' + (data.issuedOn || '') + '</p>';
+      } else {
+        resultBox.innerHTML = '<p class="verify-error">' + (data.message || 'No certificate found with that number.') + '</p>';
+      }
+    } catch { resultBox.innerHTML = '<p class="verify-error">Could not connect. Please try again.</p>'; }
+  });
+})();`;
+const verifyJsPath = "assets/js/verify.js";
+fs.writeFileSync(path.join(root, verifyJsPath), verifyJs, "utf8");
+assets.verify = copyHashed(verifyJsPath);
+
+const sitemapPaths = ["/", "/courses/", "/paths/", "/showcase/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/", "/review/", "/fees/", "/free-class/", "/training-for-teams/", "/verify/", "/guides/", "/guides/choose-a-computer-training-center-onitsha/", "/guides/cctv-installation-onitsha/", "/guides/ai-tools-for-onitsha-traders/"];
 
 function emitPage(file, meta) {
   const hashes = meta.jsonLd.map((item) => crypto.createHash("sha256").update(json(item)).digest("base64"));
@@ -1608,8 +2037,17 @@ const pages = [
   ["privacy/index.html", renderPrivacy()],
   ["success/index.html", renderSuccess()],
   ["review/index.html", renderReview()],
+  ["fees/index.html", renderFees()],
+  ["free-class/index.html", renderFreeClass()],
+  ["training-for-teams/index.html", renderTeams()],
+  ["verify/index.html", renderVerify()],
+  ["guides/index.html", renderGuidesIndex()],
   ["404.html", render404()],
 ];
+
+for (const guide of guides) {
+  pages.push([`guides/${guide.slug}/index.html`, renderGuide(guide)]);
+}
 
 for (const course of courseData) {
   pages.push([`courses/${course.slug}/index.html`, renderCourse(course)]);

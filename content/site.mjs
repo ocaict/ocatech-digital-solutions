@@ -494,7 +494,7 @@ export const privacy = {
     ["Why we collect it", "To contact you about your enquiry, to arrange classes or installation, and to improve our service."],
     ["Where it goes", "Form details are stored in our database and sent to our email. Chat messages are sent to an AI service to generate answers. Please do not type passwords, bank details or other sensitive information into the chat or the form."],
     ["How long we keep it", "We keep enquiries for as long as we need them to follow up and keep records, and then delete them."],
-    ["Cookies and analytics", "We do not use advertising cookies."],
+    ["Cookies and analytics", "We do not use advertising cookies. We record anonymous button clicks (such as clicking to call or open WhatsApp) to see which pages are helpful. No personal details, names, IP addresses or cookies are attached to these counts."],
     ["Your choices", "You can ask us to see, correct or delete your details by emailing ocatechskill@gmail.com."],
     ["Contact", "OCATECH Digital Solutions, 62 New Market Road, Onitsha, Anambra State."],
   ],

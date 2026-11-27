@@ -33,8 +33,10 @@
     script.src = src;
     script.async = true;
     document.head.append(script);
+    track("chat_open");
   }, { once: true });
 
+  // Attribution capture
   try {
     const params = new URLSearchParams(location.search);
     ["utm_source", "utm_medium", "utm_campaign"].forEach((key) => {
@@ -50,4 +52,15 @@
       } catch {}
     }
   } catch {}
+
+  // Click tracking via sendBeacon
+  function track(event) {
+    try {
+      navigator.sendBeacon("/api/track", JSON.stringify({ event, page: location.pathname }));
+    } catch {}
+  }
+
+  document.querySelectorAll("[data-track]").forEach((el) => {
+    el.addEventListener("click", () => track(el.dataset.track));
+  });
 })();

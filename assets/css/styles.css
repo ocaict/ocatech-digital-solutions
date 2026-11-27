@@ -3470,3 +3470,44 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
 
 /* Video transcript note */
 .video-transcript-note { font-size: 0.82rem; color: var(--muted); margin: 0.6rem 0 0; text-align: center; }
+
+/* Fees page */
+.fees-wrap { display: flex; flex-direction: column; gap: 2rem; }
+.fees-track-section { background: var(--surface, #0c1833); border: 1px solid var(--border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 1.25rem; overflow-x: auto; }
+.fees-track-section h2 { margin: 0 0 1rem; font-size: 1.25rem; color: var(--text, #fff); }
+.fees-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; }
+.fees-table th { padding: 0.6rem 0.8rem; border-bottom: 2px solid var(--border, rgba(255,255,255,0.12)); color: var(--muted, #94a3b8); font-weight: 600; }
+.fees-table td { padding: 0.75rem 0.8rem; border-bottom: 1px solid var(--border, rgba(255,255,255,0.06)); vertical-align: middle; }
+.fees-table tr:last-child td { border-bottom: none; }
+.fees-table a { color: var(--text, #fff); text-decoration: none; font-weight: 500; }
+.fees-table a:hover { text-decoration: underline; }
+.fees-price { font-weight: 700; color: #10b981; }
+.fees-orig { font-size: 0.82rem; color: var(--muted, #94a3b8); margin-left: 0.35rem; }
+.fees-offer-note { margin-top: 0.5rem; font-size: 0.9rem; color: #ff9944; font-weight: 600; }
+.fees-installments { background: var(--surface, #0c1833); border: 1px solid var(--border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 1.5rem; margin-top: 1rem; }
+.fees-installments h2 { margin: 0 0 0.75rem; font-size: 1.25rem; }
+.fees-warn { color: #f87171; font-size: 0.88rem; font-weight: 500; }
+
+/* Free class */
+.free-class-date { font-size: 1.05rem; color: #10b981; font-weight: 600; margin-bottom: 0.5rem; }
+.free-class-seats { font-size: 0.9rem; color: #ff9944; font-weight: 600; }
+
+/* Verify */
+.verify-wrap { max-width: 36rem; margin: 0 auto; }
+.verify-result-box { margin-bottom: 1.25rem; min-height: 1.5rem; }
+.verify-found { background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 8px; padding: 1rem; color: #10b981; line-height: 1.5; }
+.verify-error { background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 1rem; color: #f87171; line-height: 1.5; }
+.verify-note { font-size: 0.82rem; color: var(--muted, #94a3b8); margin-top: 0.75rem; line-height: 1.45; }
+
+/* Guides */
+.guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.guide-card { background: var(--surface, #0c1833); border: 1px solid var(--border, rgba(255,255,255,0.08)); border-radius: 12px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; }
+.guide-card h2 { margin: 0; font-size: 1.15rem; line-height: 1.35; }
+.guide-card h2 a { color: var(--text, #fff); text-decoration: none; }
+.guide-card h2 a:hover { text-decoration: underline; }
+.guide-card p { margin: 0; font-size: 0.9rem; color: var(--muted, #94a3b8); line-height: 1.5; }
+.guide-page .guide-wrap { max-width: 48rem; margin: 0 auto; }
+.guide-page h2 { margin-top: 2rem; margin-bottom: 0.75rem; font-size: 1.35rem; }
+.guide-page p { margin-bottom: 1.25rem; line-height: 1.7; color: var(--text-soft, #cbd5e1); font-size: 1rem; }
+.guide-page ul { margin-bottom: 1.5rem; padding-left: 1.25rem; line-height: 1.65; color: var(--text-soft, #cbd5e1); }
+.guide-page li { margin-bottom: 0.5rem; }

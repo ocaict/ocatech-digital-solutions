@@ -114,13 +114,66 @@ For local work, copy `.dev.vars.example` to `.dev.vars` and fill it in. `.dev.va
 
 Cloudflare rebuilds after each push. Check the build result in **Workers & Pages → ict → Deployments**.
 
-## 8. Google and domain
+## 8. Search Console and Bing Webmaster Tools
 
-1. Add https://ict.ocatech.workers.dev/ to the website field of your Google Business Profile.
-2. In https://search.google.com/search-console, add the property and submit `https://ict.ocatech.workers.dev/sitemap.xml`.
-3. A custom domain can be added later when the business is earning.
+1. **Google Business Profile**:
+   - Add `https://ict.ocatech.workers.dev/` to the website field of your Google Business Profile.
+2. **Google Search Console**:
+   - Go to https://search.google.com/search-console.
+   - Add property: URL prefix `https://ict.ocatech.workers.dev/`.
+   - Verify via HTML tag or Cloudflare DNS.
+   - In the left menu under **Sitemaps**, submit: `https://ict.ocatech.workers.dev/sitemap.xml`.
+   - Use **URL Inspection** to request indexing for your key pages: Home `/`, Courses `/courses/`, Fees `/fees/`, Services `/services/`, Free Class `/free-class/`.
+3. **Bing Webmaster Tools**:
+   - Go to https://www.bing.com/webmasters and sign in.
+   - Import your site directly from Google Search Console (one click), or add `https://ict.ocatech.workers.dev/` and submit the sitemap URL.
 
-## 9. Google reviews template (for students)
+## 9. WhatsApp Business setup
+
+Configure these in the WhatsApp Business app (Settings → Business tools):
+
+1. **Labels**:
+   - Create labels to organize incoming chats: `New enquiry`, `Interested`, `Enrolled`, `Alumni`.
+2. **Quick replies** (type `/` to send instantly in chat):
+   - `/courses`: “Here is our full list of 17 practical ICT courses: https://ict.ocatech.workers.dev/courses/”
+   - `/fees`: “You can view the full tuition schedule and installment plans here: https://ict.ocatech.workers.dev/fees/”
+   - `/location`: “We are located at 62 New Market Road, Onitsha (beside Glo Office and Mr Bigs at Ogbommanu). Open Monday–Saturday 8AM–6PM. Map: https://maps.app.goo.gl/jCjjhCm6M5VzofTt7”
+   - `/payment`: “We accept payment by bank transfer, POS or cash directly at our center desk. We will never ask you to pay into any personal account sent via text.”
+3. **Away message**:
+   - “Hello! Thank you for contacting OCATECH Digital Solutions. We have received your message and will reply during our center hours (Monday–Saturday, 8AM–6PM). You can explore our courses at https://ict.ocatech.workers.dev/courses/”
+
+## 10. Click tracking & analytics in D1
+
+The website logs anonymous action clicks to the `events` table in your D1 database. To view statistics, open **Cloudflare Dashboard → Storage & Databases → D1 → ocatech-db → Console** and run these SQL queries:
+
+- **Clicks by day and event**:
+  ```sql
+  SELECT day, event, SUM(count) AS total_clicks FROM events GROUP BY day, event ORDER BY day DESC, total_clicks DESC;
+  ```
+- **Most clicked buttons by page**:
+  ```sql
+  SELECT page, event, SUM(count) AS total FROM events GROUP BY page, event ORDER BY total DESC LIMIT 20;
+  ```
+- **Total actions across the site**:
+  ```sql
+  SELECT event, SUM(count) AS grand_total FROM events GROUP BY event ORDER BY grand_total DESC;
+  ```
+
+## 11. Issuing certificates for online verification
+
+When students graduate and receive their certificates, add a row in the `certificates` table in D1 so employers or clients can verify them at `/verify/`:
+
+```sql
+INSERT INTO certificates (code, name, course, issued_on)
+VALUES ('OCA-2026-001', 'Chukwuma Okoye', 'Full-Stack Web Design & Development', '2026-11-25');
+```
+
+To revoke a certificate if needed:
+```sql
+UPDATE certificates SET revoked = 1 WHERE code = 'OCA-2026-001';
+```
+
+## 12. Google reviews template (for students)
 
 Send this WhatsApp message to students after their practical class or when they complete a course:
 

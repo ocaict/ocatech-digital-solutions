@@ -31,3 +31,19 @@ CREATE TABLE IF NOT EXISTS usage (
   count INTEGER NOT NULL DEFAULT 0,
   PRIMARY KEY (day, kind, ip_hash)
 );
+
+CREATE TABLE IF NOT EXISTS events (
+  day TEXT NOT NULL,
+  event TEXT NOT NULL,
+  page TEXT NOT NULL DEFAULT '/',
+  count INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (day, event, page)
+);
+
+CREATE TABLE IF NOT EXISTS certificates (
+  code TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  course TEXT NOT NULL,
+  issued_on TEXT NOT NULL,
+  revoked INTEGER NOT NULL DEFAULT 0
+);

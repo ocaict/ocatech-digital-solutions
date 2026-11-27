@@ -69,16 +69,25 @@ export function header(site, shared, assets, canonicalPath) {
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       ${nav}
-      <a class="button button-small" href="/apply/">Apply</a>
-      <a class="button button-small button-wa" href="${esc(wa)}">${esc(shared.buttons.whatsapp)}</a>
+      <a class="button button-small" href="/apply/" data-track="apply_start">Apply</a>
+      <a class="button button-small button-wa" href="${esc(wa)}" data-track="whatsapp_click">${esc(shared.buttons.whatsapp)}</a>
     </nav>
-    <a class="header-wa" href="${esc(wa)}">${esc(shared.buttons.whatsapp)}</a>
+    <a class="header-wa" href="${esc(wa)}" data-track="whatsapp_click">${esc(shared.buttons.whatsapp)}</a>
   </div>
 </header>`;
 }
 
 export function footer(site, shared) {
-  const navLinks = [...shared.nav, ["Apply", "/apply/"], ["Privacy", "/privacy/"]];
+  const navLinks = [
+    ...shared.nav,
+    ["Course fees", "/fees/"],
+    ["Free class", "/free-class/"],
+    ["For teams", "/training-for-teams/"],
+    ["Local guides", "/guides/"],
+    ["Verify certificate", "/verify/"],
+    ["Apply", "/apply/"],
+    ["Privacy", "/privacy/"],
+  ];
   const links = navLinks
     .map(([label, href]) => `<li><a href="${href}">${esc(label)}</a></li>`).join("");
   const phones = site.contact.phones
@@ -86,7 +95,7 @@ export function footer(site, shared) {
         <span class="footer-contact-icon" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6.09 6.09l1.09-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         </span>
-        <a href="tel:${esc(phone.e164)}">${esc(phone.display)}</a>
+        <a href="tel:${esc(phone.e164)}" data-track="call_click">${esc(phone.display)}</a>
       </li>`).join("");
   const socialLabels = { facebook: "Facebook", instagram: "Instagram", tiktok: "TikTok", youtube: "YouTube", x: "X" };
   const socialIcons = {
@@ -145,7 +154,7 @@ export function footer(site, shared) {
         ${phones}
         <li>
           <span class="footer-contact-icon" aria-hidden="true">${waIcon}</span>
-          <a href="https://wa.me/${site.contact.whatsapp.number}" class="footer-wa-link">${esc(site.contact.whatsapp.display)}</a>
+          <a href="https://wa.me/${site.contact.whatsapp.number}" class="footer-wa-link" data-track="whatsapp_click">${esc(site.contact.whatsapp.display)}</a>
         </li>
         <li>
           <span class="footer-contact-icon" aria-hidden="true">${emailIcon}</span>
@@ -188,11 +197,11 @@ export function mobileActionBar(site, shared) {
   const phone = site.contact.phones[0] || { e164: "+2348165321429" };
   const wa = `https://wa.me/${site.contact.whatsapp.number}?text=${encodeURIComponent(shared.whatsappPresets.general)}`;
   return `<nav class="mobile-action-bar" aria-label="Quick contact actions">
-  <a class="bar-btn bar-call" href="tel:${esc(phone.e164)}">
+  <a class="bar-btn bar-call" href="tel:${esc(phone.e164)}" data-track="call_click">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6.09 6.09l1.09-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     <span>Call us</span>
   </a>
-  <a class="bar-btn bar-wa" href="${esc(wa)}" target="_blank" rel="noopener noreferrer">
+  <a class="bar-btn bar-wa" href="${esc(wa)}" target="_blank" rel="noopener noreferrer" data-track="whatsapp_click">
     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.998 2C6.472 2 2 6.481 2 12.015a10.02 10.02 0 0 0 1.401 5.146L2 22l4.998-1.313A9.956 9.956 0 0 0 12 22c5.514 0 10-4.481 10-10.015S17.514 2 11.998 2z" fill-rule="evenodd" clip-rule="evenodd"/></svg>
     <span>Chat on WhatsApp</span>
   </a>

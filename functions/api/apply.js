@@ -67,7 +67,8 @@ async function readInput(request) {
 
 function validate(data) {
   const out = {};
-  out.type = data.type === "service" ? "service" : "learn";
+  const allowedTypes = ["service", "taster", "team"];
+  out.type = allowedTypes.includes(data.type) ? data.type : "learn";
   out.name = clean(data.name, 80);
   out.phone = normalisePhone(data.phone);
   out.email = clean(data.email, 120);
@@ -82,9 +83,15 @@ function validate(data) {
   const referral = clean(data.referral, 80);
   const propertyType = clean(data.property_type, 60);
   const location = clean(data.location, 120);
+  const organisation = clean(data.organisation, 120);
+  const teamSize = clean(data.team_size, 40);
+  const topic = clean(data.topic, 120);
   const rawMsg = clean(data.message, 600);
 
   const details = [];
+  if (organisation) details.push(`Organisation: ${organisation}`);
+  if (teamSize) details.push(`Team size: ${teamSize}`);
+  if (topic) details.push(`Topic: ${topic}`);
   if (status) details.push(`Status: ${status}`);
   if (goal) details.push(`Goal: ${goal}`);
   if (laptop) details.push(`Laptop & Internet: ${laptop}`);
@@ -116,7 +123,10 @@ function validate(data) {
 
 async function sendEmail(env, lead) {
   if (!env.RESEND_API_KEY || !env.NOTIFY_EMAIL) return false;
-  const subjectLabel = lead.type === "service" ? `${lead.service || "service"} quote request` : lead.course || "course enquiry";
+  const subjectLabel = lead.type === "service" ? `${lead.service || "service"} quote request`
+    : lead.type === "taster" ? "free class sign-up"
+    : lead.type === "team" ? "team training enquiry"
+    : lead.course || "course enquiry";
   const lines = [
     `Name: ${clean(lead.name, 80)}`,
     `Phone: ${lead.phone}`,
@@ -220,6 +230,10 @@ export async function onRequestPost(context) {
 
   const waText = lead.type === "service"
     ? `Hello OCATECH, I just requested a quote for ${lead.service || "installation services"}. My name is ${lead.name}.`
+    : lead.type === "taster"
+    ? `Hello OCATECH, I just signed up for the free taster class. My name is ${lead.name}.`
+    : lead.type === "team"
+    ? `Hello OCATECH, I just submitted a team training enquiry. My name is ${lead.name}.`
     : `Hello OCATECH, I just applied for ${lead.course || "a course"}. My name is ${lead.name}.`;
 
   return finish(200, {
