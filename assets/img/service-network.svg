@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <linearGradient id="net-bg" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#122547"/>
+      <stop offset="100%" stop-color="#071125"/>
+    </linearGradient>
+    <linearGradient id="net-body" x1="20" y1="20" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#46CEFF"/>
+      <stop offset="100%" stop-color="#012D96"/>
+    </linearGradient>
+    <linearGradient id="net-accent" x1="24" y1="24" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF8533"/>
+      <stop offset="100%" stop-color="#FF6600"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Container -->
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="url(#net-bg)" stroke="#26406D" stroke-width="2"/>
+  <rect x="2" y="2" width="76" height="76" rx="20" fill="none" stroke="#46CEFF" stroke-opacity="0.2" stroke-width="1"/>
+
+  <!-- Network Switch / Router Box -->
+  <rect x="18" y="38" width="44" height="18" rx="4" fill="#0D1B35" stroke="url(#net-body)" stroke-width="2"/>
+  
+  <!-- Ethernet Ports on Switch -->
+  <rect x="24" y="44" width="5" height="5" rx="1" fill="#122547" stroke="#46CEFF" stroke-width="1.2"/>
+  <rect x="33" y="44" width="5" height="5" rx="1" fill="#122547" stroke="#46CEFF" stroke-width="1.2"/>
+  <rect x="42" y="44" width="5" height="5" rx="1" fill="#122547" stroke="#46CEFF" stroke-width="1.2"/>
+  <rect x="51" y="44" width="5" height="5" rx="1" fill="#122547" stroke="#46CEFF" stroke-width="1.2"/>
+
+  <!-- Status Activity LEDs -->
+  <circle cx="26.5" cy="52" r="1" fill="#10B981"/>
+  <circle cx="35.5" cy="52" r="1" fill="#10B981"/>
+  <circle cx="44.5" cy="52" r="1" fill="#FF8533"/>
+  <circle cx="53.5" cy="52" r="1" fill="#10B981"/>
+
+  <!-- Central Access Point / Wi-Fi -->
+  <circle cx="40" cy="27" r="3" fill="url(#net-accent)"/>
+  <path d="M40 30V38" stroke="#46CEFF" stroke-width="2" stroke-linecap="round"/>
+  
+  <path d="M33 22C35.1 20.2 37.4 19 40 19C42.6 19 44.9 20.2 47 22" stroke="#46CEFF" stroke-width="2" stroke-linecap="round"/>
+  <path d="M27 17C30.8 13.8 35.2 12 40 12C44.8 12 49.2 13.8 53 17" stroke="url(#net-accent)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Network Nodes & Connecting Lines -->
+  <path d="M26 62V56" stroke="#46CEFF" stroke-width="2"/>
+  <path d="M40 62V56" stroke="#46CEFF" stroke-width="2"/>
+  <path d="M54 62V56" stroke="#46CEFF" stroke-width="2"/>
+  <path d="M20 62H60" stroke="#46CEFF" stroke-width="2" stroke-linecap="round"/>
+</svg>

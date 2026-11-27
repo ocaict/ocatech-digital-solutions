@@ -223,8 +223,8 @@ export const courseTemplate = {
 };
 
 export const services = {
-  seoTitle: "CCTV, Solar & Software Installation in Onitsha | OCATECH",
-  seoDescription: "OCATECH installs CCTV, solar power and software for homes and businesses in Onitsha, Nkpor, Obosi and Awka. Request a quote today.",
+  seoTitle: "CCTV, Solar, Networking & Software Installation in Onitsha | OCATECH",
+  seoDescription: "OCATECH installs CCTV, solar inverter systems, office network cabling and software for homes and businesses in Onitsha, Nkpor, Obosi and Awka. Request a quote.",
   h1: "Installation services in Onitsha",
   intro: "Beyond training, OCATECH installs and sets up technology for homes and businesses in Onitsha and nearby towns, including Nkpor, Obosi and Awka.",
   items: {
@@ -237,6 +237,17 @@ export const services = {
         "Real-time smartphone live viewing & playback setup",
         "DVR / NVR storage configuration & backup",
         "Clean conduit cabling & routine maintenance service",
+      ],
+    },
+    "networking-installation": {
+      name: "Structured Network Cabling, Wi-Fi Setup & LAN Infrastructure",
+      tag: "Connectivity & Infrastructure",
+      text: "Eliminate Wi-Fi dead zones, slow file transfers, and frequent connection drops. We design, cable, and configure high-speed wired and wireless network infrastructure for corporate offices, hotels, schools, computer labs, warehouses, and multi-story homes across Onitsha, Nkpor, Obosi, and Awka.",
+      highlights: [
+        "Cat6 & Cat6A structured data cabling & patch panel termination",
+        "Commercial mesh Wi-Fi access points with seamless roaming",
+        "Router, managed switch, VLAN & bandwidth throttling setup",
+        "Hotel & school guest captive portal & network cabinet dressing",
       ],
     },
     "solar-installation": {

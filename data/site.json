@@ -224,6 +224,10 @@
     {
       "slug": "software-installation",
       "name": "Software installation & PC optimization"
+    },
+    {
+      "slug": "networking-installation",
+      "name": "Network cabling, Wi-Fi & LAN setup"
     }
   ],
   "leadCourses": [
