@@ -1,0 +1,104 @@
+[
+  {
+    "slug": "certificate-in-computer-application",
+    "price": 30000,
+    "regularPrice": 50000,
+    "durationWeeks": 6
+  },
+  {
+    "slug": "ai-tools-for-business-and-productivity",
+    "price": 90000,
+    "regularPrice": 120000,
+    "durationWeeks": 4
+  },
+  {
+    "slug": "digital-marketing",
+    "price": 100000,
+    "regularPrice": 120000,
+    "durationWeeks": 8
+  },
+  {
+    "slug": "graphic-design",
+    "price": 60000,
+    "regularPrice": 80000,
+    "durationWeeks": 8
+  },
+  {
+    "slug": "video-editing-and-content-creation",
+    "price": 120000,
+    "regularPrice": 150000,
+    "durationWeeks": 6
+  },
+  {
+    "slug": "data-analysis",
+    "price": 110000,
+    "regularPrice": 140000,
+    "durationWeeks": 10
+  },
+  {
+    "slug": "cybersecurity",
+    "price": 120000,
+    "regularPrice": 150000,
+    "durationWeeks": 12
+  },
+  {
+    "slug": "hardware-maintenance-and-wifi-networking",
+    "price": 150000,
+    "regularPrice": 180000,
+    "durationWeeks": 6
+  },
+  {
+    "slug": "ccna-networking",
+    "price": 130000,
+    "regularPrice": 180000,
+    "durationWeeks": 10
+  },
+  {
+    "slug": "frontend-development",
+    "price": 80000,
+    "regularPrice": 100000,
+    "durationWeeks": 10
+  },
+  {
+    "slug": "react-js",
+    "price": 80000,
+    "regularPrice": 100000,
+    "durationWeeks": 6
+  },
+  {
+    "slug": "backend-development",
+    "price": 150000,
+    "regularPrice": 180000,
+    "durationWeeks": 10
+  },
+  {
+    "slug": "full-stack-web-development",
+    "price": 250000,
+    "regularPrice": 300000,
+    "durationWeeks": 16
+  },
+  {
+    "slug": "wordpress",
+    "price": 60000,
+    "regularPrice": 80000,
+    "durationWeeks": 4
+  },
+  {
+    "slug": "python-programming",
+    "price": 120000,
+    "regularPrice": 150000,
+    "durationWeeks": 8
+  },
+  {
+    "slug": "ai-engineering-and-automation",
+    "price": 70000,
+    "regularPrice": 100000,
+    "durationWeeks": 12
+  },
+  {
+    "slug": "ai-assisted-software-development",
+    "price": 90000,
+    "regularPrice": 120000,
+    "durationWeeks": 8
+  }
+]

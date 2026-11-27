@@ -64,6 +64,23 @@ const whatsapp = (text) => `https://wa.me/${site.contact.whatsapp.number}?text=$
 const titleFor = (title) => `${title} | OCATECH`;
 const trackName = (id) => trackById.get(id)?.name || id;
 
+const svgIcons = {
+  arrowRight: `<svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>`,
+  arrowNe: `<svg class="icon-arrow-ne" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>`,
+  clock: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+  pin: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  grad: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+  laptop: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+  award: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`,
+  card: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`,
+  globe: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+  bot: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg>`,
+  "bar-chart": `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  palette: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>`,
+  "trending-up": `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  tool: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+};
+
 function faqJsonLd(items, url) {
   return {
     "@context": "https://schema.org",
@@ -157,7 +174,7 @@ function renderFaq(items) {
 }
 
 function renderPickerFallback() {
-  return `<noscript><p>${esc(home.picker.helper)}</p><ul class="plain-list">${site.tracks.map((track) => `<li><a href="/courses/?track=${esc(track.id)}">${esc(track.name)}</a></li>`).join("")}</ul></noscript>`;
+  return `<noscript><ul class="plain-list">${site.tracks.map((track) => `<li><a href="/courses/?track=${esc(track.id)}">${esc(track.name)}</a></li>`).join("")}</ul></noscript>`;
 }
 
 function courseCard(course, lead = false) {
@@ -167,6 +184,11 @@ function courseCard(course, lead = false) {
   const outcomes = (course.outcomes || []).slice(0, 3);
   const outcomesHtml = outcomes.map((o) => `<li><span class="outcome-check" aria-hidden="true">&#x2713;</span> ${esc(o)}</li>`).join("");
 
+  const hasFutureOffer = site.offer.endsOn && new Date(site.offer.endsOn) > new Date();
+  const priceHtml = (course.originalFee && hasFutureOffer)
+    ? `<span class="price-current">₦${formatNaira(course.fee)}</span><span class="price-original"><s>₦${formatNaira(course.originalFee)}</s></span>`
+    : `<span class="price-current">₦${formatNaira(course.fee)}</span>`;
+
   return `<article class="course-card${lead ? " course-card-lead" : ""}" data-course-track="${esc(course.track)}">
 <div class="course-card-media">
   <img src="${esc(course.image)}" width="600" height="340" alt="${esc(course.title)}" loading="lazy">
@@ -174,7 +196,7 @@ function courseCard(course, lead = false) {
 <div class="course-card-body">
   <div class="course-card-meta">
     <span class="course-card-track">${esc(trackName(course.track))}</span>
-    ${course.duration ? `<span class="course-duration-badge" title="Duration"><span aria-hidden="true">&#x23F1;</span> ${esc(course.duration)}</span>` : ""}
+    ${course.duration ? `<span class="course-duration-badge" title="Duration"><span aria-hidden="true">${svgIcons.clock}</span> ${esc(course.duration)}</span>` : ""}
   </div>
   <h3 class="course-card-title"><a class="course-card-link" href="${url}">${esc(course.title)}</a></h3>
   <p class="course-card-desc">${esc(course.subtitle)}</p>
@@ -183,14 +205,12 @@ function courseCard(course, lead = false) {
   </ul>
   <div class="course-card-pricing-wrap">
     <div class="course-card-pricing">
-      <span class="price-current">₦${formatNaira(course.fee)}</span>
-      ${course.originalFee ? `<span class="price-original"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
+      ${priceHtml}
     </div>
-    ${course.isPopular ? `<span class="badge-popular">Popular</span>` : ""}
   </div>
   <div class="course-card-cta-row">
     <a class="button button-card-enrol" href="/apply/?course=${esc(course.slug)}">Enrol</a>
-    <a class="button-card-details" href="${url}">Details <span class="arrow" aria-hidden="true">&nearr;</span></a>
+    <a class="button-card-details" href="${url}">Details <span class="arrow" aria-hidden="true">${svgIcons.arrowNe}</span></a>
   </div>
 </div>
 </article>`;
@@ -214,7 +234,7 @@ function renderHome() {
         <div class="service-item-body">
           <h3>${esc(item.name)}</h3>
           <p>${esc(item.text)}</p>
-          <a class="service-item-link" href="/quote/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)} &rarr;</a>
+          <a class="service-item-link" href="/quote/?service=${esc(slug)}">${esc(sharedCopy.buttons.quote)} ${svgIcons.arrowRight}</a>
         </div>
       </li>`;
   }).join("");
@@ -282,17 +302,17 @@ ${renderPickerFallback()}
       <h2 id="paths-heading">${esc(home.pathsCta.heading)}</h2>
       <p>${esc(home.pathsCta.text)}</p>
       <div class="hero-actions">
-        <a class="button" href="/paths/">${esc(home.pathsCta.button)} &rarr;</a>
+        <a class="button" href="/paths/">${esc(home.pathsCta.button)} ${svgIcons.arrowRight}</a>
         <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.general))}">${esc(sharedCopy.buttons.whatsapp)}</a>
       </div>
     </div>
     <div class="paths-cta-chips-grid" aria-hidden="true">
-      <div class="paths-pill-item"><span class="pill-icon">🌐</span><span>Web Development</span></div>
-      <div class="paths-pill-item"><span class="pill-icon">🤖</span><span>Artificial Intelligence</span></div>
-      <div class="paths-pill-item"><span class="pill-icon">📊</span><span>Data Analytics</span></div>
-      <div class="paths-pill-item"><span class="pill-icon">🎨</span><span>Design &amp; Media</span></div>
-      <div class="paths-pill-item"><span class="pill-icon">📈</span><span>Business Growth</span></div>
-      <div class="paths-pill-item"><span class="pill-icon">🛠️</span><span>Hardware &amp; IT</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">${svgIcons.globe}</span><span>Web Development</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">${svgIcons.bot}</span><span>Artificial Intelligence</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">${svgIcons["bar-chart"]}</span><span>Data Analytics</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">${svgIcons.palette}</span><span>Design &amp; Media</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">${svgIcons["trending-up"]}</span><span>Business Growth</span></div>
+      <div class="paths-pill-item"><span class="pill-icon">${svgIcons.tool}</span><span>Hardware &amp; IT</span></div>
     </div>
   </div>
 </div></section>
@@ -315,7 +335,7 @@ ${renderPickerFallback()}
                alt="OCATECH technical installations: CCTV surveillance, solar power inverters, and computer software setup in Onitsha">
           <figcaption class="home-services-badge">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Certified on-site setup · Onitsha &amp; nearby towns</span>
+            <span>On-site setup by our team · Onitsha &amp; nearby towns</span>
           </figcaption>
         </figure>
       </div>
@@ -325,7 +345,7 @@ ${renderPickerFallback()}
           ${serviceList}
         </ul>
         <div class="home-services-actions">
-          <a class="button button-quiet" href="/services/">${esc(home.services.link)} &rarr;</a>
+          <a class="button button-quiet" href="/services/">${esc(home.services.link)} ${svgIcons.arrowRight}</a>
           <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.service.replace("{service}", "a technical service")))}">
             Chat on WhatsApp
           </a>
@@ -378,7 +398,7 @@ function renderCourses() {
     <strong>Not sure what comes next?</strong>
     <p>Explore our step-by-step career roadmaps to see how courses connect from beginner to advanced.</p>
   </div>
-  <a class="button button-small button-quiet" href="/paths/">View Learning Paths &rarr;</a>
+  <a class="button button-small button-quiet" href="/paths/">View Learning Paths ${svgIcons.arrowRight}</a>
 </div>
 </section>
 <section class="section"><div class="wrap">
@@ -402,69 +422,10 @@ function renderPaths() {
     const steps = courses.map((course, idx) => {
       const stepName = stepLabels[idx] || `Stage 0${idx + 1}`;
       const formatNaira = (num) => Number(num || 0).toLocaleString("en-NG");
-      return `
-        <li class="roadmap-step">
-          <div class="step-marker" aria-hidden="true">
-            <span class="step-num">0${idx + 1}</span>
-            ${idx < courses.length - 1 ? '<span class="step-line"></span>' : ""}
-          </div>
-          <div class="step-body">
-            <div class="step-header">
-              <span class="step-stage-tag">${esc(stepName)}</span>
-              <span class="step-level-tag">${esc(course.level)}</span>
-            </div>
-            <h3 class="step-title"><a href="/courses/${esc(course.slug)}/">${esc(course.title)}</a></h3>
-            <p class="step-desc">${esc(course.summary || course.subtitle)}</p>
-            <div class="step-footer">
-              <span class="step-fee">₦${formatNaira(course.fee)}</span>
-              <a class="step-link" href="/courses/${esc(course.slug)}/">Course details &rarr;</a>
-            </div>
-          </div>
-        </li>`;
+      return `<li class="roadmap-step"><div class="step-marker" aria-hidden="true"><span class="step-num">0${idx + 1}</span>${idx < courses.length - 1 ? '<span class="step-line"></span>' : ""}</div><div class="step-body"><div class="step-header"><span class="step-stage-tag">${esc(stepName)}</span><span class="step-level-tag">${esc(course.level)}</span></div><h3 class="step-title"><a href="/courses/${esc(course.slug)}/">${esc(course.title)}</a></h3><p class="step-desc">${esc(course.summary || course.subtitle)}</p><div class="step-footer"><span class="step-fee">₦${formatNaira(course.fee)}</span><a class="step-link" href="/courses/${esc(course.slug)}/">Course details ${svgIcons.arrowRight}</a></div></div></li>`;
     }).join("");
 
-    return `
-      <article class="path-card" id="${esc(path.id)}" data-category="${esc(meta.category || 'all')}">
-        <header class="path-card-header">
-          <div class="path-badge-strip">
-            <span class="path-category-pill">${esc(meta.badge || "Career Path")}</span>
-            <span class="path-level-pill">${courses.length} sequential courses</span>
-          </div>
-          <div class="path-title-wrap">
-            <span class="path-icon" aria-hidden="true">${meta.icon || "🚀"}</span>
-            <div>
-              <h2 class="path-title">${esc(path.name)}</h2>
-              <p class="path-tagline">${esc(meta.tagline || "")}</p>
-            </div>
-          </div>
-          <p class="path-description">${esc(meta.description || "")}</p>
-          <div class="path-outcomes">
-            <div class="outcome-item">
-              <span class="outcome-label">Target Roles:</span>
-              <span class="outcome-value">${esc(meta.targetRoles || "Tech Professional")}</span>
-            </div>
-            <div class="outcome-item">
-              <span class="outcome-label">Key Outcome:</span>
-              <span class="outcome-value">${esc(meta.outcome || "")}</span>
-            </div>
-          </div>
-        </header>
-
-        <div class="path-roadmap-wrap">
-          <h3 class="roadmap-heading">Recommended Sequence:</h3>
-          <ol class="roadmap-list">
-            ${steps}
-          </ol>
-        </div>
-
-        <footer class="path-card-actions">
-          <div class="path-actions-left">
-            <a class="button button-small" href="${applyUrl}">Apply for this Path &rarr;</a>
-            <a class="button button-small button-wa" href="${esc(waUrl)}">Chat with Advisor</a>
-          </div>
-          <span class="path-admissions-note">Open admissions · Learn at your pace</span>
-        </footer>
-      </article>`;
+    return `<article class="path-card" id="${esc(path.id)}" data-category="${esc(meta.category || 'all')}"><header class="path-card-header"><div class="path-badge-strip"><span class="path-category-pill">${esc(meta.badge || "Career Path")}</span><span class="path-level-pill">${courses.length} sequential courses</span></div><div class="path-title-wrap"><span class="path-icon" aria-hidden="true">${svgIcons[meta.icon] || svgIcons.globe}</span><div><h2 class="path-title">${esc(path.name)}</h2><p class="path-tagline">${esc(meta.tagline || "")}</p></div></div><p class="path-description">${esc(meta.description || "")}</p><div class="path-outcomes"><div class="outcome-item"><span class="outcome-label">Target Roles:</span><span class="outcome-value">${esc(meta.targetRoles || "Tech Professional")}</span></div><div class="outcome-item"><span class="outcome-label">Key Outcome:</span><span class="outcome-value">${esc(meta.outcome || "")}</span></div></div></header><div class="path-roadmap-wrap"><h3 class="roadmap-heading">Recommended Sequence:</h3><ol class="roadmap-list">${steps}</ol></div><footer class="path-card-actions"><div class="path-actions-left"><a class="button button-small" href="${applyUrl}">Apply for this Path ${svgIcons.arrowRight}</a><a class="button button-small button-wa" href="${esc(waUrl)}">Chat with Advisor</a></div><span class="path-admissions-note">Open admissions · Learn at your pace</span></footer></article>`;
   }).join("");
 
   const howPoints = (pathsPage.howItWorks.points || []).map(([title, desc], idx) => `
@@ -548,58 +509,54 @@ function renderPaths() {
 }
 
 function renderShowcase() {
-  const statsHtml = showcasePage.stats.map(([num, label]) => `
-    <div class="showcase-stat-card">
-      <span class="showcase-stat-num">${esc(num)}</span>
-      <span class="showcase-stat-label">${esc(label)}</span>
-    </div>
-  `).join("");
-
-  const projectCards = showcasePage.projects.map((proj) => `
-    <article class="showcase-card" data-category="${esc(proj.category)}">
-      <div class="showcase-media">
-        <img src="${esc(proj.image)}" alt="${esc(proj.title)}" width="600" height="380" loading="lazy">
-        <span class="showcase-cat-badge">${esc(showcasePage.categories.find((c) => c.id === proj.category)?.label || proj.category)}</span>
-      </div>
+  const projectCards = courseData.map((course) => `
+    <article class="showcase-card" data-course-track="${esc(course.track)}">
       <div class="showcase-body">
-        <div class="showcase-author-meta">
-          <span class="showcase-student">&#x1F464; ${esc(proj.student)}</span>
-          <span class="showcase-cohort">${esc(proj.cohort)}</span>
+        <div class="showcase-badge-row">
+          <span class="showcase-cat-badge">${esc(trackName(course.track))}</span>
+          <span class="showcase-brief-tag">Sample project brief</span>
         </div>
-        <h3 class="showcase-title">${esc(proj.title)}</h3>
-        <p class="showcase-summary">${esc(proj.summary)}</p>
+        <h3 class="showcase-title">${esc(course.title)}</h3>
+        <p class="showcase-summary">${esc(course.finalProject)}</p>
         <div class="showcase-tools">
-          ${proj.tools.map((t) => `<span class="tool-tag">${esc(t)}</span>`).join("")}
+          ${course.tools.map((t) => `<span class="tool-tag">${esc(t)}</span>`).join("")}
         </div>
         <div class="showcase-footer">
-          <span class="showcase-course-label">Built during:</span>
-          <a class="showcase-course-link" href="/courses/${esc(proj.courseSlug)}/">${esc(proj.courseTitle)} &rarr;</a>
+          <a class="showcase-course-link" href="/courses/${esc(course.slug)}/">View course details ${svgIcons.arrowRight}</a>
         </div>
       </div>
     </article>
   `).join("");
 
+  let studentWorkHtml = "";
+  if (site.flags.showStudentWork) {
+    try {
+      const studentWork = readJSON("data/student-work.json");
+      const confirmed = Array.isArray(studentWork) ? studentWork.filter((item) => item.permissionConfirmed === true) : [];
+      if (confirmed.length > 0) {
+        studentWorkHtml = `<section class="section" aria-labelledby="student-work-heading">
+          <div class="wrap">
+            <h2 id="student-work-heading">Student work</h2>
+          </div>
+        </section>`;
+      }
+    } catch (e) {}
+  }
+
   const inner = `<section class="page-head wrap text-center">
-<span class="eyebrow">Practical Proof of Work</span>
+<span class="eyebrow">Projects</span>
 <h1>${esc(showcasePage.h1)}</h1>
 <p class="section-lead">${esc(showcasePage.intro)}</p>
-<div class="showcase-stats-bar">
-  ${statsHtml}
-</div>
 </section>
 
 <section class="section" aria-labelledby="showcase-list-heading">
 <div class="wrap">
-  <div class="section-title-wrap text-center">
-    <h2 id="showcase-list-heading" class="section-title">Featured Student Projects</h2>
-    <p class="section-subtitle">Real web applications, design identities, videos and business dashboards built at 62 New Market Road, Onitsha.</p>
-  </div>
   <div class="showcase-grid">
     ${projectCards}
   </div>
 </div>
 </section>
-
+${studentWorkHtml}
 <section class="section section-alt closing">
 <div class="wrap">
   <h2>${esc(showcasePage.cta.heading)}</h2>
@@ -616,21 +573,33 @@ function renderShowcase() {
     description: showcasePage.seoDescription,
     canonical: urls.for("/showcase/"),
     inner,
-    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Student Showcase", urls.for("/showcase/")]])],
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Projects you will build", urls.for("/showcase/")]])],
   };
 }
 
 function renderCourse(course) {
   const track = trackById.get(course.track);
   const formatNaira = (num) => Number(num || 0).toLocaleString("en-NG");
+  const payFaq = faq.find(([q]) => q === "How can I pay?");
   const courseFaq = [
     [courseTemplate.qExperience, course.prerequisites],
     [courseTemplate.qOnline, courseTemplate.aOnline],
     [courseTemplate.qEnd, courseTemplate.aEnd],
-    ...faq.filter(([q]) => q !== "Do I need computer experience?" && !q.includes("online, onsite")).slice(0, 5),
+    ...(payFaq ? [payFaq] : []),
   ];
   const next = course.nextSteps.map((slug) => courseBySlug.get(slug)).filter(Boolean)
     .map((item) => `<li><a href="/courses/${esc(item.slug)}/">${esc(item.title)}</a></li>`).join("");
+
+  const hasFutureOffer = site.offer.endsOn && new Date(site.offer.endsOn) > new Date();
+  const heroPricingHtml = (course.originalFee && hasFutureOffer)
+    ? `<div class="hero-pricing">
+        <span class="price-val">₦${formatNaira(course.fee)}</span>
+        <span class="price-orig"><s>₦${formatNaira(course.originalFee)}</s></span>
+        <span class="price-offer-label">${site.offer.label || "Launch price"} until ${esc(new Date(site.offer.endsOn).toLocaleDateString("en-NG", { year: "numeric", month: "short", day: "numeric" }))}</span>
+      </div>`
+    : `<div class="hero-pricing">
+        <span class="price-val">₦${formatNaira(course.fee)}</span>
+      </div>`;
 
   const inner = `<article class="course-page">
 <header class="page-head wrap">
@@ -639,10 +608,7 @@ function renderCourse(course) {
 <p class="course-subtitle">${esc(course.subtitle)}</p>
 <p class="course-lead-copy">${esc(course.summary)}</p>
 <div class="course-hero-bar">
-  <div class="hero-pricing">
-    <span class="price-val">₦${formatNaira(course.fee)}</span>
-    ${course.originalFee ? `<span class="price-orig"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
-  </div>
+  ${heroPricingHtml}
   <div class="hero-actions">
     <a class="button" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
     <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
@@ -655,42 +621,42 @@ function renderCourse(course) {
 <h2 id="specs-heading" class="section-title">Course Specifications</h2>
 <div class="specs-grid">
   <div class="spec-card">
-    <span class="spec-icon" aria-hidden="true">&#x23F1;</span>
+    <span class="spec-icon" aria-hidden="true">${svgIcons.clock}</span>
     <div class="spec-info">
       <h3>Duration &amp; Schedule</h3>
       <p>${esc(course.duration || "Flexible pace")} · Weekdays &amp; weekends</p>
     </div>
   </div>
   <div class="spec-card">
-    <span class="spec-icon" aria-hidden="true">&#x1F4CD;</span>
+    <span class="spec-icon" aria-hidden="true">${svgIcons.pin}</span>
     <div class="spec-info">
       <h3>Training Format</h3>
-      <p>100% in-person at our Onitsha center</p>
+      <p>In-person in Onitsha · Online available for select courses</p>
     </div>
   </div>
   <div class="spec-card">
-    <span class="spec-icon" aria-hidden="true">&#x1F393;</span>
+    <span class="spec-icon" aria-hidden="true">${svgIcons.grad}</span>
     <div class="spec-info">
       <h3>Skill Level</h3>
       <p>${esc(course.level)} · Practical hands-on training</p>
     </div>
   </div>
   <div class="spec-card">
-    <span class="spec-icon" aria-hidden="true">&#x1F4BB;</span>
+    <span class="spec-icon" aria-hidden="true">${svgIcons.laptop}</span>
     <div class="spec-info">
       <h3>Equipment &amp; Facilities</h3>
-      <p>Lab computers provided · Solar power</p>
+      <p>Computers provided for practical classes · Stable power supply</p>
     </div>
   </div>
   <div class="spec-card">
-    <span class="spec-icon" aria-hidden="true">&#x1F3C6;</span>
+    <span class="spec-icon" aria-hidden="true">${svgIcons.award}</span>
     <div class="spec-info">
       <h3>Certification</h3>
       <p>${esc(site.offer.certificate)}</p>
     </div>
   </div>
   <div class="spec-card">
-    <span class="spec-icon" aria-hidden="true">&#x1F4B3;</span>
+    <span class="spec-icon" aria-hidden="true">${svgIcons.card}</span>
     <div class="spec-info">
       <h3>Tuition &amp; Plans</h3>
       <p>₦${formatNaira(course.fee)} · Installment plans available</p>
@@ -712,7 +678,7 @@ function renderCourse(course) {
 </div>
 <div class="syllabus-download-banner">
   <div class="syllabus-banner-info">
-    <span class="syllabus-badge">&#x1F4D6; Full Course Syllabus</span>
+    <span class="syllabus-badge">${svgIcons.award} Course Syllabus</span>
     <h3>Want the complete week-by-week module breakdown?</h3>
     <p>Get the detailed class timetable, practical exercise outlines and capstone project guide delivered directly to your WhatsApp.</p>
   </div>
@@ -774,19 +740,17 @@ function renderCourse(course) {
       </div>
       <div class="plan-price-wrap">
         <span class="plan-price">₦${formatNaira(course.fee)}</span>
-        ${course.originalFee ? `<span class="plan-price-orig"><s>₦${formatNaira(course.originalFee)}</s></span>` : ""}
       </div>
       <ul class="plan-perks-list">
         <li><span class="check-mark">&#x2713;</span> Full course access &amp; lab computer</li>
         <li><span class="check-mark">&#x2713;</span> Dedicated instructor mentoring</li>
-        <li><span class="check-mark">&#x2713;</span> Solar-powered continuous learning</li>
+        <li><span class="check-mark">&#x2713;</span> Stable power supply for practical sessions</li>
         <li><span class="check-mark">&#x2713;</span> Certificate of completion</li>
       </ul>
       <a class="button button-block" href="/apply/?course=${esc(course.slug)}">${esc(sharedCopy.buttons.applyCourse)}</a>
     </div>
 
     <div class="installment-plan-card featured-plan">
-      <div class="plan-popular-ribbon">Most Popular</div>
       <div class="plan-header">
         <span class="plan-tier-badge">Option 2 · 2-Part Split</span>
         <h3 class="plan-title">50 / 50 Installment</h3>
@@ -799,10 +763,10 @@ function renderCourse(course) {
       <ul class="plan-perks-list">
         <li><span class="check-mark">&#x2713;</span> Enrol immediately with 50% deposit</li>
         <li><span class="check-mark">&#x2713;</span> Mid-term balance halfway through</li>
-        <li><span class="check-mark">&#x2713;</span> Full access to workstations &amp; tools</li>
+        <li><span class="check-mark">&#x2713;</span> Full access to computers &amp; tools</li>
         <li><span class="check-mark">&#x2713;</span> Certificate upon full completion</li>
       </ul>
-      <a class="button button-block" href="/apply/?course=${esc(course.slug)}">Enrol with 2 Payments &rarr;</a>
+      <a class="button button-block" href="/apply/?course=${esc(course.slug)}">Enrol with 2 Payments ${svgIcons.arrowRight}</a>
     </div>
 
     <div class="installment-plan-card">
@@ -821,7 +785,7 @@ function renderCourse(course) {
         <li><span class="check-mark">&#x2713;</span> 30% balance before capstone project</li>
         <li><span class="check-mark">&#x2713;</span> Certificate upon final completion</li>
       </ul>
-      <a class="button button-outline button-block" href="/apply/?course=${esc(course.slug)}">Apply on 3-Part Plan &rarr;</a>
+      <a class="button button-outline button-block" href="/apply/?course=${esc(course.slug)}">Apply on 3-Part Plan ${svgIcons.arrowRight}</a>
     </div>
   </div>
   ` : `
@@ -839,7 +803,7 @@ function renderCourse(course) {
   `}
 
   <div class="tuition-footer-note">
-    <p class="tuition-note">&#x1F4B3; Accepted payment methods: ${site.offer.paymentMethods.join(", ")}. No hidden computer usage fees or unexpected levies.</p>
+    <p class="tuition-note">${svgIcons.card} Accepted payment methods: ${site.offer.paymentMethods.join(", ")}. No hidden computer usage fees or unexpected levies.</p>
     <a class="button button-wa" href="${esc(whatsapp(sharedCopy.whatsappPresets.course.replace("{course}", course.title)))}">${esc(sharedCopy.buttons.whatsapp)}</a>
   </div>
 </div>
@@ -936,7 +900,7 @@ function renderServices() {
     <div class="section-title-wrap">
       <p class="hero-kicker">Our Offerings</p>
       <h2 id="services-list-heading">Available installation services</h2>
-      <p class="section-subtitle">High-standard technical setup executed by trained technicians.</p>
+      <p class="section-subtitle">High-standard technical setup executed by our team.</p>
     </div>
     <div class="services-grid">${cards}</div>
   </div>
@@ -1015,7 +979,7 @@ function renderAbout() {
       <div class="about-hero-trust" aria-label="Key highlights">
         <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Registered BN 9677251</span>
         <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Mon–Sat 8AM–6PM</span>
-        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Solar-Powered Lab</span>
+        <span class="trust-pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Stable Power Supply</span>
       </div>
     </div>
     <div class="about-hero-media-wrap">
@@ -1068,7 +1032,7 @@ function renderAbout() {
     <div class="section-title-wrap text-center">
       <p class="hero-kicker">Center Facilities</p>
       <h2 id="inside-about-heading">Inside our Onitsha center</h2>
-      <p class="section-subtitle">Comfortable, air-conditioned lab with individual computer workstations and high-speed internet.</p>
+      <p class="section-subtitle">Practical training space with computers provided and stable power supply.</p>
     </div>
     <div class="about-video-wrap">
       <video class="center-video" controls preload="none" poster="/assets/img/video-poster.webp"><source src="/assets/video/ict-training.mp4" type="video/mp4"></video>
@@ -1095,13 +1059,13 @@ function renderAbout() {
   <div class="wrap about-closing">
     <div>
       <h2 id="about-visit-heading">Visit us in Onitsha</h2>
-      <p>${esc(about.visit)}</p>
+      <p>${esc(site.contact.addressLine)}, ${esc(site.contact.city)}, ${esc(site.contact.state)}.</p>
       ${site.contact.landmarkOrDirections ? `<p class="contact-muted">${esc(site.contact.landmarkOrDirections)}</p>` : ""}
       ${site.contact.hours ? `<p class="contact-hours">Open ${esc(site.contact.hours)}.</p>` : ""}
     </div>
     <div class="hero-actions">
       <a class="button" href="/apply/">${esc(sharedCopy.buttons.applyNow)}</a>
-      ${site.contact.googleMapsUrl ? `<a class="button button-quiet" href="${esc(site.contact.googleMapsUrl)}">Get directions &nearr;</a>` : ""}
+      ${site.contact.googleMapsUrl ? `<a class="button button-quiet" href="${esc(site.contact.googleMapsUrl)}">Get directions ${svgIcons.arrowNe}</a>` : ""}
     </div>
   </div>
 </section>`;
@@ -1158,13 +1122,13 @@ function renderApply() {
 
       <div class="apply-tour-card">
         <div class="tour-card-header">
-          <span class="tour-badge">&#x1F4CD; Free Center Walkthrough</span>
+          <span class="tour-badge">${svgIcons.pin} Free Center Walkthrough</span>
           <h3>Prefer to see the lab in person first?</h3>
         </div>
-        <p class="tour-desc">You are always welcome at 62 New Market Road, Onitsha. Come test our solar-powered computers, see our active classes, and speak 1-on-1 with an instructor before making any commitment.</p>
+        <p class="tour-desc">You are always welcome at 62 New Market Road, Onitsha. Come see our learning space with computers provided and stable power supply, see our active classes, and speak with an instructor before making any commitment.</p>
         <ul class="tour-perks">
-          <li><span class="check-mark">&#x2713;</span> Free 1-on-1 course advice</li>
-          <li><span class="check-mark">&#x2713;</span> Hands-on test of our lab computers</li>
+          <li><span class="check-mark">&#x2713;</span> Free course advice</li>
+          <li><span class="check-mark">&#x2713;</span> Hands-on look at our lab computers</li>
           <li><span class="check-mark">&#x2713;</span> No pressure, zero upfront obligation</li>
         </ul>
         <p class="tour-note">Open ${esc(site.contact.hours || "Monday–Saturday, 8AM–6PM")}.</p>
@@ -1210,11 +1174,11 @@ function renderApply() {
               <div class="mode-chips">
                 <label class="chip-label">
                   <input type="radio" name="mode" value="In person" checked>
-                  <span class="chip-pill">📍 In person (Onitsha Hub)</span>
+                  <span class="chip-pill">${svgIcons.pin} In person (Onitsha Hub)</span>
                 </label>
                 <label class="chip-label">
                   <input type="radio" name="mode" value="Online">
-                  <span class="chip-pill">💻 Online</span>
+                  <span class="chip-pill">${svgIcons.laptop} Online</span>
                 </label>
               </div>
             </fieldset>
@@ -1272,8 +1236,8 @@ function renderApply() {
               </label>
             </p>
 
-            <button class="button button-full" type="submit">${esc(sharedCopy.buttons.send)} &rarr;</button>
-            <p class="form-guarantee-note">🔒 We respect your privacy. No spam or unsolicited messages.</p>
+            <button class="button button-full" type="submit">${esc(sharedCopy.buttons.send)} ${svgIcons.arrowRight}</button>
+            <p class="form-guarantee-note">We respect your privacy. No spam or unsolicited messages.</p>
           </div>
         </form>
       </div>
@@ -1413,8 +1377,8 @@ function renderQuote() {
               </label>
             </p>
 
-            <button class="button button-full" type="submit">Submit Quote Request &rarr;</button>
-            <p class="form-guarantee-note">🔒 Fast response. We assess your needs before giving final estimates.</p>
+            <button class="button button-full" type="submit">Submit Quote Request ${svgIcons.arrowRight}</button>
+            <p class="form-guarantee-note">Fast response. We assess your needs before giving final estimates.</p>
           </div>
         </form>
       </div>
@@ -1500,7 +1464,7 @@ function renderContact() {
         <input type="hidden" name="type" value="learn">
         <input type="hidden" name="course" value="not-sure-yet">
         <input type="hidden" name="sourcePage" value="/contact/">
-        <p class="honeypot"><label>Leave this blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
+        <p class="honeypot" aria-hidden="true"><label>Leave this blank <input type="text" name="website" tabindex="-1" autocomplete="off"></label></p>
         <p><label for="contact-name">Your name *</label><input id="contact-name" type="text" name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Enter your full name"></p>
         <div class="contact-form-row">
           <p><label for="contact-phone">Phone / WhatsApp *</label><input id="contact-phone" type="tel" name="phone" required autocomplete="tel" placeholder="e.g. 0816 532 1429"></p>
@@ -1521,7 +1485,7 @@ function renderContact() {
         <h2 id="map-heading">Find us on the map</h2>
         <p class="contact-muted">${esc(site.contact.addressLine)}, ${esc(site.contact.city)} — ${esc(site.contact.landmarkOrDirections)}</p>
       </div>
-      ${site.contact.googleMapsUrl ? `<a class="button button-quiet" href="${esc(site.contact.googleMapsUrl)}">Open in Google Maps &nearr;</a>` : ""}
+      ${site.contact.googleMapsUrl ? `<a class="button button-quiet" href="${esc(site.contact.googleMapsUrl)}">Open in Google Maps ${svgIcons.arrowNe}</a>` : ""}
     </div>
     <div class="map-embed-wrap">
       <iframe
@@ -1557,8 +1521,28 @@ function renderSuccess() {
   return { title: "Details received | OCATECH", description: "Your details have been received.", canonical: urls.for("/success/"), inner, jsonLd: [], noindex: true };
 }
 
+function renderReview() {
+  const reviewUrl = site.contact.googleReviewUrl || "https://g.page/r/CYmQp_WwwYMxEBM/review";
+  const inner = `<section class="page-head wrap text-center">
+<h1>Leave a Review for OCATECH</h1>
+<p class="section-lead">Taking you to our Google review page…</p>
+<div class="hero-actions">
+  <a class="button button-wa" href="${esc(reviewUrl)}">Click here if not redirected automatically</a>
+</div>
+<p class="contact-muted">Thank you for sharing your experience with OCATECH Digital Solutions.</p>
+<meta http-equiv="refresh" content="0; url=${esc(reviewUrl)}">
+</section>`;
+  return {
+    title: "Leave a Review | OCATECH",
+    description: "Review OCATECH Digital Solutions on Google.",
+    canonical: urls.for("/review/"),
+    inner,
+    jsonLd: [],
+  };
+}
+
 const headerRules = [];
-const sitemapPaths = ["/", "/courses/", "/paths/", "/showcase/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/"];
+const sitemapPaths = ["/", "/courses/", "/paths/", "/showcase/", "/services/", "/about/", "/apply/", "/quote/", "/contact/", "/privacy/", "/review/"];
 
 function emitPage(file, meta) {
   const hashes = meta.jsonLd.map((item) => crypto.createHash("sha256").update(json(item)).digest("base64"));
@@ -1597,6 +1581,7 @@ const pages = [
   ["contact/index.html", renderContact()],
   ["privacy/index.html", renderPrivacy()],
   ["success/index.html", renderSuccess()],
+  ["review/index.html", renderReview()],
   ["404.html", render404()],
 ];
 

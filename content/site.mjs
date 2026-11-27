@@ -2,7 +2,7 @@ export const shared = {
   nav: [
     ["Courses", "/courses/"],
     ["Paths", "/paths/"],
-    ["Showcase", "/showcase/"],
+    ["Projects you will build", "/showcase/"],
     ["Services", "/services/"],
     ["About", "/about/"],
     ["Contact", "/contact/"],
@@ -45,7 +45,7 @@ export const home = {
       ["Protect systems and data", ["cybersecurity", "hardware-maintenance-and-wifi-networking"]],
     ],
   },
-  facts: ["Where: 62 New Market Road, Onitsha", "Open Monday–Saturday, 8AM–6PM", "Certificate of completion", "Solar-powered computer workstations", "In person at our Onitsha center", "Installments available"],
+  facts: ["Where: 62 New Market Road, Onitsha", "Open Monday–Saturday, 8AM–6PM", "Certificate of completion", "Computers provided during practical classes", "Stable power supply", "In person at our Onitsha center", "Installments available"],
   leadCourses: {
     heading: "Six courses to start with",
     intro: "New to this? Begin here. Every course is its own course, so you pick only what you need.",
@@ -137,7 +137,7 @@ export const pathsPage = {
       tagline: "From computer literacy to digital growth & online sales",
       outcome: "Run a modern, tech-enabled enterprise and generate sales online",
       targetRoles: "Business Owner, Entrepreneur, Digital Marketing Manager",
-      icon: "📈",
+      icon: "trending-up",
       description: "Equip your business with modern digital tools. Master office productivity, leverage AI tools to automate work and customer communication, run profitable digital marketing campaigns, and build an e-commerce website.",
     },
     "creator": {
@@ -146,7 +146,7 @@ export const pathsPage = {
       tagline: "Create high-impact branding, graphics and video content",
       outcome: "Create brand assets, professional graphics and viral videos",
       targetRoles: "Graphic Designer, Video Creator, Social Media Specialist",
-      icon: "🎨",
+      icon: "palette",
       description: "Master visual communication and content production. Learn design foundations, produce marketing materials in Photoshop & Illustrator, edit engaging short and long-form video, and grow an audience online.",
     },
     "web-developer": {
@@ -155,7 +155,7 @@ export const pathsPage = {
       tagline: "Build modern, responsive web applications from zero to deployment",
       outcome: "Build, launch and scale modern websites and web applications",
       targetRoles: "Frontend Developer, React Specialist, Full-Stack Developer",
-      icon: "🌐",
+      icon: "globe",
       description: "The complete web engineering progression. Start from computer foundations and semantic HTML/CSS/JavaScript, master component-driven UI with React, build backend APIs and databases with Node.js, and launch capstone web apps.",
     },
     "build-with-ai": {
@@ -164,7 +164,7 @@ export const pathsPage = {
       tagline: "Harness AI models and automated workflows in modern development",
       outcome: "Develop AI-powered software, chatbots and automation agents",
       targetRoles: "AI Software Engineer, Automation Specialist, AI Developer",
-      icon: "🤖",
+      icon: "bot",
       description: "Step into modern software development accelerated by artificial intelligence. Combine frontend web development, AI coding copilots, Python programming, and LLM API integration with automated workflows.",
     },
     "data-analyst": {
@@ -173,7 +173,7 @@ export const pathsPage = {
       tagline: "Extract insights, analyze trends and build automated reports",
       outcome: "Transform raw numbers into interactive dashboards and business decisions",
       targetRoles: "Data Analyst, BI Analyst, Python Data Specialist",
-      icon: "📊",
+      icon: "bar-chart",
       description: "From data wrangling to predictive analytics. Master data collection and spreadsheets, learn relational SQL databases, analyze data with Python and pandas, and build automated reporting pipelines.",
     },
     "it-support-networking": {
@@ -182,7 +182,7 @@ export const pathsPage = {
       tagline: "Repair hardware, configure business networks and defend systems",
       outcome: "Troubleshoot computer hardware, manage networks and defend systems",
       targetRoles: "Hardware Technician, Network Engineer, Cybersecurity Analyst",
-      icon: "🛠️",
+      icon: "tool",
       description: "Hands-on engineering for systems and networks. Diagnose and repair computer hardware, configure routers and switches, prepare for Cisco CCNA certification, and implement cybersecurity defensive controls.",
     },
   },
@@ -284,7 +284,7 @@ export const about = {
       tag: "Purpose",
       text: "Equip beginners, students, professionals and business owners in Onitsha and nearby towns with practical digital skills they can use immediately.",
       points: [
-        "100% practical, hands-on learning from day one",
+        "Practical, hands-on learning from day one",
         "Direct mastery of modern tools: coding, design, AI and data",
         "Immediate career, freelance and business readiness",
       ],
@@ -292,9 +292,9 @@ export const about = {
     {
       title: "Our Vision",
       tag: "Future",
-      text: "Be the most trusted ICT hub in Anambra State where learners master modern tools and businesses get dependable technology support.",
+      text: "Be a dependable ICT hub in Anambra State where learners master modern tools and businesses get dependable technology support.",
       points: [
-        "The leading tech education hub across Onitsha and Anambra State",
+        "A modern tech education hub across Onitsha and Anambra State",
         "Bridging the divide between academic theory and industry standards",
         "Empowering local businesses with dependable tech infrastructure",
       ],
@@ -317,7 +317,7 @@ export const about = {
     ["Start from where you are", "You do not need prior experience for our beginner courses."],
     ["Structured tracks", "Follow a step-by-step career path or take a single course on its own."],
     ["Flexible entry and payment", "Admission is open all year, with bank transfer, POS, cash and installment options."],
-    ["In-person guidance", "Learn at our Onitsha center with hands-on instructor support and solar power."],
+    ["In-person guidance", "Learn at our Onitsha center with hands-on instructor support and stable power supply."],
   ],
   what: "We teach computer applications, AI tools, design, video, digital marketing, data, programming, web development, cybersecurity and networking. We also install software, CCTV and solar power for homes and businesses.",
   how: [
@@ -327,7 +327,7 @@ export const about = {
   ],
   audiences: "Beginners, students, graduates, professionals, entrepreneurs, business owners, job seekers, freelancers and career changers.",
   registered: "OCATECH Digital Solutions is a registered business (BN 9677251).",
-  visit: "62 New Market Road, Onitsha, Anambra State. Beside the Glo Office and Mr Biggs at Ogo-ommanu, just before Onitsha Main Market.",
+  visit: "62 New Market Road, Onitsha, Anambra State. Beside the Glo Office and Mr Bigs at Ogbommanu, just before Onitsha Main Market.",
 };
 
 export const apply = {
@@ -377,10 +377,10 @@ export const apply = {
     "Other",
   ],
   benefits: [
-    ["100% Practical Training", "Learn with modern software tools and build real projects."],
+    ["Practical Training", "Learn with modern software tools and build real projects."],
     ["Flexible Installments", "Convenient installment payment plans available."],
     ["Recognized Certificate", "Receive a verified certificate of completion."],
-    ["Equipped Onitsha Hub", "Modern workstations and uninterrupted solar power."],
+    ["Equipped Onitsha Hub", "Computers provided during practical classes with stable power supply."],
     ["Fast WhatsApp Reply", "Our team confirms course details and answers questions promptly."],
   ],
   messages: {
@@ -427,7 +427,7 @@ export const quote = {
     "Other location in Anambra",
   ],
   benefits: [
-    ["Expert On-Site Technicians", "Trained specialists for CCTV, solar systems and IT setups."],
+    ["Technical Team", "Our team handles CCTV, solar systems and IT setups."],
     ["Quality & Warranty", "Genuine equipment, neat cabling and reliable post-install support."],
     ["Transparent Pricing", "Clear estimate with no hidden charges or surprises."],
     ["On-Site Inspection", "We assess your building layout or power load before installation."],
@@ -456,111 +456,30 @@ export const contact = {
 };
 
 export const faq = [
-  ["Do I need computer experience?", "No. Many students start with zero previous experience. If you are new to computers, start with the Certificate in Computer Application. Each course page clearly lists what you need beforehand."],
-  ["When can I start?", "You can start immediately. Admission is open all year round. Because training is practical and 1-on-1, you do not have to wait weeks for a new semester or a batch of students to assemble. Once you enrol, you can begin classes this week on a schedule that fits your routine (morning, afternoon, or Saturday)."],
+  ["Do I need computer experience?", "No. If you are new to computers, start with the Certificate in Computer Application. Each course page clearly lists what you need beforehand."],
+  ["When can I start?", "You can start immediately. Admission is open all year round. You do not have to wait weeks for a new semester or a batch of students to assemble. Once you enrol, you can begin classes this week on a schedule that fits your routine (morning, afternoon, or Saturday)."],
   ["Is the training online, onsite, or hybrid?", "We offer onsite, online, and hybrid options depending on the course. You can train in person at our Onitsha center with dedicated computers and stable power supply, or join live remote sessions if you live outside the city or have a demanding work schedule. Message us on WhatsApp to confirm the available formats for your chosen course."],
-  ["How much do courses cost?", "Tuition depends on the course and chosen payment plan. Transparent pricing is published on each course page, or you can message us on WhatsApp for current fees. To make learning accessible without compromising quality, flexible installment plans (including starting with a 50% deposit) are available for all courses."],
+  ["How much do courses cost?", "Prices are shown on each course page and on the fees page. Installments are available. To make learning accessible without compromising quality, flexible installment plans (including starting with a 50% deposit) are available for all courses."],
   ["How can I pay?", "By bank transfer, by POS at the center, or in cash at the center. Installment plans are available. We will give you payment details directly. We never ask you to pay into an account sent by anyone else."],
   ["Do I need my own laptop before enrolling?", "No. Computers are provided for every student during practical classes at our Onitsha center, along with stable power supply. Having your own laptop is helpful for extra practice at home, but it is not required to enrol."],
   ["What support do I get during my training?", "You receive step-by-step in-person instructor guidance, dedicated computers during practical sessions, stable power supply, hands-on project reviews, peer collaboration, and learning materials to keep practicing beyond class hours."],
-  ["Will I get a job after completing my training?", "We do not give artificial job guarantees. Instead, we train you with practical, market-ready skills so you can work with companies, freelance remotely, or start your own business. We assist you with portfolio reviews, CV preparation, and career guidance, and we frequently recommend our vetted top graduates when local businesses and employers reach out to us for tech talent."],
+  ["Will I get a job after completing my training?", "We do not give artificial job guarantees. Instead, we train you with practical, market-ready skills so you can work with companies, freelance remotely, or start your own business. We assist you with portfolio reviews, CV preparation, and career guidance."],
   ["Will I get a certificate?", "Yes. You receive a certificate of completion and finish with a tangible final project when you complete your course."],
   ["Can I combine classes with my work, shop, or school?", "Yes. We offer flexible morning, afternoon, and Saturday session options so traders, business owners, professionals, and students can learn without disrupting their daily commitments."],
-  ["Where are you?", "At 62 New Market Road, Onitsha, Anambra State (beside the Glo Office and Mr Biggs at Ogbommanu, just before Onitsha Main Market)."],
+  ["Where are you?", "At 62 New Market Road, Onitsha, Anambra State (beside the Glo Office and Mr Bigs at Ogbommanu, just before Onitsha Main Market)."],
   ["Can I take more than one course?", "Yes. Every course is separate, so you can take one course at a time or follow our structured career learning paths to master multiple connected skills."],
 ];
 
 export const homeFaqCount = 8;
 
 export const showcasePage = {
-  seoTitle: "Student Project Showcase & Portfolio | OCATECH Digital Solutions",
-  seoDescription: "Explore real web applications, brand identities, video edits and analytics dashboards built by students at OCATECH Digital Solutions in Onitsha.",
-  h1: "Student Showcase & Practical Portfolio",
-  intro: "Evidence of real capability. Every student at OCATECH graduates with real-world deliverables they built from scratch, ready for employers and clients.",
-  stats: [
-    ["100%", "Practical Projects"],
-    ["Solar-Powered", "Computer Workstations"],
-    ["Onitsha", "In-Person Mentorship"],
-    ["Industry-Standard", "Tools & Software"],
-  ],
-  categories: [
-    { id: "all", label: "All Projects" },
-    { id: "web", label: "Web & Software" },
-    { id: "design", label: "Branding & Design" },
-    { id: "data", label: "Data & Analytics" },
-    { id: "media", label: "Video & Media" },
-  ],
-  projects: [
-    {
-      title: "Main Market POS & Stock Manager",
-      category: "web",
-      student: "Emeka N.",
-      cohort: "Full-Stack Web Cohort",
-      image: "/assets/img/showcase/showcase-pos.svg",
-      summary: "A high-speed web application tailored for Onitsha wholesale traders with barcode scanning, sales logging, and automatic receipt printing.",
-      tools: ["HTML5", "CSS Grid", "JavaScript", "Node.js", "SQLite"],
-      courseSlug: "full-stack-web-development",
-      courseTitle: "Full-Stack Web Development",
-    },
-    {
-      title: "CarePlus Pharmacy E-Commerce Store",
-      category: "web",
-      student: "Chioma O.",
-      cohort: "WordPress & Web Design Cohort",
-      image: "/assets/img/showcase/showcase-ecommerce.svg",
-      summary: "A complete online pharmacy storefront featuring instant product search, Paystack checkout, prescription upload, and WhatsApp notifications.",
-      tools: ["WordPress", "WooCommerce", "Paystack", "Elementor"],
-      courseSlug: "wordpress",
-      courseTitle: "WordPress Website Design",
-    },
-    {
-      title: "Apex Logistics Corporate Brand Guide",
-      category: "design",
-      student: "Blessing A.",
-      cohort: "Graphic Design Masterclass",
-      image: "/assets/img/showcase/showcase-branding.svg",
-      summary: "End-to-end brand identity package including vector logo marks, corporate business cards, delivery vehicle vinyl mockups, and typography guidelines.",
-      tools: ["Adobe Photoshop", "CorelDRAW", "Adobe Illustrator"],
-      courseSlug: "graphic-design",
-      courseTitle: "Graphic Design Masterclass",
-    },
-    {
-      title: "Supermarket Sales & Performance Dashboard",
-      category: "data",
-      student: "Chidimma U.",
-      cohort: "Data Analysis Cohort",
-      image: "/assets/img/showcase/showcase-dashboard.svg",
-      summary: "Interactive Power BI dashboard dissecting ₦42M+ in retail transactions across Anambra retail branches, identifying peak sales hours and top-selling SKUs.",
-      tools: ["Microsoft Excel", "Power Query", "Power BI", "DAX"],
-      courseSlug: "data-analysis",
-      courseTitle: "Data Analysis & Business Intelligence",
-    },
-    {
-      title: "Luxury Real Estate Walkthrough Reel",
-      category: "media",
-      student: "David C.",
-      cohort: "Video Editing & Content Creation",
-      image: "/assets/img/showcase/showcase-video.svg",
-      summary: "Commercial-grade 60-second property showcase featuring drone shot color grading, kinetic title animations, and 9:16 mobile optimization for social media.",
-      tools: ["Adobe Premiere Pro", "After Effects", "CapCut Pro"],
-      courseSlug: "video-editing-and-content-creation",
-      courseTitle: "Video Editing & Content Creation",
-    },
-    {
-      title: "Remote Tech Job Board & Portfolio SPA",
-      category: "web",
-      student: "Somtochukwu E.",
-      cohort: "Frontend Development Cohort",
-      image: "/assets/img/showcase/showcase-portfolio.svg",
-      summary: "Modern frontend single page application with live API currency converter, technology filtering, and high-performance semantic layout.",
-      tools: ["React", "CSS3 Flexbox", "JavaScript (ES6+)", "REST API"],
-      courseSlug: "frontend-development",
-      courseTitle: "Frontend Web Development",
-    },
-  ],
+  seoTitle: "Projects you will build | OCATECH Digital Solutions",
+  seoDescription: "Every course ends with a project you can show. Explore the sample project briefs you will build at OCATECH Digital Solutions in Onitsha.",
+  h1: "Projects you will build",
+  intro: "Every course ends with a project you can show. Here are the briefs you will work on.",
   cta: {
-    heading: "Ready to build projects like these?",
-    text: "Join our next hands-on cohort at 62 New Market Road, Onitsha. No previous coding or design experience required.",
+    heading: "Ready to build your project?",
+    text: "Enrol in a practical course at 62 New Market Road, Onitsha. We guide you step by step from basics to your finished project.",
     applyBtn: "Apply for a Course",
     whatsappBtn: "Chat on WhatsApp",
   },
@@ -603,7 +522,7 @@ Your job is to answer visitor questions about OCATECH's courses, services, locat
 
 Rules:
 1. Use only the FACTS. If the answer is not in the FACTS, say you do not have that information and invite the person to message the team on WhatsApp. Never guess.
-2. Never state prices, discounts, durations, start dates, trainer names, accreditation, job guarantees or exam pass rates. Fees differ by course: tell people to check the course page or ask on WhatsApp. State opening hours only from the FACTS. Online classes are available depending on the course; do not claim online delivery for every course. Mention stable power supply at the center.
+2. Never state prices, discounts, durations, start dates, trainer names, accreditation, job guarantees or exam pass rates. Never claim job placement, certification by outside bodies, or graduate numbers. Fees differ by course: tell people to check the course page or ask on WhatsApp. State opening hours only from the FACTS. Online classes are available depending on the course; do not claim online delivery for every course. Mention stable power supply at the center.
 3. Never ask for or accept passwords, bank card numbers, bank account details or ID numbers.
 4. Keep replies short: two to five sentences, plain English, friendly and direct. Use a short list only when comparing courses.
 5. When someone describes a goal, recommend one to three courses from the FACTS and name them exactly.

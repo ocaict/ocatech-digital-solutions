@@ -41,6 +41,7 @@
     "landmarkOrDirections": "Beside the Glo Office and Mr Bigs at Ogbommanu, just before Onitsha Main Market.",
     "googleMapsUrl": "https://maps.app.goo.gl/jCjjhCm6M5VzofTt7",
     "googleBusinessProfileUrl": null,
+    "googleReviewUrl": "https://g.page/r/CYmQp_WwwYMxEBM/review",
     "social": {
       "facebook": "https://web.facebook.com/ocatechskills/",
       "instagram": null,
@@ -57,7 +58,8 @@
     "admission": "Open all year. There is no fixed start date.",
     "certificate": "Certificate of completion",
     "perks": [
-      "Solar-powered computer workstations"
+      "Computers provided during practical classes",
+      "Stable power supply"
     ],
     "paymentMethods": [
       "Bank transfer",
@@ -65,8 +67,10 @@
       "Cash at the center"
     ],
     "installmentsAvailable": true,
-    "feesPublished": false,
-    "feeNote": "Fees differ by course. Message us on WhatsApp for the current fee."
+    "feesPublished": true,
+    "endsOn": null,
+    "label": "Launch offer",
+    "feeNote": "Prices are shown on each course page and on the fees page. Installments are available."
   },
   "areasServed": [
     "Onitsha",
@@ -86,6 +90,7 @@
     "Career changers"
   ],
   "flags": {
+    "showStudentWork": false,
     "showFees": true,
     "showDiscountBanner": false,
     "showTestimonials": false,

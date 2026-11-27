@@ -117,6 +117,16 @@ Cloudflare rebuilds after each push. Check the build result in **Workers & Pages
 2. In https://search.google.com/search-console, add the property and submit `https://ict.ocatech.workers.dev/sitemap.xml`.
 3. A custom domain can be added later when the business is earning.
 
+## 9. Google reviews template (for students)
+
+Send this WhatsApp message to students after their practical class or when they complete a course:
+
+> “Hello [Student Name], thank you for learning with us at OCATECH Digital Solutions today! If you enjoyed our practical session, please take 30 seconds to drop us a quick 5-star review on Google. It helps other students and business owners in Onitsha find us:
+> https://ict.ocatech.workers.dev/review/
+> Thank you for choosing OCATECH!”
+
+A printable QR code is also available at `assets/img/review-qr.svg` to print and display at the center reception desk.
+
 ## Free-plan limits checked on 26 Nov 2026
 
 - Workers: 100,000 requests per day. Static asset requests are free; chat and form requests use the Worker allowance.

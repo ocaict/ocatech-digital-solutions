@@ -1,1 +1,3 @@
-# No redirects yet. Cloudflare Pages serves dist/404.html automatically.
+# Redirects for Cloudflare Pages
+/review   https://g.page/r/CYmQp_WwwYMxEBM/review   302
+/review/  https://g.page/r/CYmQp_WwwYMxEBM/review   302
