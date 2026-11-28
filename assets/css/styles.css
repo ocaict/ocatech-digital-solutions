@@ -2689,7 +2689,29 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
   background: var(--surface-2);
   border-color: var(--orange);
 }
-.chat-body { padding: 1rem; overflow: auto; display: grid; gap: .6rem; }
+.chat-body {
+  padding: 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  gap: .6rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(70, 206, 255, 0.28) transparent;
+}
+.chat-body::-webkit-scrollbar {
+  width: 5px;
+}
+.chat-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-body::-webkit-scrollbar-thumb {
+  background: rgba(70, 206, 255, 0.25);
+  border-radius: 999px;
+  transition: background .2s ease;
+}
+.chat-body::-webkit-scrollbar-thumb:hover {
+  background: var(--orange);
+}
 .chat-message { max-width: 88%; padding: .65rem .85rem; border-radius: 12px; background: var(--surface-2); color: var(--text); font-size: .92rem; line-height: 1.45; word-break: break-word; }
 .chat-message.user { justify-self: end; background: var(--orange); color: var(--navy-text); }
 .chat-message strong { font-weight: 700; color: #fff; }
