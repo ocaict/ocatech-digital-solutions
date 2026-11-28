@@ -63,4 +63,35 @@
   document.querySelectorAll("[data-track]").forEach((el) => {
     el.addEventListener("click", () => track(el.dataset.track));
   });
+
+  // Tutorial category filtering
+  const tutFilters = document.querySelectorAll("[data-tutorial-filter]");
+  const tutCards = document.querySelectorAll("[data-tutorial-track]");
+  if (tutFilters.length && tutCards.length) {
+    tutFilters.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const cat = chip.dataset.tutorialFilter;
+        tutFilters.forEach((c) => c.classList.toggle("active", c === chip));
+        tutCards.forEach((card) => {
+          card.hidden = cat !== "all" && card.dataset.tutorialTrack !== cat;
+        });
+      });
+    });
+  }
+
+  // Click-to-play video embeds
+  document.querySelectorAll(".video-embed-box").forEach((box) => {
+    box.addEventListener("click", () => {
+      const id = box.dataset.videoId;
+      if (!id || box.classList.contains("playing")) return;
+      box.classList.add("playing");
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = "YouTube video player";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      box.innerHTML = "";
+      box.append(iframe);
+    });
+  });
 })();

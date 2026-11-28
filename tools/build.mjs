@@ -18,6 +18,9 @@ const courseBySlug = new Map(courseData.map((course) => [course.slug, course]));
 const sharedCopy = { ...shared, chat };
 const trackById = new Map(site.tracks.map((track) => [track.id, track]));
 const serviceBySlug = new Map(site.services.map((service) => [service.slug, service]));
+const tutorialData = readJSON("data/tutorials.json");
+const tutorials = tutorialData.tutorials;
+const tutorialBySlug = new Map(tutorials.map((t) => [t.slug, t]));
 
 const write = (file, contents) => {
   const target = path.join(dist, file);
@@ -101,6 +104,31 @@ function breadcrumbJsonLd(items) {
     itemListElement: items.map(([name, url], index) => ({
       "@type": "ListItem", position: index + 1, name, item: url,
     })),
+  };
+}
+
+function videoObjectJsonLd(t, url) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: t.title,
+    description: t.summary,
+    thumbnailUrl: [
+      `https://i.ytimg.com/vi/${t.youtubeId}/hqdefault.jpg`,
+    ],
+    uploadDate: `${t.published}T08:00:00+01:00`,
+    duration: t.duration ? `PT${parseInt(t.duration, 10)}M` : "PT15M",
+    contentUrl: `https://www.youtube.com/watch?v=${t.youtubeId}`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${t.youtubeId}`,
+    publisher: {
+      "@type": "EducationalOrganization",
+      name: site.brand.name,
+      url: urls.home,
+      logo: {
+        "@type": "ImageObject",
+        url: urls.for("/assets/img/logo-480.webp"),
+      },
+    },
   };
 }
 
@@ -1958,6 +1986,215 @@ function renderGuidesIndex() {
   };
 }
 
+function renderTutorialsIndex() {
+  const cards = tutorials.map((t) => {
+    const course = t.courseSlug ? courseBySlug.get(t.courseSlug) : null;
+    return `
+    <article class="tutorial-card" data-tutorial-track="${esc(t.track)}">
+      <a class="tutorial-card-media" href="/tutorials/${esc(t.slug)}/" aria-label="Watch ${esc(t.title)}">
+        <img src="https://i.ytimg.com/vi/${esc(t.youtubeId)}/hqdefault.jpg" alt="${esc(t.title)}" width="480" height="270" loading="lazy">
+        <span class="tutorial-duration-tag">${esc(t.duration)}</span>
+        <span class="tutorial-card-play" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        </span>
+      </a>
+      <div class="tutorial-card-content">
+        <div class="tutorial-card-badge">${esc(t.category)}</div>
+        <h2 class="tutorial-card-heading"><a href="/tutorials/${esc(t.slug)}/">${esc(t.title)}</a></h2>
+        <p class="tutorial-card-text">${esc(t.summary)}</p>
+        ${course ? `<div class="tutorial-course-ref"><span class="meta-label">Hands-on course:</span> <a href="/courses/${esc(course.slug)}/">${esc(course.title)}</a></div>` : ""}
+        <div class="tutorial-card-foot">
+          <a class="text-link" href="/tutorials/${esc(t.slug)}/">Watch practical lesson ${svgIcons.arrowRight}</a>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+
+  const filters = tutorialData.categories.map((c) =>
+    `<button class="filter-chip${c.id === "all" ? " active" : ""}" type="button" data-tutorial-filter="${esc(c.id)}">${esc(c.name)}</button>`
+  ).join("");
+
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Tutorials", "/tutorials/"]])}
+  <section class="page-head wrap">
+    <div class="tutorials-head-row">
+      <div>
+        <span class="section-tag">Free Practical Video Lessons</span>
+        <h1>Free tech & computer tutorials</h1>
+        <p class="course-lead-copy">Watch real-world lessons recorded by OCATECH instructors in Onitsha. Master practical Excel, AI application building, networking hardware and marketing workflows.</p>
+      </div>
+      <div class="tutorials-yt-subscribe">
+        <a class="button button-youtube" href="${esc(tutorialData.channel.subscribeUrl)}" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          <span>Subscribe on YouTube</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tutorials-filter-section">
+    <div class="wrap">
+      <div class="filter-chips-wrap" role="group" aria-label="Filter tutorials by track">
+        ${filters}
+      </div>
+      <div class="tutorials-grid">
+        ${cards}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tutorial-hub-cta wrap">
+    <div class="paths-cta-card">
+      <div class="paths-cta-text">
+        <span class="path-badge">In-Person Lab Mentorship</span>
+        <h2>Ready for hands-on training with computers provided?</h2>
+        <p>Our video tutorials give you a fast foundation, but true career confidence comes from building real projects under expert guidance in our Onitsha lab with uninterrupted solar and generator power.</p>
+        <div class="hero-actions">
+          <a class="button" href="/courses/">Browse all 17 courses</a>
+          <a class="button button-wa" href="https://wa.me/${site.contact.whatsapp.number}?text=${encodeURIComponent("Hello OCATECH, I watched your video tutorials and would like to enroll in practical training.")}" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>`;
+
+  return {
+    title: "Free Tech & Computer Tutorials | OCATECH Digital Solutions",
+    description: "Watch step-by-step practical tech lessons on Excel, AI app development, networking hardware and digital marketing by OCATECH trainers in Onitsha.",
+    canonical: urls.for("/tutorials/"),
+    inner,
+    jsonLd: [breadcrumbJsonLd([["Home", urls.home], ["Tutorials", urls.for("/tutorials/")]])],
+  };
+}
+
+function renderTutorial(t) {
+  const url = urls.for(`/tutorials/${t.slug}/`);
+  const course = t.courseSlug ? courseBySlug.get(t.courseSlug) : null;
+  const related = tutorials.filter((other) => other.slug !== t.slug && (other.track === t.track || other.courseSlug === t.courseSlug)).slice(0, 3);
+  if (related.length < 3) {
+    for (const other of tutorials) {
+      if (other.slug !== t.slug && !related.includes(other)) related.push(other);
+      if (related.length >= 3) break;
+    }
+  }
+
+  const stepsList = t.steps && t.steps.length ? `
+    <div class="tutorial-chapters-card">
+      <h2>Lesson timestamps & chapters</h2>
+      <ol class="tutorial-steps-list">
+        ${t.steps.map((s) => `<li><span class="step-timestamp">${esc(s.time)}</span> <span class="step-title">${esc(s.title)}</span></li>`).join("")}
+      </ol>
+    </div>` : "";
+
+  const toolsList = t.tools && t.tools.length ? `
+    <div class="tutorial-tools-card">
+      <h3>Tools & software covered</h3>
+      <ul class="tool-tags-list">
+        ${t.tools.map((tool) => `<li class="tool-tag">${esc(tool)}</li>`).join("")}
+      </ul>
+    </div>` : "";
+
+  const relatedCards = related.map((r) => `
+    <article class="tutorial-card" data-tutorial-track="${esc(r.track)}">
+      <a class="tutorial-card-media" href="/tutorials/${esc(r.slug)}/" aria-label="Watch ${esc(r.title)}">
+        <img src="https://i.ytimg.com/vi/${esc(r.youtubeId)}/hqdefault.jpg" alt="${esc(r.title)}" width="480" height="270" loading="lazy">
+        <span class="tutorial-duration-tag">${esc(r.duration)}</span>
+        <span class="tutorial-card-play" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        </span>
+      </a>
+      <div class="tutorial-card-content">
+        <div class="tutorial-card-badge">${esc(r.category)}</div>
+        <h3 class="tutorial-card-heading"><a href="/tutorials/${esc(r.slug)}/">${esc(r.title)}</a></h3>
+        <p class="tutorial-card-text">${esc(r.summary)}</p>
+      </div>
+    </article>`).join("");
+
+  const courseCardHtml = course ? `
+    <aside class="tutorial-course-card">
+      <span class="path-badge">In-Person Training</span>
+      <h2>${esc(course.title)}</h2>
+      <p class="course-card-summary">${esc(course.summary)}</p>
+      <div class="course-card-meta-list">
+        <div class="meta-row"><span class="meta-icon">${svgIcons.clock}</span> <span>${esc(course.duration)} practical cohort</span></div>
+        <div class="meta-row"><span class="meta-icon">${svgIcons.laptop}</span> <span>Desktop computers provided</span></div>
+        <div class="meta-row"><span class="meta-icon">${svgIcons.award}</span> <span>Certificate of completion</span></div>
+      </div>
+      <div class="course-card-cta-group">
+        <a class="button button-block" href="/courses/${esc(course.slug)}/">View course details</a>
+        <a class="button button-block button-wa" href="https://wa.me/${site.contact.whatsapp.number}?text=${encodeURIComponent(`Hello OCATECH, I watched your tutorial on "${t.title}" and would like to enroll in the ${course.title} course.`)}" target="_blank" rel="noopener noreferrer">Inquire on WhatsApp</a>
+      </div>
+    </aside>` : "";
+
+  const inner = `${renderBreadcrumbs([["Home", "/"], ["Tutorials", "/tutorials/"], [t.title, `/tutorials/${t.slug}/`]])}
+  <article class="tutorial-detail wrap">
+    <header class="tutorial-detail-header">
+      <div class="tutorial-badge-group">
+        <span class="tutorial-cat-tag">${esc(t.category)}</span>
+        <span class="tutorial-duration-tag">${esc(t.duration)}</span>
+      </div>
+      <h1>${esc(t.title)}</h1>
+      <p class="tutorial-lead-copy">${esc(t.summary)}</p>
+    </header>
+
+    <div class="tutorial-video-shell">
+      <div class="video-embed-box" data-video-id="${esc(t.youtubeId)}">
+        <img class="video-embed-poster" src="https://i.ytimg.com/vi/${esc(t.youtubeId)}/hqdefault.jpg" alt="${esc(t.title)}" width="480" height="270" loading="eager">
+        <button class="video-play-btn" type="button" aria-label="Play video: ${esc(t.title)}">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+          <span>Play practical lesson (${esc(t.duration)})</span>
+        </button>
+      </div>
+      <div class="tutorial-video-links">
+        <a class="button button-quiet" href="https://www.youtube.com/watch?v=${esc(t.youtubeId)}" target="_blank" rel="noopener noreferrer">
+          Watch directly on YouTube <svg class="icon-arrow-ne" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+        <a class="button button-youtube" href="${esc(tutorialData.channel.subscribeUrl)}" target="_blank" rel="noopener noreferrer">
+          Subscribe to @ocatechskills
+        </a>
+      </div>
+    </div>
+
+    <div class="tutorial-layout-grid">
+      <div class="tutorial-main-col">
+        <div class="tutorial-content-card">
+          <h2>About this practical lesson</h2>
+          <p>${esc(t.summary)}</p>
+          ${toolsList}
+        </div>
+
+        ${stepsList}
+
+        <div class="tutorial-trainer-help-card">
+          <h3>Need help or have questions?</h3>
+          <p>Our trainers are available to help you troubleshoot questions from this tutorial, inspect code, or guide your setup.</p>
+          <a class="button button-wa" href="https://wa.me/${site.contact.whatsapp.number}?text=${encodeURIComponent(`Hello OCATECH, I was studying your tutorial on "${t.title}" and have a question.`)}" target="_blank" rel="noopener noreferrer">Ask a trainer on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="tutorial-sidebar-col">
+        ${courseCardHtml}
+      </div>
+    </div>
+
+    <section class="related-tutorials-section">
+      <h2>More practical tutorials</h2>
+      <div class="tutorials-grid">
+        ${relatedCards}
+      </div>
+    </section>
+  </article>`;
+
+  return {
+    title: `${t.title} | OCATECH Video Tutorials`,
+    description: t.summary.slice(0, 155),
+    canonical: url,
+    inner,
+    jsonLd: [
+      videoObjectJsonLd(t, url),
+      breadcrumbJsonLd([["Home", urls.home], ["Tutorials", urls.for("/tutorials/")], [t.title, url]]),
+    ],
+  };
+}
+
 // ── Verify JS (inline tiny script for client-side result display) ─────────────
 const verifyJs = `(() => {
   const form = document.querySelector('#verify-form');
@@ -2005,6 +2242,7 @@ function emitPage(file, meta) {
   const frameSources = [
     site.flags.enableTurnstile ? "https://challenges.cloudflare.com" : null,
     file === "contact/index.html" ? "https://www.google.com https://maps.google.com" : null,
+    file.startsWith("tutorials/") ? "https://www.youtube.com https://www.youtube-nocookie.com" : null,
   ].filter(Boolean);
   const csp = [
     "default-src 'self'",
@@ -2013,7 +2251,7 @@ function emitPage(file, meta) {
     "frame-ancestors 'none'",
     `script-src 'self' ${hashes.map((hash) => `'sha256-${hash}'`).join(" ").trim()}`.trim(),
     "style-src 'self'",
-    "img-src 'self'",
+    "img-src 'self' data: https://i.ytimg.com",
     "font-src 'self'",
     `connect-src 'self'${site.flags.enableTurnstile ? " https://challenges.cloudflare.com" : ""}`,
     "form-action 'self' https://wa.me",
@@ -2029,6 +2267,7 @@ const pages = [
   ["index.html", renderHome()],
   ["courses/index.html", renderCourses()],
   ["paths/index.html", renderPaths()],
+  ["tutorials/index.html", renderTutorialsIndex()],
   ["showcase/index.html", renderShowcase()],
   ["services/index.html", renderServices()],
   ["about/index.html", renderAbout()],
@@ -2049,6 +2288,12 @@ const pages = [
 for (const guide of guides) {
   pages.push([`guides/${guide.slug}/index.html`, renderGuide(guide)]);
 }
+
+for (const t of tutorials) {
+  pages.push([`tutorials/${t.slug}/index.html`, renderTutorial(t)]);
+  sitemapPaths.push(`/tutorials/${t.slug}/`);
+}
+sitemapPaths.push("/tutorials/");
 
 for (const course of courseData) {
   pages.push([`courses/${course.slug}/index.html`, renderCourse(course)]);

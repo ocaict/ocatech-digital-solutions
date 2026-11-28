@@ -1,0 +1,168 @@
+{
+  "channel": {
+    "name": "OCATECH Skills",
+    "handle": "@ocatechskills",
+    "url": "https://www.youtube.com/@ocatechskills",
+    "subscribeUrl": "https://www.youtube.com/@ocatechskills?sub_confirmation=1"
+  },
+  "categories": [
+    { "id": "all", "name": "All Tutorials" },
+    { "id": "office", "name": "Computer Basics & Excel" },
+    { "id": "data", "name": "Data Analysis" },
+    { "id": "web", "name": "AI & Web Development" },
+    { "id": "networking", "name": "Networking & Hardware" },
+    { "id": "marketing", "name": "Digital Marketing" }
+  ],
+  "tutorials": [
+    {
+      "slug": "mastering-excel-data-analysis-students-performance-tracker",
+      "youtubeId": "QHhHBNaO6vw",
+      "title": "Mastering Excel for Data Analysis with Students' Performance Tracker",
+      "track": "data",
+      "category": "Data Analysis",
+      "duration": "32 mins",
+      "courseSlug": "data-analysis",
+      "summary": "Build a complete real-world student grading and performance tracking dashboard in Excel from scratch using formulas, conditional formatting, and summary statistics.",
+      "tools": ["Microsoft Excel", "Google Sheets"],
+      "published": "2026-11-20",
+      "steps": [
+        { "time": "00:00", "title": "Project Overview: Student Performance Tracker" },
+        { "time": "04:15", "title": "Structuring Student Records and Columns" },
+        { "time": "10:30", "title": "Applying Essential Formulas (SUM, AVERAGE, IF)" },
+        { "time": "18:20", "title": "Automating Pass/Fail Grades with Nested Logic" },
+        { "time": "26:40", "title": "Visualizing Outcomes with Conditional Formatting" }
+      ]
+    },
+    {
+      "slug": "build-web-apps-with-ai-without-coding",
+      "youtubeId": "-4eb1LWC_hA",
+      "title": "Build Web Apps with AI Without Coding | Free AI App Development",
+      "track": "web",
+      "category": "AI & Web Development",
+      "duration": "25 mins",
+      "courseSlug": "ai-assisted-software-development",
+      "summary": "Discover how to turn your software ideas into functional web applications using AI coding assistants without prior programming experience.",
+      "tools": ["AI Coding Assistants", "VS Code", "Web Browsers", "GitHub"],
+      "published": "2026-11-22",
+      "steps": [
+        { "time": "00:00", "title": "Why No-Code & AI Coding is Changing Tech" },
+        { "time": "03:40", "title": "Planning Your Web Application Architecture" },
+        { "time": "08:15", "title": "Prompting AI to Generate Frontend UI" },
+        { "time": "14:50", "title": "Connecting Database and Logic" },
+        { "time": "21:00", "title": "Testing and Deploying Your Live App" }
+      ]
+    },
+    {
+      "slug": "testing-mikrotik-hotspot-vouchers-smart-tv",
+      "youtubeId": "7QjBnODV-IU",
+      "title": "Testing MikroTik Hotspot Vouchers on a Smart TV",
+      "track": "networking",
+      "category": "Networking & Hardware",
+      "duration": "15 mins",
+      "courseSlug": "hardware-maintenance-and-wifi-networking",
+      "summary": "Learn how hotspot billing, captive portals, and voucher authentication behave when connecting smart TVs, streaming boxes, and hospitality Wi-Fi clients.",
+      "tools": ["MikroTik RouterOS", "Winbox", "Smart TV", "Cat6 Cabling"],
+      "published": "2026-11-24",
+      "steps": [
+        { "time": "00:00", "title": "Why Test Hotspot Vouchers on Smart Devices?" },
+        { "time": "03:10", "title": "Configuring MikroTik Hotspot Server & User Profiles" },
+        { "time": "07:30", "title": "Connecting the Smart TV to the Wi-Fi Network" },
+        { "time": "10:45", "title": "Handling Captive Portal Redirection on Non-Browser Devices" },
+        { "time": "13:20", "title": "Bypass & MAC Binding Solutions for Hospitality" }
+      ]
+    },
+    {
+      "slug": "create-digital-marketing-content-using-ai",
+      "youtubeId": "UDRYynZQxgE",
+      "title": "How to Create Digital Marketing Content Using AI | Complete Practical Training",
+      "track": "marketing",
+      "category": "Digital Marketing",
+      "duration": "18 mins",
+      "courseSlug": "digital-marketing",
+      "summary": "Step-by-step practical guide on generating high-converting digital marketing content, social media posts, and adverts using modern AI tools.",
+      "tools": ["ChatGPT", "Canva", "CapCut", "Meta Business Suite"],
+      "published": "2026-11-25",
+      "steps": [
+        { "time": "00:00", "title": "Introduction to AI in Digital Marketing" },
+        { "time": "02:30", "title": "Setting Up Your Content Strategy & Angles" },
+        { "time": "06:15", "title": "Generating Compelling Ad Copy with AI Prompts" },
+        { "time": "11:20", "title": "Designing Visual Creatives in Canva" },
+        { "time": "15:40", "title": "Publishing & Running Ads on Meta & WhatsApp" }
+      ]
+    },
+    {
+      "slug": "install-google-antigravity-ide-ai-agents",
+      "youtubeId": "w0bxhdrVkEM",
+      "title": "How to Install Google Antigravity IDE & Set Up AI Agents",
+      "track": "web",
+      "category": "AI & Web Development",
+      "duration": "22 mins",
+      "courseSlug": "ai-engineering-and-automation",
+      "summary": "Complete setup walkthrough for installing Google Antigravity IDE, configuring API keys, and orchestrating intelligent multi-agent workflows.",
+      "tools": ["Google Antigravity IDE", "Terminal", "Git", "AI Models"],
+      "published": "2026-11-21",
+      "steps": [
+        { "time": "00:00", "title": "Overview of Google Antigravity IDE" },
+        { "time": "03:10", "title": "System Requirements & Installation" },
+        { "time": "07:45", "title": "Configuring API Keys and Providers" },
+        { "time": "13:20", "title": "Setting Up Autonomous AI Agents" },
+        { "time": "18:30", "title": "Running Your First Automated Workflow" }
+      ]
+    },
+    {
+      "slug": "mikrotik-l009-router-wavlink-wifi7-unboxing-setup",
+      "youtubeId": "6ne9Cs09U1g",
+      "title": "MikroTik L009 Router & WAVLINK Wi-Fi 7 Access Point Setup",
+      "track": "networking",
+      "category": "Networking & Hardware",
+      "duration": "16 mins",
+      "courseSlug": "ccna-networking",
+      "summary": "Detailed unboxing, hardware tour, and initial configuration of the powerful MikroTik L009 router paired with high-speed Wi-Fi 7 wireless access points.",
+      "tools": ["MikroTik L009", "WAVLINK Wi-Fi 7", "Winbox", "PoE Injector"],
+      "published": "2026-11-23",
+      "steps": [
+        { "time": "00:00", "title": "Unboxing the MikroTik L009 Series Router" },
+        { "time": "03:45", "title": "Hardware Ports, SFP Cage, & Dual Power Architecture" },
+        { "time": "07:30", "title": "WAVLINK Wi-Fi 7 Access Point Overview" },
+        { "time": "11:15", "title": "First-Time Configuration via Winbox" },
+        { "time": "14:30", "title": "Performance Speed Testing & Range Analysis" }
+      ]
+    },
+    {
+      "slug": "excel-cells-explained-for-beginners",
+      "youtubeId": "35ozr1dNTNU",
+      "title": "Excel Cells Explained for Beginners | Everything You Need to Know",
+      "track": "office",
+      "category": "Computer Basics & Excel",
+      "duration": "12 mins",
+      "courseSlug": "certificate-in-computer-application",
+      "summary": "Understand how cells work in Excel, cell addressing, data types, formatting, and how to avoid the most common beginner spreadsheet mistakes.",
+      "tools": ["Microsoft Excel"],
+      "published": "2026-11-18",
+      "steps": [
+        { "time": "00:00", "title": "What is an Excel Cell?" },
+        { "time": "02:20", "title": "Understanding Rows, Columns & Cell Addresses" },
+        { "time": "05:15", "title": "Entering Numbers, Text, and Dates Properly" },
+        { "time": "08:40", "title": "Cell Formatting & Styling Essentials" }
+      ]
+    },
+    {
+      "slug": "excel-formula-bar-explained-for-beginners",
+      "youtubeId": "mxOXujbGejE",
+      "title": "Excel Formula Bar Explained: What It Is and How to Use It",
+      "track": "office",
+      "category": "Computer Basics & Excel",
+      "duration": "10 mins",
+      "courseSlug": "certificate-in-computer-application",
+      "summary": "Master the Excel Formula Bar to inspect, edit, and troubleshoot formulas, expand large multiline expressions, and avoid common syntax errors.",
+      "tools": ["Microsoft Excel"],
+      "published": "2026-11-19",
+      "steps": [
+        { "time": "00:00", "title": "Locating the Formula Bar in Excel" },
+        { "time": "02:15", "title": "Difference Between Cell Display and Underlying Value" },
+        { "time": "05:00", "title": "Writing and Editing Formulas Directly in the Bar" },
+        { "time": "07:45", "title": "Keyboard Shortcuts to Expand and Navigate" }
+      ]
+    }
+  ]
+}
