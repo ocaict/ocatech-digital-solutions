@@ -2093,11 +2093,13 @@ const facts = [
   site.contact.hours ? `- Opening hours: ${site.contact.hours}.` : null,
   site.contact.landmarkOrDirections ? `- Landmark: ${site.contact.landmarkOrDirections}` : null,
   `- Contact: WhatsApp ${site.contact.whatsapp.display}. Phones ${site.contact.phones.map((p) => p.display).join(" and ")}. Email ${site.contact.email}.`,
-  `- Learning: in person at our Onitsha center with computers provided during practical classes and stable power supply. Online classes are available depending on the course; ask us on WhatsApp about online options. ${site.offer.admission} ${site.offer.certificate}.`,
-  `- Payment: ${site.offer.paymentMethods.join(", ")}, and installment plans. ${site.offer.feeNote}`,
-  `- Students: ${site.audiences.join(", ")}.`,
-  `- Services: ${site.services.map((s) => s.name).join(", ")}, for homes and businesses in ${site.areasServed.join(", ")}.`,
-  ...courseData.map((course) => `- Course: ${course.title}. Level: ${course.level}. ${course.summary} Tools: ${course.tools.join(", ")}. Before you start: ${course.prerequisites}. Next: ${course.nextSteps.map((slug) => courseBySlug.get(slug)?.title).filter(Boolean).join(", ") || "none"}.`),
+  `- Learning Facilities: In-person training at our Onitsha center. Fully equipped computer lab with desktop computers provided for every student during practical sessions. Reliable uninterrupted power with solar inverters and standby generator so classes are never cut short. Online training options are also available for select courses.`,
+  `- Admission & Certification: Rolling admissions throughout the year (no waiting for fixed cohorts; you can enroll and start immediately). Morning, afternoon, and flexible schedules available. Recognized, verifiable OCATECH Certificate of Completion awarded upon practical project defense.`,
+  `- Tuition & Payment: Transparent course fees range from ₦30,000 to ₦250,000 depending on the program. Flexible installment payment plans are available (typically a starting deposit with the remainder paid in parts during training). Payment methods accepted: Bank transfer, POS at the center, or Cash at the center. See [View All Fees](/fees/).`,
+  `- Laptop Policy: You do NOT need your own laptop to start; desktop computers are provided in the lab for all practical classes. However, having a personal laptop is recommended for practicing at home, and our instructors will install all required software for free on your laptop.`,
+  `- Students Welcome: Beginners, students, secondary school leavers, graduates, NYSC members, job seekers, working professionals, traders, and entrepreneurs looking to digitize their operations.`,
+  `- Services Offered: CCTV camera installation & mobile remote viewing, Solar & inverter power installation, Software installation & PC optimization, Structured network cabling & Wi-Fi setup, for homes, shops, warehouses, hotels, schools, and offices across Onitsha, Nkpor, Obosi, and Awka.`,
+  ...courseData.map((course) => `- Course: ${course.title}. Level: ${course.level}. Duration: ${course.duration || "Self-paced"}. Tuition: ₦${Number(course.fee).toLocaleString("en-NG")}. Summary: ${course.summary} Tools taught: ${course.tools.join(", ")}. Prerequisites: ${course.prerequisites}. Next progression: ${course.nextSteps.map((slug) => courseBySlug.get(slug)?.title).filter(Boolean).join(", ") || "none"}. Course page: /courses/${course.slug}/`),
   ...site.paths.map((item) => `- Path: ${item.name}: ${item.courses.map((slug) => courseBySlug.get(slug)?.title).filter(Boolean).join(", ")}.`),
 ].filter(Boolean).join("\n");
 

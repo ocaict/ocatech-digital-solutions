@@ -2690,8 +2690,20 @@ form input[type="radio"], form input[type="checkbox"] { width: 20px; height: 20p
   border-color: var(--orange);
 }
 .chat-body { padding: 1rem; overflow: auto; display: grid; gap: .6rem; }
-.chat-message { max-width: 88%; padding: .65rem .8rem; border-radius: 12px; background: var(--surface-2); color: var(--text); white-space: pre-wrap; font-size: .92rem; }
+.chat-message { max-width: 88%; padding: .65rem .85rem; border-radius: 12px; background: var(--surface-2); color: var(--text); font-size: .92rem; line-height: 1.45; word-break: break-word; }
 .chat-message.user { justify-self: end; background: var(--orange); color: var(--navy-text); }
+.chat-message strong { font-weight: 700; color: #fff; }
+.chat-message.user strong { color: var(--navy-text); }
+.chat-message a { color: var(--cyan); text-decoration: underline; font-weight: 600; text-underline-offset: 2px; }
+.chat-message.user a { color: var(--navy-text); }
+.chat-message.typing { display: inline-flex; align-items: center; gap: 5px; width: fit-content; padding: .65rem 1rem; }
+.chat-message.typing span { width: 6px; height: 6px; background: var(--muted); border-radius: 50%; display: inline-block; animation: chatDot 1.4s infinite ease-in-out both; }
+.chat-message.typing span:nth-child(1) { animation-delay: -0.32s; }
+.chat-message.typing span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes chatDot {
+  0%, 80%, 100% { transform: scale(0.3); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; background: var(--cyan); }
+}
 .chat-body .button { margin-top: .5rem; }
 .chat-quick { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 1rem .75rem; }
 .chat-quick button { min-height: 36px; padding: .35rem .65rem; border: 1px solid var(--border); border-radius: 999px; background: var(--navy); color: var(--muted); cursor: pointer; font-size: .82rem; transition: background .15s ease, color .15s ease; }

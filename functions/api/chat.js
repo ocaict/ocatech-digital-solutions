@@ -1,9 +1,9 @@
 import { systemPrompt, config } from "../generated/chat-facts.mjs";
 
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-const DEFAULT_MODEL = "openai/gpt-oss-20b";
+const DEFAULT_MODEL = "llama-3.3-70b-versatile";
 const WHATSAPP_TEXT = config.whatsappText || "Hello OCATECH, I would like to know more about your courses.";
-const RISKY_REPLY = /[$₦£€]|\b(?:NGN|USD)\b|\b\d+(?:[.,]\d+)?\s?%|\bpercent\b|\bguarantee(?:d|s|ing)?\b/i;
+const RISKY_REPLY = /\b(?:100%\s*(?:job|placement|pass|hire)|job\s+guarantee|guaranteed\s+(?:employment|job|salary|income|placement))\b/i;
 
 const jsonResponse = (body, status = 200, extraHeaders = {}) => new Response(JSON.stringify(body), {
   status,
@@ -48,11 +48,11 @@ function cleanMessages(payload) {
   const messages = payload?.messages;
   if (!Array.isArray(messages) || messages.length === 0 || messages.length > 20) return null;
   const cleaned = [];
-  for (const item of messages.slice(-6)) {
+  for (const item of messages.slice(-10)) {
     const role = item?.role === "user" ? "user" : item?.role === "assistant" ? "assistant" : null;
     const raw = typeof item?.content === "string" ? item.content.trim() : "";
     if (!role || !raw || raw.length > 5000) return null;
-    cleaned.push({ role, content: raw.slice(0, role === "user" ? 500 : 1000) });
+    cleaned.push({ role, content: raw.slice(0, role === "user" ? 600 : 1500) });
   }
   return cleaned;
 }
@@ -108,8 +108,8 @@ export async function onRequestPost(context) {
       body: JSON.stringify({
         model: env.GROQ_MODEL || DEFAULT_MODEL,
         messages: [{ role: "system", content: systemPrompt }, ...messages],
-        temperature: 0.2,
-        max_tokens: 300,
+        temperature: 0.55,
+        max_tokens: 450,
       }),
     });
   } catch {
