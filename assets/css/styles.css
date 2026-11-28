@@ -170,7 +170,7 @@ button, input, select, textarea { font: inherit; }
 }
 
 .brand-tech {
-  color: var(--red, #ff0000);
+  color: var(--orange, #FF6600);
 }
 
 .brand-desc {
